@@ -13,7 +13,9 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+# url: http://example.com
+url: https://asong123.github.io/
+root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -106,7 +108,7 @@ theme: matery
 deploy:
   type: git
   repo: git@github.com:asong123/blog.git
-  branch: main
+  branch: gh-pages
 
 # 搜索支持
 search:
