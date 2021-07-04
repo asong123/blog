@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>阿松小站</title>
+  
+  <subtitle>欢迎来到阿松小站</subtitle>
+  <link href="https://asong123.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://asong123.github.io/"/>
+  <updated>2021-07-04T05:19:02.430Z</updated>
+  <id>https://asong123.github.io/</id>
+  
+  <author>
+    <name>阿松</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo基础配置</title>
+    <link href="https://asong123.github.io/2021/07/02/hexo-ji-chu-pei-zhi/"/>
+    <id>https://asong123.github.io/2021/07/02/hexo-ji-chu-pei-zhi/</id>
+    <published>2021-07-02T00:56:37.000Z</published>
+    <updated>2021-07-04T05:19:02.430Z</updated>
+    
+    
+    
+    
+    <category term="Markdown" scheme="https://asong123.github.io/categories/Markdown/"/>
+    
+    
+    <category term="Typora" scheme="https://asong123.github.io/tags/Typora/"/>
+    
+    <category term="Markdown" scheme="https://asong123.github.io/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>my first blog</title>
+    <link href="https://asong123.github.io/2021/07/01/my-first-blog/"/>
+    <id>https://asong123.github.io/2021/07/01/my-first-blog/</id>
+    <published>2021-07-01T06:23:09.000Z</published>
+    <updated>2021-07-02T00:53:36.484Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hello-world</title>
+    <link href="https://asong123.github.io/2018/09/07/hello-world/"/>
+    <id>https://asong123.github.io/2018/09/07/hello-world/</id>
+    <published>2018-09-07T01:25:00.000Z</published>
+    <updated>2021-07-02T00:53:36.484Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Markdown" scheme="https://asong123.github.io/categories/Markdown/"/>
+    
+    
+    <category term="Typora" scheme="https://asong123.github.io/tags/Typora/"/>
+    
+    <category term="Markdown" scheme="https://asong123.github.io/tags/Markdown/"/>
+    
+  </entry>
+  
+</feed>
