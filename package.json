@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start": "yuque-hexo clean && yuque-hexo sync && hexo clean && hexo generate",
     "build": "hexo generate",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
+    "deploy": "npm run sync && hexo clean && hexo g -d",
     "server": "hexo server",
     "sync": "yuque-hexo sync",
     "clean:yuque": "yuque-hexo clean"
@@ -40,7 +41,7 @@
     "login": "asong-m4h1o",
     "repo": "qeaqxg",
     "token": "80xnmDSzG5QQMR1yREXrlRgoN4O7qXE0NiHCym11",
-    "onlyPublished": true,
+    "onlyPublished": false,
     "onlyPublic": true
   },
   "devDependencies": {
