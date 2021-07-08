@@ -1,5 +1,6 @@
 ---
 title: Redis笔记
+urlname: mok0nn
 date: '2021-07-05 15:24:05 +0800'
 author: 阿松
 top: true
@@ -7,8 +8,6 @@ hide: false
 cover: true
 toc: false
 mathjax: false
-img: https://img-blog.csdnimg.cn/20200820103851613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RERERlbmdf,size_16,color_FFFFFF,t_70#pic_center#id=H4zN8&originHeight=836&originWidth=1130&originalType=binary%E2%88%B6=1&status=done&style=none
-coverImg: https://www.runoob.com/wp-content/uploads/2014/11/redis.gif
 summary: >-
   用户的个人信息，社交网络，地理位置。用户自己产生的数据，用户日志等等爆发式增长！这时候我们就需要使用 NoSQL 数据库的，Nosql
   可以很好的处理以上的情况！
