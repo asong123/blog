@@ -112,7 +112,7 @@ deploy:
 
 # 搜索支持
 search:
-  path: search.json
+  path: search.xml
   field: post
 
 
@@ -143,18 +143,33 @@ feed:
   order_by: -date
   
 # 看板小人
+# Live2D
+## https://github.com/EYHN/hexo-helper-live2d
+## live2d
 live2d:
-    enable: true
-    scriptFrom: local
-    model: 
-        use: live2d-widget-model-haruto #模型选择
-    display: 
-        position: right  #模型位置
-        width: 150       #模型宽度
-        height: 300      #模型高度
-    mobile: 
-        show: false      #是否在手机端显示
-        
+   enable: true
+   scriptFrom: local
+   pluginRootPath: live2dw/
+   pluginJsPath: lib/
+   pluginModelPath: assets/
+   tagMode: false
+   debug: false
+   model:
+       use: live2d-widget-model-haruto
+       scale: 1
+       hHeadPos: 0.5
+       vHeadPos: 0.618
+   display:
+       superSample: 2
+       width: 150
+       height: 300
+       position: right
+       hOffset: 0
+       vOffset: -20
+   mobile:
+       show: true
+       scale: 0.5
+
 # hexo-admin authentification
 admin:
   username: asong
