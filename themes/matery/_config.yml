@@ -447,7 +447,7 @@ libs:
     aos: /libs/aos/aos.css
     animate: /libs/animate/animate.min.css # V3.5.1
     lightgallery: /libs/lightGallery/css/lightgallery.min.css # V1.6.11
-    aplayer: /libs/aplayer/APlayer.min.css
+    aplayer: /libs/aplayer/APlayer.min.css   
     dplayer: /libs/dplayer/DPlayer.min.css
     gitalk: /libs/gitalk/gitalk.css
     jqcloud: /libs/jqcloud/jqcloud.css
