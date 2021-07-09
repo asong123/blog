@@ -1,0 +1,820 @@
+---
+title: 10、JavaSE：IO流
+urlname: bnoiyu
+date: '2021-07-09 20:36:59 +0800'
+tags: []
+categories: []
+---
+
+# 一、JAVA 流式输入/输出原理
+
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834221307-5ee632f8-e763-410f-96b5-4b8e9ae1a811.jpeg#)
+
+### 在 Java 程序中，对于数据的输入/输出操作以“流”（Stream）方式进行；J2SDK 提供了各种各样的“流” 类，用以获取不同种类的数据：程序中通过标准的方法输入或输出数据。
+
+**读入写出**
+流是用来读写数据的，java 有一个类叫 File，它封装的是文件的文件名，只是内存里面的一个对象，真 正的文件是在硬盘上的一块空间，在这个文件里面存放着各种各样的数据，我们想读文件里面的数据怎 么办呢？是通过一个流的方式来读，咱们要想从程序读数据，对于计算机来说，无论读什么类型的数据 都是以 010101101010 这样的形式读取的。怎么把文件里面的数据读出来呢？你可以把文件想象成一个 小桶，文件就是一个桶，文件里面的数据就相当于是这个桶里面的水，那么我们怎么从这个桶里面取水 呢，也就是怎么从这个文件读取数据呢。
+常见的取水的办法是我们用一根管道插到桶上面，然后在管道的另一边打开水龙头，桶里面的水就开始 哗啦哗啦地从水龙头里流出来了，桶里面的水是通过这根管道流出来的，因此这根管道就叫流，JAVA 里 面的流式输入/输出跟水流的原理一模一样，当你要从文件读取数据的时候，一根管道插到文件里面去， 然后文件里面的数据就顺着管道流出来，这时你在管道的另一头就可以读取到从文件流出来的各种各样 的数据了。当你要往文件写入数据时，也是通过一根管道，让要写入的数据通过这根管道哗啦哗啦地流 进文件里面去。除了从文件去取数据以外，还可以通过网络，比如用一根管道把我和你的机子连接起
+来，我说一句话，通过这个管道流进你的机子里面，你马上就可以看得到，而你说一句话，通过这根管 道流到我的机子里面，我也马上就可以看到。有的时候，一根管道不够用，比方说这根管道流过来的水 有一些杂质，我们就可以在这个根管道的外面再包一层管道，把杂质给过滤掉。从程序的角度来讲，从 计算机读取到的原始数据肯定都是 010101 这种形式的，一个字节一个字节地往外读，当你这样读的时候 你觉得这样的方法不合适，没关系，你再在这根管道的外面再包一层比较强大的管道，这个管道可以把
+010101 帮你转换成字符串。这样你使用程序读取数据时读到的就不再是 010101 这种形式的数据了，而 是一些可以看得懂的字符串了。
+
+# 二、输入输出流分类
+
+Java.io 包中定义了多个流类型（类或抽象类）来实现输入/输出功能；可以从不同的角度对其进行分类：
+按数据流的方向不同可以分为输入流和输出流按照处理数据单位不同可以分为字节流和字符流按照功能不同可以分为节点流和处理流
+
+我们来理解两个概念：
+字节流：最原始的一个流，读出来的数据就是 010101 这种最底层的数据表示形式，只不过它是按 照字节来读的，一个字节（Byte）是 8 位（bit）读的时候不是一个位一个位的来读，而是一个字节 一个字节来读。
+字符流：字符流是一个字符一个字符地往外读取数据。一个字符是 2 个字节
+J2SDK 所提供的所有流类型位于包 Java.io 内，都分别继承自以下四种抽象流类型。
+
+### 输入流：InputStream（字节流），Reader（字符流） 输出流：OutPutStream（字节流），Writer（字符流）
+
+这四个类都是抽象类，可以把这四个类想象成四根不同的管道。一端接着你的程序，另一端接着数据 源，你可以通过输出管道从数据源里面往外读数据，也可以通过输入管道往数据源里面输入数据，总 之，通过这四根管道可以让数据流进来和流出去。
+io 包里面定义了所有的流，所以一说流指的就是 io 包里面的
+
+### 什么叫输入流？什么叫输出流？
+
+用一根管道一端插进文件里，一端插进程序里面，然后开始读数据，那么这是输入还是输出呢？ 如果站在文件的角度上，这叫输出。
+如果站在程序的角度上，这叫输入。
+**记住，以后说输入流和输出流都是站在程序的角度上来说。**
+
+**三、节点流和处理流**
+
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834221936-4991ab1b-dd3b-43c4-a028-b934cd9f69d3.jpeg#)
+
+你要是对原始的流不满意，你可以在这根管道外面再套其它的管道，套在其它管道之上的流叫处理流。 为什么需要处理流呢？这就跟水流里面有杂质，你要过滤它，你可以再套一层管道过滤这些杂质一样。
+
+1.  **节点流类型**
+
+| **类型**      | **字符流**                       | **字节流**                                  |
+| ------------- | -------------------------------- | ------------------------------------------- |
+| File（文件）  | FileReader、FileWriter           | FileInputStream、FileOutputStream           |
+| Memory Array  | CharArrayReader、CharArrayWriter | ByteArrayInputStream、ByteArrayOutputStream |
+| Memory String | StringReader、StringWriter       |
+| -             |
+| Pipe（管道）  | PipedReader、PipedWriter         | PipedInputStream、PipedOutputStream         |
+
+节点流就是一根管道直接插到数据源上面，直接读数据源里面的数据，或者是直接往数据源里面写入数 据。典型的节点流是文件流：文件的字节输入流（FileInputStream），文件的字节输出流
+（FileOutputStream），文件的字符输入流（FileReader），文件的字符输出流（FileWriter）。
+
+## 处理流类型
+
+| **处理类型** | **字符流** | **字节流** |
+| ------------ | ---------- | ---------- |
+
+|
+Buﬀering | BuﬀeredReader、BuﬀeredWriter | BuﬀeredInputStream、BuﬀeredOutputStream |
+|
+Filtering | FilterReader、FilterWriter | FilterInputStream， FilterOutputStream |
+| Converting between bytes and chaacter | InputStreamReader、OutputStreamWriter |
+
+- |
+  |
+  Object Serialization |
+- | ObjectInputStream、ObjectOutputStream |
+  |
+  Data conversion |
+- | DataInputStream、DataOutputStream |
+  | Counting | LineNumberReader | LineNumberInputStream |
+  | Peeking ahead | PusbackReader | PushbackInputStream |
+  | Printing | PrintWriter | PrintStream |
+
+处理流是包在别的流上面的流，相当于是包到别的管道上面的管道。
+
+# 四、InputStream(输入流)
+
+我们看到的具体的某一些管道，凡是以 InputStream 结尾的管道，都是以字节的形式向我们的程序输入 数据。
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834222503-b247373a-0019-4272-b764-60e712dc3f20.png#)继承自 InputStream 的流都是用于向程序中输入数据，且数据的单位为字节（8bit）；下图中深色为节点流，浅色为处理流。
+
+## 4.1.InputStream 的基本方法
+
+| 1   | //读取一个字节并以整数的形式返回（0~255）                        |
+| --- | ---------------------------------------------------------------- |
+| 2   | //如果返回-1 就说明已经到了输入流的末尾                          |
+| 3   | int read() throws IOException                                    |
+| 4   |                                                                  |
+| 5   | //读取一系列字节并存储到一个数组 buffer                          |
+| 6   | //返回实际读取的字节数，如果读取前已到输入流的末尾，则返回-1     |
+| 7   | int read(byte[] buffer) throws IOException                       |
+| 8   |                                                                  |
+| 9   | //读取 length 个字节                                             |
+| 10  | //并存储到一个字节数组 buffer，从 length 位置开始                |
+| 11  | //返回实际读取的字节数，如果读取前以到输入流的末尾返回-1.        |
+| 12  | int read(byte[] buffer,int offset,int length) throws IOException |
+| 13  |                                                                  |
+| 14  | //关闭流释放内存资源                                             |
+| 15  | void close() throws IOException                                  |
+| 16  |                                                                  |
+| 17  | //跳过 n 个字节不读，返回实际跳过的字节数                        |
+| 18  | long skip(long n) throws IOException                             |
+
+read()方法是一个字节一个字节地往外读，每读取一个字节，就处理一个字节。read(byte[] buﬀer)方法读取数据时，先把读取到的数据填满这个 byte[]类型的数组 buﬀer(buﬀer 是内存里面的一块缓冲区)，然后再处理数组里面的数据。这就跟我们取水一样，先用一个桶去接，等桶接满水后再处理桶里面的水。 如果是每读取一个字节就处理一个字节，这样子读取也太累了。
+
+## 4.2 案例
+
+以 File(文件)这个类型作为讲解节点流的典型代表
+
+【源码查看，分析结构】
+
+### 【演示：使用 FileInputStream 流来读取 FileInputStream.java 文件的内容】
+
+1 package com.kuang.chapter; 2
+3 import java.io.\*; 4
+
+1. public class TestFileInputStream {
+1. public static void main(String args[]) {
+1. int b = 0;// 使用变量 b 来装调用 read()方法时返回的整数
+1. FileInputStream in = null;
+1. // 使用 FileInputStream 流来读取有中文的内容时，读出来的是乱码，因为使用
+
+InputStream 流里面的 read()方法读取内容时是一个字节一个字节地读取的，而一个汉字是占用两个 字节的，所以读取出来的汉字无法正确显示。
+
+1.  // FileReader in = null;
+1.      // 使用FileReader流来读取内容时，中英文都可以正确显示，因为Reader流里面的read()方法是一个字符一个字符地读取的，这样每次读取出来的都是一个完整的汉字，这样就可以正确  显示了。
+1.  try {
+1.  in = new FileInputStream("E:\\教学\\班级
+
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\Student.java");
+
+1. // in = new FileReader("E:\\教学\\班级
+
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\Student.java");
+
+1. } catch (FileNotFoundException e) {
+1. System.out.println("系统找不到指定文件！");
+1. System.exit(-1);// 系统非正常退出
+
+18 }
+19
+20 long num = 0;// 使用变量 num 来记录读取到的字符数
+21
+
+1. // 调用 read()方法时会抛异常，所以需要捕获异常
+1. try {
+
+24 while ((b = in.read()) != -1) {
+
+1.      // 调用int read() throws Exception方法时，返回的是一个int类型的整数
+1.  // 循环结束的条件就是返回一个值-1，表示此时已经读取到文件的末尾了。
+1.      // System.out.print(b+"\t");//如果没有使用“(char)b”进行转换，那么直接打印出来的b就是数字，而不是英文和中文了
+1.  System.out.print((char) b);
+1.  // “char(b)”把使用数字表示的汉字和英文字母转换成字符输入
+1.  num++;
+
+31 }
+
+1. in.close();// 关闭输入流
+1. System.out.println();
+1. System.out.println("总共读取了" + num + "个字节的文件");
+1. } catch (IOException e1) {
+1. System.out.println("文件读取错误！"); 37 }
+
+38 }
+39 }
+
+# 五、OutputStream(输出流)
+
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834223037-78ad7013-85d2-42d7-b016-1ec7f2eb8fed.png#)继承自 OutputStream 的流是用于程序中输出数据，且数据的单位为字节（8bit）：下图中深色的为节点流，浅色为处理流。
+
+## 5.1.OutputStream 的基本方法
+
+| 1   | //向输出流中写入一个字节数据，该字节数据为参数 b 的低 8 位               |
+| --- | ------------------------------------------------------------------------ |
+| 2   | void write(int b) throws IOException                                     |
+| 3   |                                                                          |
+| 4   | //将一个字节类型的数组中的数据写入输出流                                 |
+| 5   | void write(byte[] b) throws IOException                                  |
+| 6   |                                                                          |
+| 7   | //将一个字节类型的数组中的从指定位置（off）开始的 len 个字节写入到输出流 |
+| 8   | void write(byte[] b,int off,int len) throws IOException                  |
+| 9   |                                                                          |
+| 10  | //关闭流释放内存资源                                                     |
+| 11  | void close() throws IOException                                          |
+| 12  |                                                                          |
+| 13  | //将输出流中缓冲的数据全部写出到目的地                                   |
+| 14  | void flush() throws IOException                                          |
+
+**5.2 案例**
+【使用 FileOutputStream 流往一个文件里面写入数据】
+
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+package com.kuang.chapter;
+import java.io.\*;
+12
+13
+
+14
+15
+16
+17
+public class TestFileOutputStream {
+public static void main(String args[]) { int b = 0;
+FileInputStream in = null; FileOutputStream out = null; try {
+in = new FileInputStream("E:\\教学\\班级
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\Student.java"); out = new FileOutputStream("E:\\教学\\班级
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\StudentNew.java");
+// 指明要写入数据的文件，如果指定的路径中不存在 StudentNew.java 这样的文件，则系统会自动创建一个
+while ((b = in.read()) != -1) { out.write(b);
+// 调用 write(int c)方法把读取到的字符全部写入到指定文件中去
+}
+
+| 18 |
+
+} |
+
+} | in.close();
+out.close();
+} catch (FileNotFoundException e) {
+System.out.println("文件读取失败"); System.exit(-1);// 非正常退出
+} catch (IOException e1) {
+System.out.println("文件复制失败！"); System.exit(-1);
+}
+System.out
+.println("Student.StudentNew.java 里面"); |
+| --- | --- | --- | --- |
+| 19 | | | |
+| 20 | | | |
+| 21 | | | |
+| 22 | | | |
+| 23 | | | |
+| 24 | | | |
+| 25 | | | |
+| 26 | | | |
+| 27 | | | |
+| 28 | | | |
+| 29 | | | |
+| 30 | | | |
+
+FileInputStream 和 FileOutputStream 这两个流都是字节流，都是以一个字节为单位进行输入和输出 的。所以对于占用 2 个字节存储空间的字符来说读取出来时就会显示成乱码。
+
+# 六、Reader 流
+
+Reader ： 和 InputStream 一模一样，唯一的区别就在于读的数据单位不同
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834223518-c4c02645-0f28-4277-a3d0-b214bdcbd57e.jpeg#)继承自 Reader 的流都是用于向程序中输入数据，且数据的单位为字符（16bit）
+16 位：一个字符也就是两个字节，使用 Reader 流读取数据时都是两个字节两个字节往外读的，为什么还 要有这两种两个字节的读取方式呢? 因为有些字符是占 2 个字节的，如我们的中文字符在 Java 里面就是占两个字节的。如果采用一个字节一个字节往外读的方式，那么读出来的就是半个汉字，这样子 Java 就没 有办法正确的显示中文字符的，所以有必要存在这种流，一个字符一个字符地往外读。
+
+## 6.1.Reader 的基本方法
+
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+//读取一个字节并以整数的形式返回（0~255）
+//如果返回-1 就说明已经到了输入流的末尾 int read() throws IOException
+//读取一系列字节并存储到一个数组 buffer
+//返回实际读取的字节数，如果读取前已到输入流的末尾，则返回-1 int read(byte[] buffer) throws IOException
+
+//读取 length 个字节
+//并存储到一个字节数组 buffer，从 length 位置开始
+//返回实际读取的字节数，如果读取前以到输入流的末尾返回-1.
+
+| 12  | int read(byte[] buffer,int offset,int length) throws IOException |
+| --- | ---------------------------------------------------------------- |
+| 13  |                                                                  |
+| 14  | //关闭流释放内存资源                                             |
+| 15  | void close() throws IOException                                  |
+| 16  |                                                                  |
+| 17  | //跳过 n 个字节不读，返回实际跳过的字节数                        |
+| 18  | long skip(long n) throws IOException                             |
+
+# 七、Writer 流
+
+继承自 Writer 的流都是用于程序中输出数据，且数据的单位为字符（16bit）；
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834224034-a1b8bea1-b683-487d-a84a-94fc37603c15.jpeg#)
+
+## 7.1.Writer 的基本方法
+
+| 1   | //向输出流中写入一个字节数据，该字节数据为参数 b 的低 16 位              |
+| --- | ------------------------------------------------------------------------ |
+| 2   | void write(int b) throws IOException                                     |
+| 3   |                                                                          |
+| 4   | //将一个字节类型的数组中的数据写入输出流                                 |
+| 5   | void write(byte[] b) throws IOException                                  |
+| 6   |                                                                          |
+| 7   | //将一个字节类型的数组中的从指定位置（off）开始的 len 个字节写入到输出流 |
+| 8   | void write(byte[] b,int off,int len) throws IOException                  |
+| 9   |                                                                          |
+| 10  | //关闭流释放内存资源                                                     |
+| 11  | void close() throws IOException                                          |
+| 12  |                                                                          |
+| 13  | //将输出流中缓冲的数据全部写出到目的地                                   |
+| 14  | void flush() throws IOException                                          |
+
+**7.2 演示**
+
+### 【演示：使用 FileWriter（字符流）向指定文件中写入数据】
+
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+1
+2
+3
+4
+5
+6
+7
+package com.kuang.chapter;
+/_使用 FileWriter（字符流）向指定文件中写入数据写入数据时以 1 个字符为单位进行写入_/
+import java.io.*;
+public class TestFileWriter{
+public static void main(String args[]){
+/*使用 FileWriter 输出流从程序把数据写入到 Uicode.dat 文件中
+
+1.  使用 FileWriter 流向文件写入数据时是一个字符一个字符写入的\*/
+1.  FileWriter fw = null;
+1.  try{
+1.  fw = new FileWriter("E:\\教学\\班级
+
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\StudentNew.java");
+
+1.  //字符的本质是一个无符号的 16 位整数
+1.  //字符在计算机内部占用 2 个字节
+1.  //这里使用 for 循环把 0 ～ 60000 里面的所有整数都输出
+1.  //这里相当于是把全世界各个国家的文字都 0 ～ 60000 内的整数的形式来表示 16 for(int c=0;c<=60000;c++){
+1.  fw.write(c);
+1.  //使用 write(int c)把 0 ～ 60000 内的整数写入到指定文件内
+1.      //调用write()方法时，我认为在执行的过程中应该使用了“(char)c”进行强制 转换，即把整数转换成字符来显示
+1.      //因为打开写入数据的文件可以看到，里面显示的数据并不是0～60000内的整 数，而是不同国家的文字的表示方式
+
+21 }
+
+1. /\*使用 FileReader(字符流)读取指定文件里面的内容
+1. 读取内容时是以一个字符为单位进行读取的\*/
+1. int b = 0;
+1. long num = 0;
+1. FileReader fr = null;
+1. fr = new FileReader("E:\\教学\\班级
+
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\StudentNew.java"); 28 while((b = fr.read())!= -1){
+
+1. System.out.print((char)b + "\t");
+1. num++;
+
+31 }
+
+1. System.out.println();
+1. System.out.println("总共读取了"+num+"个字符");
+1. }catch(Exception e){
+1. e.printStackTrace(); 36 }
+
+37 }
+38 }
+
+FileReader 和 FileWriter 这两个流都是字符流，都是以一个字符为单位进行输入和输出的。所以读取和写入占用 2 个字节的字符时都可以正常地显示出来，以上是以 File(文件)这个类型为例对节点流进行了讲
+解，所谓的节点流指定就是直接把输入流或输出插入到数据源上，直接往数据源里面写入数据或读取数 据。
+
+# 八、处理流讲解
+
+## 第一种处理流——缓冲流(Buﬀering)
+
+缓冲流要”套接“在相应的节点流之上，对读写的数据提供了缓冲的功能，提高了读写的效率，同时增加 了一些新的方法。J2SDK 提供了四种缓冲流，常用构造方法如下：
+
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+
+| 1   | BufferedReader(Reader in)                                  |
+| --- | ---------------------------------------------------------- |
+| 2   | BufferedReader(Reader in,int sz) //sz 为自定义缓冲区的大小 |
+| 3   | BufferedWriter(Writer out)                                 |
+| 4   | BufferedWriter(Writer out,int sz)                          |
+| 5   | BufferedInputStream(InputStream in)                        |
+| 6   | BufferedInputStream(InputStream in,int size)               |
+| 7   | BufferedOutputStream(InputStream in)                       |
+| 8   | BufferedOutputStream(InputStream in,int size)              |
+
+缓冲输入流支持其父类的 mark 和 reset 方法。
+BuﬀeredReader 提供了 readLine 方法用于读取一行字符串
+BuﬀeredWriter 提供了 newLine 用于写入一个行分隔符
+对于输出的缓冲流，写出的数据会现在内存中缓存，使用 ﬂush 方法将会使内存中的数据立刻写出
+带有缓冲区的，缓冲区(Buﬀer)就是内存里面的一小块区域，读写数据时都是先把数据放到这块缓冲区 域里面，减少 io 对硬盘的访问次数，保护我们的硬盘。可以把缓冲区想象成一个小桶，把要读写的数据 想象成水，每次读取数据或者是写入数据之前，都是先把数据装到这个桶里面，装满了以后再做处理。 这就是所谓的缓冲。先把数据放置到缓冲区上，等到缓冲区满了以后，再一次把缓冲区里面的数据写入 到硬盘上或者读取出来，这样可以有效地减少对硬盘的访问次数，有利于保护我们的硬盘。
+【缓冲流测试代码：BuﬀeredInputStream】
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+package com.kuang.chapter;
+import java.io.\*;
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+public class TestBufferStream {
+public static void main(String args[]) { FileInputStream fis = null;
+try {
+fis = new FileInputStream("E:\\教学\\班级
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\Student.java");
+// 在 FileInputStream 节点流的外面套接一层处理流 BufferedInputStream BufferedInputStream bis = new BufferedInputStream(fis);
+int c = 0;
+System.out.println((char) bis.read()); System.out.println((char) bis.read());
+bis.mark(100);// 在第 100 个字符处做一个标记
+for (int i = 0; i <= 10 && (c = bis.read()) != -1; i++) { System.out.print((char) c);
+}
+System.out.println();
+bis.reset();// 重新回到原来标记的地方
+for (int i = 0; i <= 10 && (c = bis.read()) != -1; i++) { System.out.print((char) c);
+}
+bis.close();
+} catch (FileNotFoundException e) { e.printStackTrace();
+} catch (Exception e1) { e1.printStackTrace();
+}
+}
+}
+
+【演示：BuﬀeredReader】
+
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+1 package com.kuang.chapter; 2
+
+1. import java.io.\*;
+1. public class TestBufferStream{
+1. public static void main(String args[]){
+1. try{
+1. BufferedWriter bw = new BufferedWriter(new FileWriter("E:\\教学
+
+\\班级\\Test\\Lesson2\\src\\com\\kuang\\chapter\\Student.txt"));
+
+1. //在节点流 FileWriter 的外面再套一层处理流 BufferedWriter
+1. String s = null;
+
+10 for(int i=0;i<100;i++){
+
+      1. 	s = String.valueOf(Math.random());//“Math.random()”将会生成一系列介于0～1之间的随机数。
+      1. 	// static String valueOf(double d)这个valueOf()方法的作用就是把一个double类型的数转换成字符串
+      1. //valueOf()是一个静态方法，所以可以使用“类型.静态方法名”的形式来调用
+      1. bw.write(s);//把随机数字符串写入到指定文件中
+      1. bw.newLine();//调用newLine()方法使得每写入一个随机数就换行显示16	}
+
+17 bw.flush();//调用 flush()方法清空缓冲区 18
+
+1. BufferedReader br = new BufferedReader(new FileReader("E:\\教学
+
+\\班级\\Test\\Lesson2\\src\\com\\kuang\\chapter\\Student.txt"));
+
+1.  //在节点流 FileReader 的外面再套一层处理流 BufferedReader
+1.  while((s = br.readLine())!=null){
+1.      //使用BufferedReader处理流里面提供String readLine()方法读取文件中的数据时是一行一行读取的
+1.      //循环结束的条件就是使用readLine()方法读取数据返回的字符串为空值后则表 示已经读取到文件的末尾了。
+1.  System.out.println(s); 25
+
+26 }
+
+1. bw.close();
+1. br.close();
+1. }catch(Exception e){
+1. e.printStackTrace(); 31 }
+
+32 }
+33 }
+
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834224712-c7f86e3a-a400-430e-a226-ff9bb2442f02.jpeg#)
+程序的输入指的是把从文件读取到的内容存储到为程序分配的内存区域里面去。流，什么是流，流无非 就是两根管道，一根向里，一根向外，向里向外都是对于我们自己写的程序来说，流分为各种各样的类 型，不同的分类方式又可以分为不同的类型，根据方向来分，分为输入流和输出流，根据读取数据的单 位的不同，又可以分为字符流和字节流，除此之外，还可以分为节点流和处理流，节点流就是直接和数 据源连接的流，处理流就是包在其它流上面的流，处理流不是直接和数据源连接，而是从数据源读取到 数据以后再通过处理流处理一遍。缓冲流也包含了四个类：BuﬀeredInputStream、
+BuﬀeredOutputStream、BuﬀeredReader 和 BuﬀeredWriter。流都是成对的，没有流是是不成对的， 肯定是一个 in，一个 out。
+
+## 第二种处理流——转换流
+
+InputStreamReader 和 OutputStreamWriter 用于字节数据到字符数据之间的转换
+InputStreamReader 需要和 InputStream “套接” 。
+OutputStreamWriter 需要和 OutputStream “套接” 。转换流在构造时可以指定其编码集合
+
+| 1   | InputStream | isr | =   | new | InputStreamReader（System.in，"ISO8859-1"） |
+| --- | ----------- | --- | --- | --- | ------------------------------------------- |
+
+转换流非常的有用，它可以把一个字节流转换成一个字符流，转换流有两种，一种叫
+InputStreamReader，另一种叫 OutputStreamWriter。InputStream 是字节流，Reader 是字符流，
+InputStreamReader 就是把 InputStream 转换成 Reader。OutputStream 是字节流，Writer 是字符流，
+OutputStreamWriter 就是把 OutputStream 转换成 Writer。把 OutputStream 转换成 Writer 之后就可以 一个字符一个字符地通过管道写入数据了，而且还可以写入字符串。我们如果用一个 FileOutputStream 流往文件里面写东西，得要一个字节一个字节地写进去，但是如果我们在 FileOutputStream 流上面套上一个字符转换流，那我们就可以一个字符串一个字符串地写进去。
+【转换流测试代码】
+
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+1
+2
+3
+4
+5
+6
+import java.io.\*;
+public class TestTransform1 {
+public static void main(String args[]) { try {
+OutputStreamWriter osw = new OutputStreamWriter(
+
+7
+8
+new FileOutputStream("D:/java/char.txt"));
+osw.write("MircosoftsunIBMOracleApplet");// 把字符串写入到指定的文件
+中去
+9
+
+10
+11
+12
+13
+
+14
+
+15
+16
+17
+18
+19
+20
+21
+22
+System.out.println(osw.getEncoding());// 使用 getEncoding()方法取得
+当前系统的默认字符编码
+osw.close();
+osw = new OutputStreamWriter(new FileOutputStream( "D:\\java\\char.txt", true), "ISO8859_1");
+// 如果在调用 FileOutputStream 的构造方法时没有加入 true，那么新加入的字符
+串就会替换掉原来写入的字符串，在调用构造方法时指定了字符的编码
+osw.write("MircosoftsunIBMOracleApplet");// 再次向指定的文件写入字符串，新写入的字符串加入到原来字符串的后面
+System.out.println(osw.getEncoding());
+osw.close();
+} catch (Exception e) { e.printStackTrace();
+}
+}
+}
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834225197-f5600751-9041-4882-94bc-5d1433a297cc.jpeg#)
+1 import java.io.\*; 2
+3
+4
+5
+6
+7
+8
+9
+10
+
+11
+12
+13
+14
+15
+public class TestTransform2{
+public static void main(String args[]){ try{
+InputStreamReader isr = new InputStreamReader(System.in);
+//System.in 这里的 in 是一个标准的输入流，用来接收从键盘输入的数据 BufferedReader br = new BufferedReader(isr);
+String s = null;
+s = br.readLine();//使用 readLine()方法把读取到的一行字符串保存到字符串
+变量 s 中去
+while(s != null){
+System.out.println(s.toUpperCase());//把保存在内存 s 中的字符串打
+印出来
+s = br.readLine();//在循环体内继续接收从键盘的输入 if(s.equalsIgnoreCase("exit")){
+//只要输入 exit 循环就结束，就会退出
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+
+| 16 |
+
+} |
+
+} | break;
+}
+}
+}catch(Exception e){ e.printStackTrace();
+} |
+| --- | --- | --- | --- |
+| 17 | | | |
+| 18 | | | |
+| 19 | | | |
+| 20 | | | |
+| 21 | | | |
+| 22 | | | |
+| 23 | | | |
+
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834225677-ef9c144c-c7ac-4d06-978d-1ca626198c02.jpeg#)
+
+## 第三种处理流——数据流
+
+DataInputStream 和 DataOutputStream 分别继承自 InputStream 和 OutputStream ， 它属于处理流，需要分别“套接”在 InputStream 和 OutputStream 类型的节点流上。
+DataInputStream 和 DataOutputStream 提供了可以存取与机器无关的 Java 原始类型数据（int，
+double 等）的方法。
+DataInputStream 和 DataOutputStream 的构造方法
+
+1. DataInputStream （InputStream in）
+1. DataOutputStream （OutputStream out）
+
+【数据流测试代码】
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+package com.kuang.chapter;
+import java.io.\*;
+13
+14
+public class TestDataStream{
+public static void main(String args[]){ ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//在调用构造方法时，首先会在内存里面创建一个 ByteArray 字节数组
+DataOutputStream dos = new DataOutputStream(baos);
+//在输出流的外面套上一层数据流，用来处理 int，double 类型的数 try{
+dos.writeDouble(Math.random());//把产生的随机数直接写入到字节数组
+ByteArray 中
+dos.writeBoolean(true);//布尔类型的数据在内存中就只占一个字节 ByteArrayInputStream bais = new
+ByteArrayInputStream(baos.toByteArray());
+
+1. System.out.println(bais.available());
+1. DataInputStream dis = new DataInputStream(bais);
+1. System.out.println(dis.readDouble());//先写进去的就先读出来，调用
+
+readDouble()方法读取出写入的随机数
+
+1.      System.out.println(dis.readBoolean());//后写进去的就后读出来，这里面 的读取顺序不能更改位置，否则会打印出不正确的结果
+1.  dos.close();
+1.  bais.close();
+1.  }catch(Exception e){
+1.  e.printStackTrace(); 23 }
+
+24 }
+25 }
+
+通过 bais 这个流往外读取数据的时候，是一个字节一个字节地往外读取的，因此读出来的数据无法判断 是字符串还是 bool 类型的值，因此要在它的外面再套一个流，通过 dataInputStream 把读出来的数据转换就可以判断了。注意了：读取数据的时候是先写进去的就先读出来，因此读 ByteArray 字节数组数据的 顺序应该是先把占 8 个字节的 double 类型的数读出来，然后再读那个只占一个字节的 boolean 类型的
+数，因为 double 类型的数是先写进数组里面的，读的时候也要先读它。这就是所谓的先写的要先读。如 果先读 Boolean 类型的那个数，那么读出来的情况可能就是把 double 类型数的 8 个字节里面的一个字节读了出来。
+
+## 打印流——Print
+
+PrintWriter 和 PrintStream 都属于输出流，分别针对与字符和字节
+PrintWriter 和 PrintStream 提供了重载的 print
+Println 方 法 用 于 多 种 数 据 类 型 的 输 出 PrintWriter 和 PrintStream 的输出操作不会抛出异常，用户通过检测错误状态获取错误信息
+PrintWriter 和 PrintStream 有自动 ﬂush 功能
+
+| 1   | PrintWriter（Writer out）                          |
+| --- | -------------------------------------------------- |
+| 2   | PrintWriter（Writer out，boolean autoFlush）       |
+| 3   | PrintWriter（OutputStream out）                    |
+| 4   | PrintWriter（OutputStream out，boolean autoFlush） |
+| 5   | PrintStream（OutputStream out）                    |
+| 6   | PrintStream（OutputStream out，boolean autoFlush） |
+
+【测试代码】
+
+1. /\*这个小程序是重新设置打印输出的窗口，
+1. - 把默认在命令行窗口输出打印内容设置成其他指定的打印显示窗口
+
+3 _/
+4 import java.io._; 5
+6
+7
+8
+9
+10
+
+11
+12
+13
+public class TestPrintStream{
+public static void main(String args[]){ PrintStream ps = null;
+try{
+FileOutputStream fos = new FileOutputStream("E:\\教学\\班级
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\log.txt");
+ps = new PrintStream(fos);//在输出流的外面套接一层打印流，用来控制打印
+输出
+if(ps != null){
+System.setOut(ps);//这里调用 setOut()方法改变了输出窗口，以前写
+System.out.print()默认的输出窗口就是命令行窗口.
+
+1.      //但现在使用System.setOut(ps)将打印输出窗口改成了由ps指定的文件里 面，通过这样设置以后，打印输出时都会在指定的文件内打印输出
+1.      //在这里将打印输出窗口设置到了log.txt这个文件里面，所以打印出来的内容会 在log.txt这个文件里面看到
+
+16 }
+17 for(char c=0;c<=1000;c++){
+18 System.out.print(c+"\t");//把世界各国的文字打印到 log.txt 这个文件 中去
+19 }
+
+1. }catch(Exception e){
+1. e.printStackTrace(); 22 }
+
+23 }
+24 }
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834226178-ee306d4f-00eb-4ad1-82f3-7f61d9ce322a.jpeg#)
+
+## 对象流——Object
+
+直接将 Object 写入或读出
+transient 关键字
+transient：透明的，用它来修饰的成员变量在序列化的时候不予考虑，也就是当成不存在。
+serializable 接口
+externaliazble 接口
+
+狂神社群笔记资料，禁止外传，本人 QQ：24736743 狂神社群笔记资料，禁止外传，本人 QQ：24736743
+1
+2
+3
+4
+5
+6
+7
+8
+9
+package com.kuang.chapter;
+import java.io.\*;
+
+public class TestObjectIo {
+public static void main(String args[]) { T t = new T();
+t.k = 8;// 把 k 的值修改为 8
+try {
+10 FileOutputStream fos = new FileOutputStream( 11 "E:\\教学\\班级
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\TestObjectIo.txt");
+
+1. ObjectOutputStream oos = new ObjectOutputStream(fos);
+1. // ObjectOutputStream 流专门用来处理 Object 的，在 fos 流的外面套接
+
+ObjectOutputStream 流就可以直接把一个 Object 写进去
+
+1. oos.writeObject(t);// 直接把一个 t 对象写入到指定的文件里面
+1. oos.flush();
+1. oos.close();
+
+17
+18 FileInputStream fis = new FileInputStream( 19 "E:\\教学\\班级
+\\Test\\Lesson2\\src\\com\\kuang\\chapter\\TestObjectIo.txt");
+
+1.  ObjectInputStream ois = new ObjectInputStream(fis);
+1.  // ObjectInputStream 专门用来读一个 Object 的
+1.  T tRead = (T) ois.readObject();
+1.      // 直接把文件里面的内容全部读取出来然后分解成一个Object对象，并使用强制转换成指定类型T
+1.      System.out.print(tRead.i + "\t" + tRead.j + "\t" + tRead.d + "\t"
+
+25 + tRead.k);
+
+1. ois.close();
+1. } catch (Exception e) {
+1. e.printStackTrace(); 29 }
+
+30 }
+31 }
+32
+33 /\*
+
+1.  - 凡是要将一个类的对象序列化成一个字节流就必须实现 Serializable 接口
+1.      *  Serializable接口中没有定义方法，Serializable接口是一个标记性接口，用来给类作标记， 只是起到一个标记作用。
+1.      * 这个标记是给编译器看的，编译器看到这个标记之后就可以知道这个类可以被序列化 如果想把某个类的对象序列化，就必须得实现Serializable接口
+
+37 \*/
+
+1. class T implements Serializable {
+1. // Serializable 的意思是可以被序列化的
+1. int i = 10;
+1. int j = 9;
+1. double d = 2.3;
+1. int k = 15;
+1. // transient int k = 15;
+1. // 在声明变量时如果加上 transient 关键字，那么这个变量就会被当作是透明的，即不存在。
+
+46 }
+
+直接实现 Serializable 接口的类是 JDK 自动把这个类的对象序列化，而如果实现 public interface Externalizable extends Serializable 的类则可以自己控制对象的序列化，建议能让 JDK 自己控制序列化的就不要让自己去控制
+
+# 九、IO 流总结
+
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834226699-f70288cd-be2e-4bc5-8514-6b31e267e51c.jpeg#)
