@@ -1,5 +1,5 @@
 ---
-title: 6、JavaSE：面向对象
+title: JavaSE：面向对象
 urlname: oono9f
 date: '2021-07-09 20:35:58 +0800'
 tags: []
@@ -1205,128 +1205,120 @@ protected 修饰的方法可以被子类见到，也可以被子类重写，但�
 
 ## 6、instanceof 和类型转换
 
-### instanceof
+### 1.instanceof
 
-1. public class Person{
-1. public void run(){} 3 }
+```java
+public class Person{
+	public void run(){}
+}
+public class Student extends Person{
+}
+public class Teacher extends Person{
+}
+```
 
-4 public class Student extends Person{ 5 }
-6 public class Teacher extends Person{
-7 }
-
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
+```java
 main:
 Object o = new Student();
-System.out.println(o instanceof Student);//true System.out.println(o instanceof Person);//true System.out.println(o instanceof Object);//true System.out.println(o instanceof Teacher);//false System.out.println(o instanceof String);//false
+System.out.println(o instanceof Student);//true
+System.out.println(o instanceof Person);//true
+System.out.println(o instanceof Object);//true
+System.out.println(o instanceof Teacher);//false
+System.out.println(o instanceof String);//false
 \---------------------------
 Person o = new Student();
-System.out.println(o instanceof Student);//true System.out.println(o instanceof Person);//true System.out.println(o instanceof Object);//true System.out.println(o instanceof Teacher);//false
+System.out.println(o instanceof Student);//true
+System.out.println(o instanceof Person);//true
+System.out.println(o instanceof Object);//true
+System.out.println(o instanceof Teacher);//false
 //编译报错
 System.out.println(o instanceof String);
 \---------------------------
-Student o = new Student(); System.out.println(o instanceof Student);//true System.out.println(o instanceof Person);//true
-
-| 21  | System.out.println(o | instanceof | Object);//true |
-| --- | -------------------- | ---------- | -------------- |
-| 22  | //编译报错           |            |                |
-| 23  | System.out.println(o | instanceof | Teacher);      |
-| 24  | //编译报错           |            |                |
-| 25  | System.out.println(o | instanceof | String);       |
+Student o = new Student();
+System.out.println(o instanceof Student);//true
+System.out.println(o instanceof Person);//true
+System.out.println(o instanceof Object);//true
+//编译报错
+System.out.println(o instanceof Teacher);
+//编译报错
+System.out.println(o instanceof String);
+```
 
 【分析 1】
 
-| 1   | System.out.println(x instanceof Y);                                                             |
-| --- | ----------------------------------------------------------------------------------------------- |
-| 2   | 该代码能否编译通过,主要是看声明变量 x 的类型和 Y 是否存在子父类的关系.有"子父类关"系就编译通过, |
-|     | 没有子父类关系就是编译报错.                                                                     |
-| 3   | 之后学习到的接口类型和这个是有点区别的。                                                        |
+```java
+System.out.println(x instanceof Y);
+该代码能否编译通过,主要是看声明变量x的类型和Y是否存在子父类的关系.有"子父类关"系就编译通过,
+没有子父类关系就是编译报错.
+之后学习到的接口类型和这个是有点区别的。
+```
 
 【分析 2】
 
-| 1   | System.out.println(x instanceof Y);                                                    |
-| --- | -------------------------------------------------------------------------------------- |
-| 2   | 输出结果是 true 还是 false,主要是看变量 x 所指向的对象实际类型是不是 Y 类型的"子类型". |
+```java
+System.out.println(x instanceof Y);
+输出结果是true还是false,主要是看变量x所指向的对象实际类型是不是Y类型的"子类型".
+```
 
-| 1   | main:                           |                  |
-| --- | ------------------------------- | ---------------- |
-| 2   | Object o = new Person();        |                  |
-| 3   | System.out.println(o instanceof | Student);//false |
-| 4   | System.out.println(o instanceof | Person);//true   |
-| 5   | System.out.println(o instanceof | Object);//true   |
-| 6   | System.out.println(o instanceof | Teacher);//false |
-| 7   | System.out.println(o instanceof | String);//false  |
+```java
+main:
+Object o = new Person();
+System.out.println(o instanceof Student);//false
+System.out.println(o instanceof Person);//true
+System.out.println(o instanceof Object);//true
+System.out.println(o instanceof Teacher);//false
+System.out.println(o instanceof String);//false
+```
 
-### 类型转换
+### 2.类型转换
 
-1. public class Person{
-1. public void run(){} 3 }
-1. public class Student extends Person{
-1. public void go(){} 6 }
-
-7 public class Teacher extends Person{
-8 }
+```java
+public class Person{
+	public void run(){}
+}
+public class Student extends Person{
+	public void go(){}
+}
+public class Teacher extends Person{
+}
+```
 
 【为什么要类型转换】
 
-| 1   | //编译报错,因为 p 声明的类型 Person 中没有 go 方法 |
-| --- | -------------------------------------------------- |
-| 2   | Person p = new Student();                          |
-| 3   | p.go();                                            |
-| 4   |                                                    |
-| 5   | //需要把变量 p 的类型进行转换                      |
-| 6   | Person p = new Student();                          |
-| 7   | Student s = (Student)p;                            |
-| 8   | s.go();                                            |
-| 9   | 或者                                               |
-| 10  | //注意这种形式前面必须要俩个小括号                 |
-| 11  | ((Student)p).go();                                 |
+```java
+//编译报错,因为p声明的类型Person中没有go方法
+Person p = new Student();
+p.go();
+//需要把变量p的类型进行转换
+Person p = new Student();
+Student s = (Student)p;
+s.go();
+或者
+//注意这种形式前面必须要俩个小括号
+((Student)p).go();
+```
 
 【类型转换中的问题】
 
-​
-
-1. //编译通过 运行没问题
-1. Object o = new Student();
-1. Person p = (Person)o; 4
-
-5 //编译通过 运行没问题
-
-| 6   | Object o = new Student();                                                                     |
-| --- | --------------------------------------------------------------------------------------------- |
-| 7   | Student s = (Student)o;                                                                       |
-| 8   |                                                                                               |
-| 9   | //编译通过,运行报错                                                                           |
-| 10  | Object o = new Teacher();                                                                     |
-| 11  | Student s = (Student)o;                                                                       |
-| 12  |                                                                                               |
-| 13  | 即:                                                                                           |
-| 14  | X x = (X)o;                                                                                   |
-| 15  | 运行是否报错,主要是变量 o 所指向的对象实现类型,是不是 X 类型的子类型,如果不是则运行就会报错。 |
+```java
+//编译通过 运行没问题
+Object o = new Student();
+Person p = (Person)o;
+//编译通过 运行没问题
+Object o = new Student();
+Student s = (Student)o;
+//编译通过,运行报错
+Object o = new Teacher();
+Student s = (Student)o;
+即:
+X x = (X)o;
+运行是否报错,主要是变量o所指向的对象实现类型,是不是X类型的子类型,如果不是则运行就会报错。
+```
 
 【总结】
 1、父类引用可以指向子类对象，子类引用不能指向父类对象。
-2、把子类对象直接赋给父类引用叫 upcasting 向上转型，向上转型不用强制转型。如 Father father = new Son();
+2、把子类对象直接赋给父类引用叫 upcasting 向上转型，向上转型不用强制转型。
+如 Father father = new Son();
 3、把指向子类对象的父类引用赋给子类引用叫向下转型（downcasting），要强制转型。
 如 father 就是一个指向子类对象的父类引用，把 father 赋给子类引用 son 即 Son son =（Son） father；
 其中 father 前面的（Son）必须添加，进行强制转换。
@@ -1345,71 +1337,48 @@ Student o = new Student(); System.out.println(o instanceof Student);//true Syste
 
 静态变量属于类的,"可以"使用类名来访问,非静态变量是属于对象的,"必须"使用对象来访问.
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
+```java
 public class Student{
-private static int age; private double score;
-public static void main(String[] args) { Student s = new Student();
-//推荐使用类名访问静态成员
-System.out.println(Student.age); System.out.println(s.age);
-System.out.println(s.score);
+    private static int age;
+    private double score;
+    public static void main(String[] args) {
+        Student s = new Student();
+        //推荐使用类名访问静态成员
+        System.out.println(Student.age);
+        System.out.println(s.age);
+        System.out.println(s.score);
+    }
 }
-}
+```
 
 静态变量对于类而言在内存中只有一个,能被类的所有实例所共享。实例变量对于类的每个实例都有一份, 它们之间互不影响.
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-public class Student{ private static int count; private int num;
-public Student() {
-count++;
-num++;
+```java
+public class Student{
+    private static int count;
+    private int num;
+    public Student() {
+        count++;
+        num++;
+    }
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        Student s2 = new Student();
+        Student s3 = new Student();
+        Student s4 = new Student();
+        //因为还是在类中,所以可以直接访问私有属性
+        System.out.println(s1.num);
+        System.out.println(s2.num);
+        System.out.println(s3.num);
+        System.out.println(s4.num);
+        System.out.println(Student.count);
+        System.out.println(s1.count);
+        System.out.println(s2.count);
+        System.out.println(s3.count);
+        System.out.println(s4.count);
+    }
 }
-public static void main(String[] args) { Student s1 = new Student();
-Student s2 = new Student(); Student s3 = new Student(); Student s4 = new Student();
-//因为还是在类中,所以可以直接访问私有属性
-System.out.println(s1.num); System.out.println(s2.num); System.out.println(s3.num); System.out.println(s4.num);
-System.out.println(Student.count); System.out.println(s1.count); System.out.println(s2.count); System.out.println(s3.count);
-System.out.println(s4.count);
-}
-}
+```
 
 在加载类的过程中为静态变量分配内存,实例变量在创建对象时分配内存，所以静态变量可以使用类名来 直接访问,而不需要使用对象来访问.
 
@@ -1419,173 +1388,110 @@ System.out.println(s4.count);
 
 ### 静态方法和非静态方法的区别
 
-1 静态方法数属于类的,"可以"使用类名来调用,非静态方法是属于对象的,"必须"使用对象来调用.
+```java
+静态方法数属于类的,"可以"使用类名来调用,非静态方法是属于对象的,"必须"使用对象来调用
+```
 
 静态方法"不可以"直接访问类中的非静态变量和非静态方法,但是"可以"直接访问类中的静态变量和静态方法
 注意:this 和 super 在类中属于非静态的变量.(静态方法中不能使用)
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-public class Student{ private static int count; private int num;
-public void run(){}
-public static void go(){}
-public static void test(){
-//编译通过 System.out.println(count); go();
-//编译报错
-System.out.println(num); run();
+```java
+public class Student{
+    private static int count;
+    private int num;
+    public void run(){}
+    public static void go(){}
+    public static void test(){
+        //编译通过
+        System.out.println(count);
+        go();
+        //编译报错
+        System.out.println(num);
+        run();
+    }
 }
-
-17 }
+```
 
 非静态方法"可以"直接访问类中的非静态变量和非静态方法,也"可以"直接访问类中的静态变量和静态方法
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-public class Student{ private static int count; private int num;
+```java
+public class Student{
+private static int count;
+private int num;
 public void run(){}
 public static void go(){}
 public void test(){
-//编译通过 System.out.println(count); go();
 //编译通过
-System.out.println(num); run();
+System.out.println(count);
+go();
+//编译通过
+System.out.println(num);
+run();
 }
 }
+```
 
-思考:为什么静态方法和非静态方法不能直接相互访问? 加载顺序的问题！ 父类的静态方法可以被子类继承,但是不能被子类重写
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
+思考:为什么静态方法和非静态方法不能直接相互访问? 加载顺序的问题！
+父类的静态方法可以被子类继承,但是不能被子类重写
+
+```java
 public class Person {
-public static void method() {}
+	public static void method() {}
 }
 //编译报错
-public class Student extends Person { public void method(){}
+public class Student extends Person {
+	public void method(){}
 }
-
 例如:
 public class Person {
-public static void test() { System.out.println("Person");
+    public static void test() {
+    	System.out.println("Person");
+    }
 }
-}
-
 //编译通过,但不是重写
-public class Student extends Person { public static void test(){
-System.out.println("Student");
+public class Student extends Person {
+    public static void test(){
+    	System.out.println("Student");
+    }
 }
-}
-
 main:
 Perosn p = new Student();
-p.test();//输出 Person p = new Person();
-p.test();//输出 Perosn
-
-和非静态方法重写后的效果不一样
-​
+p.test();//输出Person
+p = new Person();
+p.test();//输出Perosn
+//和非静态方法重写后的效果不一样
+```
 
 父类的非静态方法不能被子类重写为静态方法 ；
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-public class Person { public void test() {
-System.out.println("Person");
-}
+```java
+public class Person {
+    public void test() {
+    	System.out.println("Person");
+    }
 }
 //编译报错
-public class Student extends Person { public static void test(){
-System.out.println("Student");
+public class Student extends Person {
+    public static void test(){
+    	System.out.println("Student");
+    }
 }
-}
+```
 
 ### 3、代码块和静态代码块
 
 【类中可以编写代码块和静态代码块】
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
+```java
 public class Person {
-{
-//代码块(匿名代码块)
+    {
+    	//代码块(匿名代码块)
+    }
+    static{
+    	//静态代码块
+    }
 }
-static{
-//静态代码块
-}
-}
+```
 
 【匿名代码块和静态代码块的执行】
 因为没有名字,在程序并不能主动调用这些代码块。
@@ -1593,87 +1499,57 @@ static{
 静态代码块是在类加载完成之后就自动执行,并且只执行一次.
 注:每个类在第一次被使用的时候就会被加载,并且一般只会加载一次.
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
+```java
 public class Person {
-{
-System.out.println("匿名代码块");
-}
-static{
-System.out.println("静态代码块");
-}
-
-public Person(){
-System.out.println("构造器");
-}
+    {
+    	System.out.println("匿名代码块");
+    }
+    static{
+    	System.out.println("静态代码块");
+    }
+    public Person(){
+    	System.out.println("构造器");
+    }
 }
 main:
-Student s1 = new Student(); Student s2 = new Student(); Student s3 = new Student();
-
+Student s1 = new Student();
+Student s2 = new Student();
+Student s3 = new Student();
 //输出
-
-| 20  | 静态代码块 |
-| --- | ---------- |
-| 21  | 匿名代码块 |
-| 22  | 构造器     |
-| 23  |            |
-| 24  | 匿名代码块 |
-| 25  | 构造器     |
-| 26  |            |
-| 27  | 匿名代码块 |
-| 28  | 构造器     |
+//静态代码块
+//匿名代码块
+//构造器
+//匿名代码块
+//构造器
+//匿名代码块
+//构造器
+```
 
 【匿名代码块和静态代码块的作用】
 匿名代码块的作用是给对象的成员变量初始化赋值,但是因为构造器也能完成这项工作,所以匿名代码块 使用的并不多。
 静态代码块的作用是给类中的静态成员变量初始化赋值。例如:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
+```java
 public class Person {
-public static String name; static{
-name = "tom";
-}
-public Person(){ name = "zs";
-}
+    public static String name;
+    static{
+    	name = "tom";
+    }
+    public Person(){
+    	name = "zs";
+    }
 }
 main:
 System.out.println(Person.name);//tom
+```
 
 **注**：在构造器中给静态变量赋值,并不能保证能赋值成功,因为构造器是在创建对象的时候才指向,但是静 态变量可以不创建对象而直接使用类名来访问.
 
 ### 4、创建和初始化对象的过程
 
-| 1   | Student | s   | =   | new | Student(); |
-| --- | ------- | --- | --- | --- | ---------- |
+```java
+Student s = new Student();
+```
 
 【Student 类之前没有进行类加载】
 
@@ -1688,89 +1564,50 @@ System.out.println(Person.name);//tom
 
 注:子类中非静态属性的显示赋值是在父类构造器执行完之后和子类中的匿名代码块执行之前的时候
 
-1. public class Person{
-1. private String name = "zs";
-1. public Person() {
-1. System.out.println("Person 构造器");
-1. print();
-
-6 }
-7 public void print(){
-
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-System.out.println("Person print 方法: name = "+name);
+```java
+public class Person{
+    private String name = "zs";
+    public Person() {
+        System.out.println("Person构造器");
+        print();
+    }
+    public void print(){
+        System.out.println("Person print方法: name = "+name);
 }
 }
-public class Student extends Person{ private String name = "tom";
-{
-System.out.println("Student 匿名代码块");
-}
-static{
-System.out.println("Student 静态代码块");
-}
-public Student(){
-System.out.println("Student 构造器");
-}
-public void print(){
-System.out.println("student print 方法: name = "+name);
-}
-public static void main(String[] args) { new Student();
-}
+public class Student extends Person{
+    private String name = "tom";
+    {
+    	System.out.println("Student匿名代码块");
+    }
+    static{
+    	System.out.println("Student静态代码块");
+    }
+    public Student(){
+    	System.out.println("Student构造器");
+    }
+    public void print(){
+    	System.out.println("student print方法: name = "+name);
+    }
+    public static void main(String[] args) {
+    	new Student();
+    }
 }
 //输出：
-Student 静态代码块
-Person 构造器
-student print 方法: name = null
-Student 匿名代码块
-Student 构造器
-
+Student静态代码块
+Person构造器
+student print方法: name = null
+Student匿名代码块
+Student构造器
 Student s = new Student();
-Student 类之前已经进行了类加载
-
-1. 分配内存空间,同时初始化非静态的属性(赋默认值,0/false/null)
-1. 调用 Student 的父类构造器
-1. 对 Student 中的属性进行显示赋值(如果有的话)
-1. 执行匿名代码块
-1. 执行构造器
-1. 返回内存地址
+Student类之前已经进行了类加载
+1.分配内存空间,同时初始化非静态的属性(赋默认值,0/false/null)
+2.调用Student的父类构造器
+3.对Student中的属性进行显示赋值(如果有的话)
+4.执行匿名代码块
+5.执行构造器
+6.返回内存地址
+```
 
 ### 5、静态导入
 
@@ -1778,25 +1615,17 @@ Student 类之前已经进行了类加载
 好处：这种方法的好处就是可以简化一些操作，例如打印操作 System.out.println(…);就可以将其写入一 个静态方
 法 print(…)，在使用时直接 print(…)就可以了。但是这种方法建议在有很多重复调用的时候使用，如果仅 有一到两次调用，不如直接写来的方便。
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
+```java
 import static java.lang.Math.random;
 import static java.lang.Math.PI;
 public class Test {
-public static void main(String[] args) {
-//之前是需要 Math.random()调用的 System.out.println(random()); System.out.println(PI);
+    public static void main(String[] args) {
+        //之前是需要Math.random()调用的
+        System.out.println(random());
+        System.out.println(PI);
+    }
 }
-}
+```
 
 ## 2、ﬁnal 修饰符
 
@@ -1806,15 +1635,13 @@ public static void main(String[] args) {
 例如:我们是无法写一个类去继承 String 类,然后对 String 类型扩展的,因为 API 中已经被 String 类定义为 ﬁnal 的了.
 我们也可以定义 ﬁnal 修饰的类:
 
-| 1   | public final class Action{      |
-| --- | ------------------------------- |
-| 2   |                                 |
-| 3   | }                               |
-| 4   |                                 |
-| 5   | //编译报错                      |
-| 6   | public class Go extends Action{ |
-| 7   |                                 |
-| 8   | }                               |
+```java
+public final class Action{
+}
+//编译报错
+public class Go extends Action{
+}
+```
 
 ### 2、修饰方法
 
@@ -1822,85 +1649,73 @@ public static void main(String[] args) {
 例如:每个类都是 Object 类的子类,继承了 Object 中的众多方法,在子类中可以重写 toString 方法、equals 方 法等,但是不能重写 getClass 方法 wait 方法等,因为这些方法都是使用 ﬁanl 修饰的。
 我们也可以定义 ﬁnal 修饰的方法:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
+```java
 public class Person{
-public final void print(){}
+	public final void print(){}
 }
 //编译报错
-public class Student extends Person{ public void print(){
+public class Student extends Person{
+    public void print(){
+    }
 }
-}
+```
 
 ### 3、修饰变量
 
 用 ﬁnal 修饰的变量表示常量,只能被赋一次值.其实使用 ﬁnal 修饰的变量也就成了常量了,因为值不会再变了。
 【修饰局部变量】
 
-​
-
-1. public class Person{
-1. public void print(final int a){
-1. //编译报错,不能再次赋值,传参的时候已经赋过了
-
-4 a = 1;
-
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
+```java
+public class Person{
+    public void print(final int a){
+        //编译报错,不能再次赋值,传参的时候已经赋过了
+        a = 1;
+        }
 }
+public class Person{
+    public void print(){
+        final int a;
+        a = 1;
+        //编译报错,不能再次赋值
+        a = 2;
+    }
 }
-public class Person{ public void print(){
-final int a; a = 1;
-//编译报错,不能再次赋值
-a = 2;
-}
-}
+```
 
 【修饰成员变量-非静态成员变量】
 
-1. public class Person{
-1. private final int a; 3 }
-1. 只有一次机会,可以给此变量 a 赋值的位置:
-1. 声明的同时赋值
-1. 匿名代码块中赋值
-1. 构造器中赋值(类中出现的所有构造器都要写)
+```java
+public class Person{
+	private final int a;
+}
+只有一次机会,可以给此变量a赋值的位置:
+声明的同时赋值
+匿名代码块中赋值
+构造器中赋值(类中出现的所有构造器都要写)
+```
 
 【修饰成员变量-静态成员变量】
 
-1. public class Person{
-1. private static final int a; 3 }
-1. 只有一次机会,可以给此变量 a 赋值的位置:
-1. 声明的同时赋值
-1. 静态代码块中赋值
+```java
+public class Person{
+	private static final int a;
+}
+只有一次机会,可以给此变量a赋值的位置:
+声明的同时赋值
+静态代码块中赋值
+```
 
 【修饰引用变量】
 
-| 1   | main:                                    |
-| --- | ---------------------------------------- |
-| 2   | final Student s = new Student();         |
-| 3   | //编译通过                               |
-| 4   | s.setName("tom");                        |
-| 5   | s.setName("zs");                         |
-| 6   |                                          |
-| 7   | //编译报错,不能修改引用 s 指向的内存地址 |
-| 8   | s = new Student();                       |
+```java
+main:
+final Student s = new Student();
+//编译通过
+s.setName("tom");
+s.setName("zs");
+//编译报错,不能修改引用s指向的内存地址
+s = new Student();
+```
 
 ## 3、abstract 修饰符
 
@@ -1912,15 +1727,12 @@ abstract 修饰符可以用来修饰方法也可以修饰类,如果修饰方法,
 
 ### 2、语法
 
-1
-2
-3
-4
-5
+```java
 public abstract class Action{
-public abstract void doSomething();
+	public abstract void doSomething();
 }
 public void doSomething(){...}
+```
 
 对于这个普通方法来讲:
 "public void doSomething()"这部分是方法的声明
@@ -1934,40 +1746,24 @@ public void doSomething(){...}
 抽象方法,只有方法的声明,没有方法的实现,它是用来让子类实现的。
 注:子类继承抽象类后,需要实现抽象类中没有实现的抽象方法,否则这个子类也要声明为抽象类。
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
+```java
 public abstract class Action{
-public abstract void doSomething();
+	public abstract void doSomething();
 }
 main:
-//编译报错,抽象类不能 new 对象 Action a = new Action();
-
+//编译报错,抽象类不能new对象
+Action a = new Action();
 //子类继承抽象类
 public class Eat extends Action{
-//实现父类中没有实现的抽象方法 public void doSomething(){
-//code
+    //实现父类中没有实现的抽象方法
+    public void doSomething(){
+    	//code
+    }
 }
-}
-
 main:
-Action a = new Eat(); a.doSomething();
+Action a = new Eat();
+a.doSomething();
+```
 
 注:子类继承抽象类,那么就必须要实现抽象类没有实现的抽象方法,否则该子类也要声明为抽象类。
 
@@ -1975,17 +1771,18 @@ Action a = new Eat(); a.doSomething();
 
 思考 1 : 抽象类不能 new 对象,那么抽象类中有没有构造器?
 
-1 抽象类是不能被实例化,抽象类的目的就是为实现多态中的共同点,抽象类的构造器会在子类实例化时调 用,因此它也是用来实现多态中的共同点构造，不建议这样使用！
+```java
+抽象类是不能被实例化,抽象类的目的就是为实现多态中的共同点,抽象类的构造器会在子类实例化时调
+用,因此它也是用来实现多态中的共同点构造，不建议这样使用！
+```
 
 思考 2 : 抽象类和抽象方法意义(为什么要编写抽象类、抽象方法)
 
-| 1   | 打个比方，要做一个游戏。如果要创建一个角色，如果反复创建类和方法会很繁琐和麻烦。建一个抽象类 |
-| --- | -------------------------------------------------------------------------------------------- |
-|     | 后。若要创建角色可直接继承抽象类中的字段和方法，而抽象类中又有抽象方法。如果一个角色有很多种 |
-|     | 职业，每个职业又有很多技能，要是依次实例这些技能方法会显得想当笨拙。定义抽象方法，在需要时继 |
-|     | 承后重写调用，可以省去很多代码。                                                             |
-| 2   | 总之抽象类和抽象方法起到一个框架作用。很方便后期的调用和重写                                 |
-| 3   | 抽象方法是为了程序的可扩展性。重写抽象方法时即可实现同名方法但又非同目的的要求。             |
+```java
+打个比方，要做一个游戏。如果要创建一个角色，如果反复创建类和方法会很繁琐和麻烦。建一个抽象类后。若要创建角色可直接继承抽象类中的字段和方法，而抽象类中又有抽象方法。如果一个角色有很多种职业，每个职业又有很多技能，要是依次实例这些技能方法会显得想当笨拙。定义抽象方法，在需要时继承后重写调用，可以省去很多代码。
+总之抽象类和抽象方法起到一个框架作用。很方便后期的调用和重写
+抽象方法是为了程序的可扩展性。重写抽象方法时即可实现同名方法但又非同目的的要求。
+```
 
 # 接口
 
@@ -1995,70 +1792,72 @@ Action a = new Eat(); a.doSomething();
 
 抽象类：具体实现和规范(抽象方法) 都有！ 接口：只有规范！
 【为什么需要接口?接口和抽象类的区别?】
-接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束。全面地专业地实现了： 规范和具体实现的分离。
-抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面 向规范的，规定了一批类具有的公共方法规范。
-从接口的实现者角度看，接口定义了可以向外部提供的服务。从接口的调用者角度看，接口定义了实现者能提供那些服务。
-接口是两个模块之间通信的标准，通信的规范。如果能把你要设计的系统之间模块之间的接口定义 好，就相当于完成了系统的设计大纲，剩下的就是添砖加瓦的具体实现了。大家在工作以后，做系 统时往往就是使用“面向接口”的思想来设计系统。
+
+- 接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束。全面地专业地实现了： 规范和具体实现的分离。
+- 抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面 向规范的，规定了一批类具有的公共方法规范。
+- 从接口的实现者角度看，接口定义了可以向外部提供的服务。
+- 从接口的调用者角度看，接口定义了实现者能提供那些服务。
+- 接口是两个模块之间通信的标准，通信的规范。如果能把你要设计的系统之间模块之间的接口定义 好，就相当于完成了系统的设计大纲，剩下的就是添砖加瓦的具体实现了。大家在工作以后，做系 统时往往就是使用“面向接口”的思想来设计系统。
+
 【接口的本质探讨】
-接口就是规范，定义的是一组规则，体现了现实世界中“如果你是…则必须能…”的思想。如果你是天使，则必须能飞。如果你是汽车，则必须能跑。如果你好人，则必须干掉坏人；如果你是坏人，则 必须欺负好人。
-接口的本质是契约，就像我们人间的法律一样。制定好后大家都遵守。
-OO 的精髓，是对对象的抽象，最能体现这一点的就是接口。为什么我们讨论设计 模式都只针对具备了抽象能力的语言（比如 c++、java、c#等），就是因为设计模式所研究的，实际上就是如何合理的去抽象。
+
+- 接口就是规范，定义的是一组规则，体现了现实世界中“如果你是…则必须能…”的思想。如果你是天使，则必须能飞。如果你是汽车，则必须能跑。如果你好人，则必须干掉坏人；如果你是坏人，则 必须欺负好人。
+- 接口的本质是契约，就像我们人间的法律一样。制定好后大家都遵守。
+- OO 的精髓，是对对象的抽象，最能体现这一点的就是接口。为什么我们讨论设计 模式都只针对具备了抽象能力的语言（比如 c++、java、c#等），就是因为设计模式所研究的，实际上就是如何合理的去抽象。
 
 ## 2、接口与抽象类的区别
 
 抽象类也是类,除了可以写抽象方法以及不能直接 new 对象之外,其他的和普通类没有什么不一样的。接口已经另一种类型了,和类是有本质的区别的,所以不能用类的标准去衡量接口。
-
-### 声明类的关键字是 class,声明接口的关键字是 interface。
-
+**声明类的关键字是 class,声明接口的关键字是 interface。**
 抽象类是用来被继承的,java 中的类是单继承。
 类 A 继承了抽象类 B,那么类 A 的对象就属于 B 类型了,可以使用多态一个父类的引用,可以指向这个父类的任意子类对象
-
-### 注:继承的关键字是 extends
-
+**注:继承的关键字是 extends**
 接口是用来被类实现的,java 中的接口可以被多实现。
 类 A 实现接口 B、C、D、E..,那么类 A 的对象就属于 B、C、D、E 等类型了,可以使用多态 一个接口的引用,可以指向这个接口的任意实现类对象
+**注:实现的关键字是 implements**
 
-### 注:实现的关键字是 implements
+## 3、接口中的方法都是抽象方法
 
-**3、接口中的方法都是抽象方法**
 接口中可以不写任何方法,但如果写方法了,该方法必须是抽象方法
 
-1
-2
-3
-4
-5
-6
-7
+```java
 public interface Action{
-public abstract void run();
-//默认就是 public abstract 修饰的
-void test(); public void go();
+    public abstract void run();
+    //默认就是public abstract修饰的
+    void test();
+    public void go();
 }
+```
 
 ## 4、接口中的变量都是静态常量(public static ﬁnal 修饰)
 
 接口中可以不写任何属性,但如果写属性了,该属性必须是 public static ﬁnal 修饰的静态常量。注:可以直接使用接口名访问其属性。因为是 public static 修饰的
 注:声明的同时就必须赋值.(因为接口中不能编写静态代码块)
 
-1. public interface Action{
-1. public static final String NAME = "tom";
-1. //默认就是 public static final 修饰的
-1. int AGE = 20; 5 }
-1. main:
-1. System.out.println(Action.NAME);
-1. System.out.println(Action.AGE);
+```java
+public interface Action{
+	public static final String NAME = "tom";
+    //默认就是public static final修饰的
+    int AGE = 20;
+}
+main:
+System.out.println(Action.NAME);
+System.out.println(Action.AGE);
+```
 
 ## 5、一个类可以实现多个接口
 
-1. public class Student implements A,B,C,D{
-1. //Student 需要实现接口 A B C D 中所有的抽象方法
-1. //否则 Student 类就要声明为抽象类,因为有抽象方法没实现 4 }
-1. main:
-1. A s1 = new Student();
-1. B s2 = new Student();
-1. C s3 = new Student();
-1. D s4 = new Student();
+```java
+public class Student implements A,B,C,D{
+    //Student需要实现接口A B C D中所有的抽象方法
+    //否则Student类就要声明为抽象类,因为有抽象方法没实现
+}
+main:
+A s1 = new Student();
+B s2 = new Student();
+C s3 = new Student();
+D s4 = new Student();
+```
 
 注:
 s1 只能调用接口 A 中声明的方法以及 Object 中的方法
@@ -2068,82 +1867,54 @@ s4 只能调用接口 D 中声明的方法以及 Object 中的方法
 注:必要时可以类型强制转换
 例如 : 接口 A 中有 test() ， 接口 B 中有 run()
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
+```java
 A s1 = new Student();
 s1.test();
-B s2 = new Student(); s2.run();
-
-if(s1 instanceof B){ ((B)s1).run();
+B s2 = new Student();
+s2.run();
+if(s1 instanceof B){
+	((B)s1).run();
 }
+```
 
 ## 6、一个接口可以继承多个父接口
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-public interface A{ public void testA();
+```java
+public interface A{
+	public void testA();
 }
-public interface B{ public void testB();
+public interface B{
+	public void testB();
 }
-
-//接口 C 把接口 A B 中的方法都继承过来了
-
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-public interface C extends A,B{ public void testC();
+//接口C把接口A B中的方法都继承过来了
+public interface C extends A,B{
+	public void testC();
 }
-//Student 相当于实现了 A B C 三个接口,需要实现所有的抽象方法
-//Student 的对象也就同时属于 A 类型 B 类型 C 类型 public class Student implements C{
-public viod testA(){} public viod testB(){} public viod testC(){}
+//Student相当于实现了A B C三个接口,需要实现所有的抽象方法
+//Student的对象也就同时属于A类型 B类型 C类型
+public class Student implements C{
+    public viod testA(){}
+    public viod testB(){}
+    public viod testC(){}
 }
-
 main:
 C o = new Student();
-System.out.println(o instanceof A);//true System.out.println(o instanceof B);//true System.out.println(o instanceof C);//true System.out.println(o instanceof Student);//true System.out.println(o instanceof Object);//true System.out.println(o instanceof Teacher);//false
-
+System.out.println(o instanceof A);//true
+System.out.println(o instanceof B);//true
+System.out.println(o instanceof C);//true
+System.out.println(o instanceof Student);//true
+System.out.println(o instanceof Object);//true
+System.out.println(o instanceof Teacher);//false
 //编译报错
 System.out.println(o instanceof String);
+```
 
 注:System.out.println(o instanceof X);
 
-1 如果 o 是一个接口类型声明的变量,那么只要 X 不是一个 final 修饰的类,该代码就能通过编译,至于其结果 是不是 true,就要看变量 o 指向的对象的实际类型,是不是 X 的子类或者实现类了。
+```java
+如果o是一个接口类型声明的变量,那么只要X不是一个final修饰的类,该代码就能通过编译,至于其结果
+是不是true,就要看变量o指向的对象的实际类型,是不是X的子类或者实现类了。
+```
 
 注:一个引用所指向的对象,是有可能实现任何一个接口的。(java 中的多实现)
 
@@ -2154,84 +1925,57 @@ System.out.println(o instanceof String);
 这样你像用哪个类的对象就可以 new 哪个对象了，不需要改原来的代码。
 假如我们两个类中都有个 function()的方法，如果我用接口，那样我 new a()；就是用 a 的方法，new
 b（）就是用 b 的方法
-这个就叫统一访问，因为你实现这个接口的类的方法名相同，但是实现内容不同 总结：
-1、Java 接口中的成员变量默认都是 public,static,ﬁnal 类型的(都可省略),必须被显示初始化,即接口中的成员变量为常量(大写,单词之间用"\_"分隔)
-2、Java 接口中的方法默认都是 public,abstract 类型的(都可省略),没有方法体,不能被实例化
-3、Java 接口中只能包含 public,static,ﬁnal 类型的成员变量和 public,abstract 类型的成员方法
-4、接口中没有构造方法,不能被实例化
-5、一个接口不能实现(implements)另一个接口,但它可以继承多个其它的接口
-6、Java 接口必须通过类来实现它的抽象方法
-7、当类实现了某个 Java 接口时,它必须实现接口中的所有抽象方法,否则这个类必须声明为抽象
-类
+这个就叫统一访问，因为你实现这个接口的类的方法名相同，但是实现内容不同
+总结：
 
-8、不允许创建接口的实例(实例化),但允许定义接口类型的引用变量,该引用变量引用实现了这个接口的类的实例
-9、 一个类只能继承一个直接的父类,但可以实现多个接口,间接的实现了多继承.
+1. Java 接口中的成员变量默认都是 public,static,ﬁnal 类型的(都可省略),必须被显示初始化,即接口中的成员变量为常量(大写,单词之间用"\_"分隔)
+1. Java 接口中的方法默认都是 public,abstract 类型的(都可省略),没有方法体,不能被实例化
+1. Java 接口中只能包含 public,static,ﬁnal 类型的成员变量和 public,abstract 类型的成员方法
+1. 接口中没有构造方法,不能被实例化
+1. 一个接口不能实现(implements)另一个接口,但它可以继承多个其它的接口
+1. Java 接口必须通过类来实现它的抽象方法
+1. 当类实现了某个 Java 接口时,它必须实现接口中的所有抽象方法,否则这个类必须声明为抽象类
+1. 不允许创建接口的实例(实例化),但允许定义接口类型的引用变量,该引用变量引用实现了这个接口的类的例
+1. 一个类只能继承一个直接的父类,但可以实现多个接口,间接的实现了多继承.
+
 【实例】
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-interface SwimInterface{ void swim();
+```java
+interface SwimInterface{
+	void swim();
 }
 class Fish{
-int fins=4;
+	int fins=4;
 }
 class Duck {
-int leg=2; void egg(){};
+    int leg=2;
+    void egg(){};
 }
-class Goldfish extends Fish implements SwimInterface { @Override
-public void swim() { System.out.println("Goldfish can swim ");
+class Goldfish extends Fish implements SwimInterface {
+    @Override
+    public void swim() {
+    	System.out.println("Goldfish can swim ");
+    }
 }
-}
-
-class SmallDuck extends Duck implements SwimInterface { public void egg(){
-System.out.println("SmallDuck can lay eggs ");
-}
-@Override
-public void swim() { System.out.println("SmallDuck can swim ");
-}
+class SmallDuck extends Duck implements SwimInterface {
+    public void egg(){
+    	System.out.println("SmallDuck can lay eggs ");
+    }
+    @Override
+    public void swim() {
+    	System.out.println("SmallDuck can swim ");
+    }
 }
 public class InterfaceDemo {
-public static void main(String[] args) { Goldfish goldfish=new Goldfish(); goldfish.swim();
-SmallDuck smallDuck= new SmallDuck(); smallDuck.swim();
-smallDuck.egg();
+    public static void main(String[] args) {
+        Goldfish goldfish=new Goldfish();
+        goldfish.swim();
+        SmallDuck smallDuck= new SmallDuck();
+        smallDuck.swim();
+        smallDuck.egg();
+    }
 }
-}
+```
 
 # 内部类
 
@@ -2254,197 +1998,113 @@ smallDuck.egg();
 注：成员内部类中不能写静态属性和方法
 【定义一个内部类】
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-//在 A 类中申明了一个 B 类，此 B 类就在 A 的内部，并且在成员变量的位置上，所以就称为成员内部类
-public class Outer { private int id; public void out(){
-System.out.println("这是外部类方法");
+```java
+//在A类中申明了一个B类，此B类就在A的内部，并且在成员变量的位置上，所以就称为成员内部类
+public class Outer {
+    private int id;
+    public void out(){
+    	System.out.println("这是外部类方法");
+    }
+    class Inner{
+        public void in(){
+        	System.out.println("这是内部类方法");
+        }
+    }
 }
-class Inner{
-public void in(){
-System.out.println("这是内部类方法");
-}
-}
-}
+```
 
 【实例化内部类】
 实例化内部类，首先需要实例化外部类，通过外部类去调用内部类
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-public class Outer { private int id; public void out(){
-System.out.println("这是外部类方法");
-}
-class Inner{
-public void in(){ System.out.println("这是内部类方法");
-}
-}
+```java
+public class Outer {
+    private int id;
+    public void out(){
+    	System.out.println("这是外部类方法");
+    }
+    class Inner{
+        public void in(){
+        	System.out.println("这是内部类方法");
+        }
+    }
 }
 public class Test{
-public static void main(String[] args) {
-//实例化成员内部类分两步
-//1、实例化外部类
-Outer outObject = new Outer();
-//2、通过外部类调用内部类
-Outer.Inner inObject = outObject.new Inner();
-//测试，调用内部类中的方法
-
-| 23 |
-
-} |
-} | inObject.in();//打印：这是内部类方法 |
-| --- | --- | --- | --- |
-| 24 | | | |
-| 25 | | | |
+    public static void main(String[] args) {
+        //实例化成员内部类分两步
+        //1、实例化外部类
+        Outer outObject = new Outer();
+        //2、通过外部类调用内部类
+        Outer.Inner inObject = outObject.new Inner();
+        //测试，调用内部类中的方法
+        inObject.in();//打印：这是内部类方法
+    }
+}
+```
 
 分析：想想如果你要使用一个类中方法或者属性，你就必须要先有该类的一个对象，同理，一个类在另 一个类的内部，那么想要使用这个内部类，就必须先要有外部类的一个实例对象，然后在通过该对象去 使用内部类。
 【成员内部类能干什么？】
 
 1. 访问外部类的所有属性(这里的属性包括私有的成员变量，方法)
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-public class Outer { private int id; public void out(){
-System.out.println("这是外部类方法");
+```java
+public class Outer {
+    private int id;
+    public void out(){
+    	System.out.println("这是外部类方法");
+    }
+    class Inner{
+        public void in(){
+        	System.out.println("这是内部类方法");
+        }
+        //内部类访问外部类私有的成员变量
+        public void useId(){
+        	System.out.println(id+3);。
+        }
+        //内部类访问外部类的方法
+        public void useOut(){
+        	out();
+        }
+    }
 }
-class Inner{
-public void in(){
-System.out.println("这是内部类方法");
-}
-//内部类访问外部类私有的成员变量
-public void useId(){
-System.out.println(id+3);。
-}
-
-//内部类访问外部类的方法 public void useOut(){
-out();
-}
-}
-}
-33
-34
-35
 public class Test{
-public static void main(String[] args) {
-//实例化成员内部类分两步
-//1、实例化外部类
-Outer outObject = new Outer();
-//2、通过外部类调用内部类
-Outer.Inner inObject = outObject.new Inner();
-//测试
-inObject.useId();//打印 3，因为 id 初始化值为 0，0+3 就为 3，其中在内部类就使用了 外部类的私有成员变量 id。
-inObject.useOut();//打印：这是外部类方法
+	public static void main(String[] args) {
+        //实例化成员内部类分两步
+        //1、实例化外部类
+        Outer outObject = new Outer();
+        //2、通过外部类调用内部类
+        Outer.Inner inObject = outObject.new Inner();
+        //测试
+        inObject.useId();//打印3，因为id初始化值为0，0+3就为3，其中在内部类就使用了
+        外部类的私有成员变量id。
+        inObject.useOut();//打印：这是外部类方法
+    }
 }
-}
+```
 
 1. 如果内部类中的变量名和外部类的成员变量名一样，要通过创建外部类对象 "."属性来访问外部类属性，通过 this.属性访问内部类成员属性
 
-1. public class Outer {
-1. private int id;//默认初始化 0
-1. public void out(){
-1. System.out.println("这是外部类方法"); 5 }
-
-6
-
-7
-8
-9
-10
-11
-12
-13
-14
-class Inner{
-private int id=8; //这个 id 跟外部类的属性 id 名称一样。public void in(){
-System.out.println("这是内部类方法");
+```java
+public class Outer {
+    private int id;//默认初始化0
+    public void out(){
+    	System.out.println("这是外部类方法");
+    }
+    class Inner{
+    private int id=8; //这个id跟外部类的属性id名称一样。
+    public void in(){
+        System.out.println("这是内部类方法");
+    }
+        public void test(){
+        System.out.println(id);//输出8，内部类中的变量会暂时将外部类的成员变量给隐藏
+        //如何调用外部类的成员变量呢？通过Outer.this，想要知道为什么能通过这个来调用，就得明白下面这个原理
+        //想实例化内部类对象，就必须通过外部类对象，当外部类对象来new出内部类对象时，会
+        //把自己(外部类对象)的引用传到了内部类中，所以内部类就可以通过Outer.this来访问外部类的属性和方法，到这里，你也就可以知道为什么内部类可以访问外部类的属性和方法，这里由于有两个相同的属性名称，所以需要显示的用Outer.this来调用外部类的属性，平常如果属性名不重复，那么我们在内部类中调用外部类的属性和方法时，前面就隐式的调用了Outer.this。
+        System.out.println(Outer.this.id);
+            //输出外部类的属性id。也就是输出0
+        }
+    }
 }
-15
-16
-
-17
-
-18
-public void test(){
-System.out.println(id);//输出 8，内部类中的变量会暂时将外部类的成员
-变量给隐藏
-//如何调用外部类的成员变量呢？通过 Outer.this，想要知道为什么能通过这个 来调用，就得明白下面这个原理
-//想实例化内部类对象，就必须通过外部类对象，当外部类对象来 new 出内部类对
-象时，会
-//把自己(外部类对象)的引用传到了内部类中，所以内部类就可以通过
-Outer.this 来访问外部类的属性和方法，到这里，你也就可以知道为什么内部类可以访问外部类 的属性和方法，这里由于有两个相同的
-属性名称，所以需要显示的用 Outer.this 来调用外部类的属性，平常如果属性名
-不重复，那么我们在内部类中调用外部类的属性和方法时，前面就隐式的调用了 Outer.this。
-19
-20 System.out.println(Outer.this.id);//输出外部类的属性 id。也 就是输出 0
-21
-22
-23
-}
-}
-}
+```
 
 借助成员内部类，来总结内部类(包括 4 种内部类)的通用用法：
 1、要想访问内部类中的内容，必须通过外部类对象来实例化内部类。
@@ -2452,82 +2112,45 @@ Outer.this 来访问外部类的属性和方法，到这里，你也就可以知
 一般都是隐式调用了，但是当内部类中有属性或者方法名和外部类中的属性或方法名相同的时候，就需 要通过显式调用 Outer.this 了。
 【写的一个小例子】
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-public class MemberInnerClassTest { private String name;
-private static int age;
-public void run(){}
-
-public static void go(){}
-public class MemberInnerClass{
-private String name;
-//内部类访问外部类
-public void test(String name){ System.out.println(name); System.out.println(this.name); System.out.println(MemberInnerClassTest.this.name); System.out.println(MemberInnerClassTest.age); MemberInnerClassTest.this.run(); MemberInnerClassTest.go();
+```java
+public class MemberInnerClassTest {
+    private String name;
+    private static int age;
+    public void run(){}
+    public static void go(){}
+    public class MemberInnerClass{
+        private String name;
+        //内部类访问外部类
+    	public void test(String name){
+            System.out.println(name);
+            System.out.println(this.name);
+            System.out.println(MemberInnerClassTest.this.name);
+            System.out.println(MemberInnerClassTest.age);
+            MemberInnerClassTest.this.run();
+            MemberInnerClassTest.go();
+        }
+    }
+    //外部类访问成员内部类
+    //成员内部类的对象要 依赖于外部类的对象的存在
+    public void test(){
+        //MemberInnerClass mic = MemberInnerClassTest.this.new
+        MemberInnerClass();
+        //MemberInnerClass mic = this.new MemberInnerClass();
+        MemberInnerClass mic = new MemberInnerClass();
+        mic.name = "tom";
+        mic.test("hua");
+    }
+    public static void main(String[] args) {
+        //MemberInnerClass mic = new MemberInnerClass();这个是不行的，this是动态的。
+        //所以要使用要先创建外部类对象，才能使用
+        MemberInnerClassTest out = new MemberInnerClassTest();
+        MemberInnerClass mic = out.new MemberInnerClass();
+        //如果内部类是private,则不能访问，只能铜鼓内部方法来调用内部类
+        mic.name="jik";
+        mic.test("kkk");
+    }
 }
-}
-
-23
-24
-25
-26
-
-27
-28
-29
-30
-31
-32
-33
-34
-35
-//外部类访问成员内部类
-//成员内部类的对象要 依赖于外部类的对象的存在
-public void test(){
-//MemberInnerClass mic = MemberInnerClassTest.this.new MemberInnerClass();
-//MemberInnerClass mic = this.new MemberInnerClass(); MemberInnerClass mic = new MemberInnerClass(); mic.name = "tom";
-mic.test("hua");
-}
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-public static void main(String[] args) {
-//MemberInnerClass mic = new MemberInnerClass();这个是不行的，this 是动
-态的。
-//所以要使用要先创建外部类对象，才能使用 MemberInnerClassTest out = new MemberInnerClassTest(); MemberInnerClass mic = out.new MemberInnerClass();
-//如果内部类是 private,则不能访问，只能铜鼓内部方法来调用内部类
-mic.name="jik"; mic.test("kkk");
-
-}
-}
+```
 
 ## 3、静态内部类
 
@@ -2539,101 +2162,54 @@ mic.name="jik"; mic.test("kkk");
 1. 被 static 修饰了的成员变量和方法能直接被类名调用。
 1. static 不能修饰局部变量，切记，不要搞混淆了，static 平常就用来修饰成员变量和方法。 写了一个例子，可以给大家看一下：
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-public class StaticInnerClassTest { private String name;
-private static int age;
-public void run(){}
-
-public static void go(){}
-12
-//外部类访问静态内部类
-public void test(){
-StaticInnerClass sic = new StaticInnerClass(); //静态的内部类不需要依赖外部类，所以不用 this
-sic.name = "tom";
-
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-sic.test1("jack");
-
-StaticInnerClass.age=10; StaticInnerClass.test2("xixi");
+```java
+public class StaticInnerClassTest {
+    private String name;
+    private static int age;
+    public void run(){}
+    public static void go(){}
+    //外部类访问静态内部类
+    public void test(){
+    StaticInnerClass sic = new StaticInnerClass(); //静态的内部类不需要依赖外部类，所以不用this
+    sic.name = "tom";
+    sic.test1("jack");
+    StaticInnerClass.age=10;
+    StaticInnerClass.test2("xixi");
+    }
+    private static class StaticInnerClass{
+    private String name;
+    private static int age;
+    public void test1(String name){
+        System.out.println(name);
+        System.out.println(this.name);
+        System.out.println(StaticInnerClass.age);
+        System.out.println(StaticInnerClassTest.age);
+        //System.out.println(StaticInnerClassTest.this.name);静态类不能访问非静态属性
+        StaticInnerClassTest.go();
+        //StaticInnerClassTest.this.run();静态类不能访问非静态方法
+        }
+    public static void test2(String name){
+        //只能访问自己和外部类的静态属性和方法
+        System.out.println(name);
+        //System.out.println(this.name);静态方法里面连自己类的非静态属性都不能访问
+        System.out.println(StaticInnerClass.age);
+        System.out.println(StaticInnerClassTest.age);
+        //System.out.println(StaticInnerClassTest.this.name);静态方法不能访问非静态属性
+        StaticInnerClassTest.go();
+        //StaticInnerClassTest.this.run();静态方法不能访问非静态方法
+        }
+    }
 }
-private static class StaticInnerClass{ private String name;
-private static int age;
-public void test1(String name){ System.out.println(name); System.out.println(this.name); System.out.println(StaticInnerClass.age);
-
-System.out.println(StaticInnerClassTest.age);
-//System.out.println(StaticInnerClassTest.this.name);静态类不能访
-问非静态属性
-30
-31
-32
-33
-34
-35
-36
-37
-StaticInnerClassTest.go();
-//StaticInnerClassTest.this.run();静态类不能访问非静态方法
-}
-public static void test2(String name){
-//只能访问自己和外部类的静态属性和方法 System.out.println(name);
-//System.out.println(this.name);静态方法里面连自己类的非静态属性都不能
-访问
-38
-39
-40
-41
-System.out.println(StaticInnerClass.age);
-
-System.out.println(StaticInnerClassTest.age);
-//System.out.println(StaticInnerClassTest.this.name);静态方法不能
-访问非静态属性
-42
-43
-44
-45
-46
-47
-StaticInnerClassTest.go();
-//StaticInnerClassTest.this.run();静态方法不能访问非静态方法
-}
-}
-}
+```
 
 ### 注意：
 
 1、我们上面说的内部类能够调用外部类的方法和属性，在静态内部类中就行了，因为静态内部类没有 了指向外部类对象的引用。除非外部类中的方法或者属性也是静态的。这就回归到了 static 关键字的用法。
 2、静态内部类能够直接被外部类给实例化，不需要使用外部类对象
 
-| 1   | Outer.Inner | inner | =   | new | Outer.Inner(); |
-| --- | ----------- | ----- | --- | --- | -------------- |
+```java
+Outer.Inner inner = new Outer.Inner();
+```
 
 3、静态内部类中可以声明静态方法和静态变量，但是非静态内部类中就不可以声明静态方法和静态变 量
 
@@ -2643,135 +2219,88 @@ StaticInnerClassTest.go();
 局部内部类中可以访问外部类的成员变量及方法
 局部内部类中如果要访问该内部类所在方法中的局部变量,那么这个局部变量就必须是 ﬁnal 修饰的
 
-1. public class Outer {
-1. private int id;
-1. //在 method01 方法中有一个 Inner 内部类，这个内部类就称为局部内部类
-1. public void method01(){class Inner{
-1. public void in(){
-1. System.out.println("这是局部内部类"); 7 }
-
-8 }
-9 }
-10 }
+```java
+public class Outer {
+    private int id;
+    //在method01方法中有一个Inner内部类，这个内部类就称为局部内部类
+    public void method01(){class Inner{
+            public void in(){
+            	System.out.println("这是局部内部类");
+            }
+        }
+    }
+}
+```
 
 局部内部类一般的作用跟在成员内部类中总结的差不多，但是有两个要注意的地方：
 
-1.  在局部内部类中，如果要访问局部变量，那么该局部变量要用 ﬁnal 修饰为什么需要使用 ﬁnal？
+1.  在局部内部类中，如果要访问局部变量，那么该局部变量要用 ﬁnal 修饰
 
+为什么需要使用 ﬁnal？
 ﬁnal 修饰变量：变为常量，会在常量池中放着，逆向思维想这个问题，如果不实用 ﬁnal 修饰，当局部内部类被实例化后，方法弹栈，局部变量随着跟着消失，这个时候局部内部类对象在想去调用该局部变
 量，就会报错，因为该局部变量已经没了，当局部变量用 fanal 修饰后，就会将其加入常量池中，即使方法弹栈了，该局部变量还在常量池中呆着，局部内部类也就是够调用。所以局部内部类想要调用局部变 量时，需要使用 ﬁnal 修饰，不使用，编译度通不过。
 
-1
-2
-3
-4
-
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-public class Outer { private int id;
-public void method01(){
-final int cid = 3; //这个就是局部变量 cid。要让局部内部类使用，就得变为
-final 并且赋值，如果不使用 final 修饰，就会报错 class Inner{
-//内部类的第一个方法 public void in(){
-System.out.println("这是局部内部类");
+```java
+public class Outer {
+    private int id;
+    public void method01(){
+        final int cid = 3; //这个就是局部变量cid。要让局部内部类使用，就得变为final并且赋值，如果不使用final修饰，就会报错
+        class Inner{
+            //内部类的第一个方法
+            public void in(){
+                System.out.println("这是局部内部类");
+            }
+        	//内部类中的使用局部变量cid的方法
+            public void useCid(){
+            	System.out.println(cid);
+            }
+        }
+    }
 }
-//内部类中的使用局部变量 cid 的方法 public void useCid(){
-System.out.println(cid);
-}
-}
-}
-}
+```
 
 1.  局部内部类不能通过外部类对象直接实例化，而是在方法中实例化出自己来，然后通过内部类对象调用自己类中的方法。看下面例子就知道如何用了。
 
-​
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
+```java
 public class Outer {
-private int id;
-public void out(){
-System.out.println("外部类方法");
+    private int id;
+    public void out(){
+    System.out.println("外部类方法");
+    }
+    public void method01(){
+        class Inner{
+            public void in(){
+                System.out.println("这是局部内部类");
+			}
+		}
+        //关键在这里，如需要在method01方法中自己创建内部类实例，然后调用内部类中的方法，等待外部类调用method01方法，就可以执行到内部类中的方法了。
+        Inner In = new Inner();
+        In.in();
+    }
 }
-public void method01(){ class Inner{
-public void in(){
 
-10
-11
-12
-13
-System.out.println("这是局部内部类");
-}
-14
-15
-16
-17
-}
-//关键在这里，如需要在 method01 方法中自己创建内部类实例，然后调用内部类中的方法，等待 外部类调用 method01 方法，就可以执行到内部类中的方法了。
-Inner In = new Inner(); In.in();
-}
-}
+```
 
 使用局部内部类需要注意的地方就刚才上面说的：
 1、在局部内部类中，如果要访问局部变量，那么该局部变量要用 ﬁnal 修饰
 2、如何调用局部内部类方法。
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-public class LocalInnerClassTest { private String name;
+```java
+public class LocalInnerClassTest {
+private String name;
 private static int age;
 public void run(){}
-
 public static void go(){}
-//
 //局部内部类要定义在方法中
 public void test(){
-final String myname=""; class LocalInnerClass{
+final String myname="";
+class LocalInnerClass{
 private String name;
-private static int age;不能定义静态属性
-public void test(String name){ System.out.println(name); System.out.println(this.name); System.out.println(myname);
+// private static int age;不能定义静态属性
+public void test(String name){
+System.out.println(name);
+System.out.println(this.name);
+System.out.println(myname);
 System.out.println(LocalInnerClassTest.this.name);
 LocalInnerClassTest.this.run();
 LocalInnerClassTest.go();
@@ -2779,16 +2308,12 @@ LocalInnerClassTest.go();
 }
 //局部内部类只能在自己的方法中用,因为局部内部类相当于一个局部变量，除了方法就找不
 到了。
-27
-28
-29
-30
-31
-32
-LocalInnerClass lic = new LocalInnerClass(); lic.name="tom";
+LocalInnerClass lic = new LocalInnerClass();
+lic.name="tom";
 lic.test("test");
 }
 }
+```
 
 ## 5、匿名内部类
 
@@ -2796,21 +2321,22 @@ lic.test("test");
 
 什么是匿名对象？如果一个对象只要使用一次，那么我们就是需要 new Object().method()。 就可以了，而不需要给这个实例保存到该类型变量中去。这就是匿名对象。
 
-1. public class Test {
-1. public static void main(String[] args) {
-1. //讲 new 出来的 Apple 实例赋给 apple 变量保存起来，但是我们只需要用一次，就可以这样写
-1. Apple apple = new Apple();
-1. apple.eat();
-1. //这种就叫做匿名对象的使用，不把实例保存到变量中。
-1. new Apple().eat(); 8 }
-
-9 }
-
-1. class Apple{
-1. public void eat(){
-1. System.out.println("我要被吃了"); 13 }
-
-14 }
+```java
+public class Test {
+    public static void main(String[] args) {
+        //讲new出来的Apple实例赋给apple变量保存起来，但是我们只需要用一次，就可以这样写
+        Apple apple = new Apple();
+        apple.eat();
+        //这种就叫做匿名对象的使用，不把实例保存到变量中。
+        new Apple().eat();
+    }
+}
+class Apple{
+    public void eat(){
+    	System.out.println("我要被吃了");
+    }
+}
+```
 
 匿名内部类跟匿名对象是一个道理：
 匿名对象：我只需要用一次，那么我就不用声明一个该类型变量来保存对象了，
@@ -2818,165 +2344,105 @@ lic.test("test");
 
 1. 匿名内部类需要依托于其他类或者接口来创建
 
-如果依托的是类,那么创建出来的匿名内部类就默认是这个类的子类
-如果依托的是接口,那么创建出来的匿名内部类就默认是这个接口的实现类。
+- 如果依托的是类,那么创建出来的匿名内部类就默认是这个类的子类
+- 如果依托的是接口,那么创建出来的匿名内部类就默认是这个接口的实现类。
 
 1. 匿名内部类的声明必须是在使用 new 关键字的时候
 
-匿名内部类的声明及创建对象必须一气呵成,并且之后能反复使用,因为没有名字。
+- 匿名内部类的声明及创建对象必须一气呵成,并且之后能反复使用,因为没有名字。
+
 【示例】
 A 是一个类(普通类、抽象类都可以)，依托于 A 类创建一个匿名内部类对象
 
-1
-2
-3
-4
-5
-6
-7
+```java
 main:
+
 A a = new A(){
-//实现 A 中的抽象方法
-//或者重写 A 中的普通方法
+    //实现A中的抽象方法
+    //或者重写A中的普通方法
 };
-注:这个大括号里面其实就是这个内部类的代码,只不过是声明该内部类的同时就是要 new 创建了其对象, 并且不能反复使用,因为没有名字。
-8
-9
-10
-11
-12
-13
-14
+注:这个大括号里面其实就是这个内部类的代码,只不过是声明该内部类的同时就是要new创建了其对象,
+并且不能反复使用,因为没有名字。
 例如:
-B 是一个接口，依托于 B 接口创建一个匿名内部类对象
+B是一个接口，依托于B接口创建一个匿名内部类对象
 B b = new B(){
-//实现 B 中的抽象方法
+	//实现B中的抽象方法
 };
+```
 
 1. 匿名内部类除了依托的类或接口之外,不能指定继承或者实现其他类或接口,同时也不能被其他类所 继承,因为没有名字。
 1. 匿名内部中,我们不能写出其构造器,因为没有名字。
 1. 匿名内部中,除了重写上面的方法外,一般不会再写其他独有的方法,因为从外部不能直接调用到。(间接是调用到的)
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-public interface Work{ void doWork();
+```java
+public interface Work{
+	void doWork();
 }
-public class AnonymousOutterClass{ private String name;
-private static int age; public void say(){}
-public static void go(){}
-public void test(){
-final int i = 90;
-Work w = new Work(){ public void doWork(){
-System.out.println(AnonymousOutterClass.this.name); System.out.println(AnonymousOutterClass.age); AnonymousOutterClass.this.say();
-AnonymousOutterClass.go();
-System.out.println(i);
+public class AnonymousOutterClass{
+    private String name;
+    private static int age;
+    public void say(){}
+    public static void go(){}
+    public void test(){
+        final int i = 90;
+        Work w = new Work(){
+        	public void doWork(){
+                System.out.println(AnonymousOutterClass.this.name);
+                System.out.println(AnonymousOutterClass.age);
+                AnonymousOutterClass.this.say();
+                AnonymousOutterClass.go();
+                System.out.println(i);
+        	}
+        };
+        w.doWork();
+    }
 }
-};
-w.doWork();
-}
-}
+```
 
 我们可以试一下不用匿名内部类和用匿名内部类实现一个接口中的方法的区别
 【不用匿名内部类】
 
-1
-2
-3
-
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
+```java
 public class Test {
-public static void main(String[] args) {
-//如果我们需要使用接口中的方法，我们就需要走 3 步，1、实现接口 2、创建实现接口类的实例对象 3、通过对象调用方法
-//第二步
-Test02 test = new Test02();
-//第三步 test.method();
+    public static void main(String[] args) {
+        //如果我们需要使用接口中的方法，我们就需要走3步，1、实现接口 2、创建实现接口类的实例对象 3、通过对象调用方法
+        //第二步
+        Test02 test = new Test02();
+        //第三步
+        test.method();
+    }
 }
-}
-//接口 Test1
+//接口Test1
 interface Test01{
-public void method();
+    public void method();
 }
-//第一步、实现 Test01 接口
+//第一步、实现Test01接口
 class Test02 implements Test01{
-@Override
-public void method() {
-System.out.println("实现了 Test 接口的方法");
+    @Override
+    public void method() {
+        System.out.println("实现了Test接口的方法");
+    }
 }
-}
+```
 
 【使用匿名内部类】
 
-1 public class Test {
-
-2
-3
-
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-public static void main(String[] args) {
-//如果我们需要使用接口中的方法，我们只需要走一步，就是使用匿名内部类，直接将其 类的对象创建出来。
-new Test1(){
-public void method(){
-System.out.println("实现了 Test 接口的方法");
-}
-}.method();
-}
+```java
+public class Test {
+    public static void main(String[] args) {
+        //如果我们需要使用接口中的方法，我们只需要走一步，就是使用匿名内部类，直接将其
+        类的对象创建出来。
+            new Test1(){
+            public void method(){
+                System.out.println("实现了Test接口的方法");
+            }
+        }.method();
+    }
 }
 interface Test1{
-public void method();
+    public void method();
 }
+```
 
 解析：其实只要明白一点，new Test1(){实现接口中方法的代码}; Test1(){...}这个的作用就是将接口给实现了，只不过这里实现该接口的是一个匿名类，也就是说这个类没名字，
 只能使用这一次，我们知道了这是一个类， 将其 new 出来，就能获得一个实现了 Test1 接口的类的实例对象，通过该实例对象，就能调用该类中的方法了，因为其匿名类是在一个类中实现的，

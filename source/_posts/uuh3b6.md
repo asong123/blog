@@ -1,5 +1,5 @@
 ---
-title: 5、JavaSE：数组
+title: JavaSE：数组
 urlname: uuh3b6
 date: '2021-07-09 20:35:48 +0800'
 tags: []

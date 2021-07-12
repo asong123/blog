@@ -1,5 +1,5 @@
 ---
-title: 1、JavaSE：Java入门
+title: JavaSE：Java入门
 urlname: tonilf
 date: '2021-07-09 20:28:47 +0800'
 tags: []

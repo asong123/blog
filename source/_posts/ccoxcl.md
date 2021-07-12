@@ -28,7 +28,7 @@ swing 是建立在 awt 基础上的。还是有必要学习一下的.原因如�
 
 AWT（Abstract Window Toolkit）包括了很多类和接口，用于 Java Application 的 GUI（Graphics User Interface 图形用户界面）编程。
 GUI 的各种元素（如：窗口，按钮，文本框等）由 Java 类来实现。 使用 AWT 所涉及的类一般在 Java.AWT 包及其子包中。
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834287929-6215165d-5fe4-4abe-a432-c561e64a9be6.jpeg#)Container 和 Component 是 AWT 中的两个核心类。
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834287929-6215165d-5fe4-4abe-a432-c561e64a9be6.jpeg#id=t46jD&originHeight=182&originWidth=461&originalType=binary∶=1&status=done&style=none)Container 和 Component 是 AWT 中的两个核心类。
 所有的可以显示出来的图形元素都称为 Component，Component 代表了所有的可见的图形元素，
 Component 里面有一种比较特殊的图形元素叫 Container，Container(容器)在图形界面里面是一种可以 容纳其它 Component 元素的一种容器，Container 本身也是一种 Component 的，Container 里面也可以容纳别的 Container。
 Container 里面又分为 Window 和 Pannel，Window 是可以独立显示出来的，平时我们看到的各种各样的 应用程序的窗口都可以称为 Window，Window 作为一个应用程序窗口独立显示出来，Pannel 也可以容纳其它的图形元素，但一般看不见 Pannel，Pannel 不能作为应用程序的独立窗口显示出来，Pannel 要想 显示出来就必须得把自己装入到 Window 里面才能显示出来。
@@ -38,48 +38,12 @@ Window 本身又可以分为 Frame 和 Dialog，Frame 就是我们平时看到�
 
 **二、组件和容器(Component 和 Container)**
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834288508-bab78a02-c6ea-47bf-8687-9c4f82471d47.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834288508-bab78a02-c6ea-47bf-8687-9c4f82471d47.jpeg#id=L1HKC&originHeight=288&originWidth=557&originalType=binary∶=1&status=done&style=none)
 
 1.  **Frame**
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834288881-5b76eeac-2748-4810-b0f3-b327191eecf8.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834288881-5b76eeac-2748-4810-b0f3-b327191eecf8.jpeg#id=y8pNN&originHeight=355&originWidth=479&originalType=binary∶=1&status=done&style=none)
 【Frame 范例】
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
 package com.kuang;
 import java.awt.\*;
 //学习 JAVA 的 GUI 编程编写的第一个图形界面窗口
@@ -110,7 +74,7 @@ frame.setResizable(false);
 }
 
 运行结果：
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834289134-61256c58-f079-4059-93cf-c64ca87a4d90.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834289134-61256c58-f079-4059-93cf-c64ca87a4d90.png#id=cUuDF&originHeight=400&originWidth=400&originalType=binary∶=1&status=done&style=none)
 
 【发现问题：关闭不掉，解决方法：停止 Java 程序的运行】
 【演示二：展示多个窗口】
@@ -142,152 +106,24 @@ frame.setResizable(false);
 1. public MyFrame(int x,int y,int w,int h,Color color){
 1. super("MyFrame"+(++id));
 1. /_使用从父类 Frame 继承而来的方法设置窗体的相关属性_/
-   | 31 | | | setBackground(color); |
-   | --- | --- | --- | --- |
-   | 32 | | | setLayout(null); |
-   | 33 | | | setBounds(x,y,w,h); |
-   | 34 | | | setVisible(true); |
-   | 35 | | } | |
-   | 36 | | | |
-   | 37 | } | | |
 
 运行结果：
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834289592-9e6764b5-6b58-459e-80de-bd33231d5313.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834289592-9e6764b5-6b58-459e-80de-bd33231d5313.png#id=pxTPc&originHeight=392&originWidth=387&originalType=binary∶=1&status=done&style=none)
 
 1.  **Panel**
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834290117-7056533e-85d4-4fdb-9631-b8e422aa2618.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834290117-7056533e-85d4-4fdb-9631-b8e422aa2618.jpeg#id=dHGlx&originHeight=310&originWidth=542&originalType=binary∶=1&status=done&style=none)
 【演示】
 
 1 package com.kuang;
 
-| 2   |        |                                |
-| --- | ------ | ------------------------------ |
-| 3   | import | java.awt.\*;                   |
-| 4   | import | java.awt.event.WindowEvent;    |
-| 5   | import | java.awt.event.WindowListener; |
-| 6   |        |                                |
-| 7   | public | class TestPanel {              |
-
-| 8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59 | public static void main(String[] args) {
-Frame frame = new Frame("JAVA Frame With Panel"); Panel panel = new Panel(null); frame.setLayout(null);
-
-//这里设置的坐标(300,300)是相对于整个屏幕的 frame.setBounds(300,300,500,500);
-
-//设置背景颜色时使用三基色(红，绿，蓝)的比例来调配背景色 frame.setBackground(new Color(0,0,102));
-
-//这里设置的坐标(50,50)是相对于 Frame 窗体的 panel.setBounds(50,50,400,400); panel.setBackground(new Color(204,204,255));
-
-//把 Panel 容器装入到 Frame 容器中，使其能在 Frame 窗口中显示出来 frame.add(panel);
-
-frame.setVisible(true);
-
-//解决关闭问题
-frame.addWindowListener(new WindowListener() { @Override
-public void windowOpened(WindowEvent e) {
-
-}
-
-@Override
-public void windowClosing(WindowEvent e) { System.exit(0);
-}
-
-@Override
-public void windowClosed(WindowEvent e) {
-
-}
-
-@Override
-public void windowIconified(WindowEvent e) {
-
-}
-
-@Override
-public void windowDeiconified(WindowEvent e) {
-
-}
-
-@Override
-public void windowActivated(WindowEvent e) {
-
-} | |
-
-| 60 |
-
-} |
-
-} |
-
-}); | @Override
-public void windowDeactivated(WindowEvent e) {
-
-| }   |
-| --- | --- | --- | --- | --- |
-| 61  |     |     |     |     |
-| 62  |     |     |     |     |
-| 63  |     |     |     |     |
-| 64  |     |     |     |     |
-| 65  |     |     |     |     |
-| 66  |     |     |     |     |
-
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834290601-600b88c4-50ea-4dbe-b08d-827ff6a6adc7.png#)结果如下：
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834290601-600b88c4-50ea-4dbe-b08d-827ff6a6adc7.png#id=RzBv3&originHeight=514&originWidth=499&originalType=binary∶=1&status=done&style=none)结果如下：
 
 **三、布局管理器**
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834291091-fa49600a-ff2e-439e-8ff6-264f287e8e7b.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834291091-fa49600a-ff2e-439e-8ff6-264f287e8e7b.jpeg#id=Kj6Wu&originHeight=295&originWidth=597&originalType=binary∶=1&status=done&style=none)
 
-1.  ![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834291671-015e9691-365d-4f3f-9be5-118ca4c4ef0c.jpeg#)![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834292128-6160ebe0-3b8c-422f-b333-c92228bf96cd.jpeg#)**第一种布局管理器——FlowLayout**
+1.  ![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834291671-015e9691-365d-4f3f-9be5-118ca4c4ef0c.jpeg#id=VPIQU&originHeight=298&originWidth=593&originalType=binary∶=1&status=done&style=none)![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834292128-6160ebe0-3b8c-422f-b333-c92228bf96cd.jpeg#id=QVAeR&originHeight=198&originWidth=565&originalType=binary∶=1&status=done&style=none)**第一种布局管理器——FlowLayout**
 
 【演示】
 
@@ -303,58 +139,13 @@ import java.awt.\*;
 public class TestFlowLayout {
 public static void main(String[] args) {
 
-| 7   |     |     | Frame frame = new Frame("FlowLayout");                                   |
-| --- | --- | --- | ------------------------------------------------------------------------ |
-| 8   |     |     |                                                                          |
-| 9   |     |     | //使用 Button 类创建按钮                                                 |
-| 10  |     |     | // 按钮类的其中一个构造方法：Button(String label) label 为按钮显示的文本 |
-| 11  |     |     | Button button1 = new Button("button1");                                  |
-| 12  |     |     | Button button2 = new Button("button2");                                  |
-| 13  |     |     | Button button3 = new Button("button3");                                  |
-| 14  |     |     |                                                                          |
-| 15  |     |     | // setLayout 方法的定义：public void setLayout(LayoutManager mgr)        |
-| 16  |     |     | // 使用流水(Flow)线般的布局                                              |
-| 17  |     |     | frame.setLayout(new FlowLayout());                                       |
-| 18  |     |     | // 使用了布局管理器 FlowLayout，这里的布局采用默认的水平居中模式         |
-| 19  |     |     |                                                                          |
-| 20  |     |     | // frame.setLayout(new FlowLayout(FlowLayout.LEFT));                     |
-| 21  |     |     | // 这里在布局的时候使用了 FlowLayout.LEFT 常量，这样就将按钮设置为左对齐 |
-| 22  |     |     |                                                                          |
-| 23  |     |     | // frame.setLayout(new FlowLayout(FlowLayout.RIGHT));                    |
-| 24  |     |     | //这里在布局的时候使用了 FlowLayout.RIGHT 常量，这样就将按钮设置为右对齐 |
-| 25  |     |     |                                                                          |
-| 26  |     |     |                                                                          |
-| 27  |     |     | frame.setSize(200,200);                                                  |
-| 28  |     |     |                                                                          |
-| 29  |     |     | frame.add(button1); // 把创建出来的按钮放置到 Frame 窗体中               |
-| 30  |     |     | frame.add(button2); // 这里并没有设置按钮的大小与位置                    |
-| 31  |     |     | frame.add(button3); // 设置按钮的大小与位置都是由布局管理器来做的        |
-| 32  |     |     |                                                                          |
-| 33  |     |     | frame.setVisible(true);                                                  |
-| 34  |     |     |                                                                          |
-| 35  |     | }   |                                                                          |
-| 36  | }   |     |                                                                          |
-
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834292645-ae4c1527-16a5-43bb-8b12-6bd1ff97cbe5.png#)运行结果：
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834292645-ae4c1527-16a5-43bb-8b12-6bd1ff97cbe5.png#id=T8R9H&originHeight=201&originWidth=188&originalType=binary∶=1&status=done&style=none)运行结果：
 
 1.  **第二种布局管理器——BorderLayout**
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834292920-0512ff7d-8273-4544-b78d-68d92cb3322b.jpeg#)
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834293234-8469a09f-a414-4be5-b81d-48dc1285d9b5.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834292920-0512ff7d-8273-4544-b78d-68d92cb3322b.jpeg#id=ZEiEl&originHeight=279&originWidth=562&originalType=binary∶=1&status=done&style=none)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834293234-8469a09f-a414-4be5-b81d-48dc1285d9b5.jpeg#id=Dnygq&originHeight=344&originWidth=596&originalType=binary∶=1&status=done&style=none)
 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
 15
 package com.kuang;
 import java.awt.\*;
@@ -410,9 +201,9 @@ frame.setSize(200,200); frame.setVisible(true);
 }
 }
 
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834293671-3726565b-a09a-4af2-a091-7522b8607b20.png#)运行结果：
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834293671-3726565b-a09a-4af2-a091-7522b8607b20.png#id=cAy1b&originHeight=193&originWidth=187&originalType=binary∶=1&status=done&style=none)运行结果：
 
-1.  ![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834294161-f8b3fbfb-cdea-4053-bacf-6228426e1685.jpeg#)**第三种布局管理器——GridLayout（表格布局管理器）**
+1.  ![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834294161-f8b3fbfb-cdea-4053-bacf-6228426e1685.jpeg#id=mdJAK&originHeight=335&originWidth=589&originalType=binary∶=1&status=done&style=none)**第三种布局管理器——GridLayout（表格布局管理器）**
 
 【演示】
 
@@ -469,11 +260,11 @@ frame.setVisible(true);
 }
 }
 
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834294441-b236016d-536e-4b55-8326-7187577cdb38.png#)运行结果：
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834294441-b236016d-536e-4b55-8326-7187577cdb38.png#id=axkOk&originHeight=241&originWidth=256&originalType=binary∶=1&status=done&style=none)运行结果：
 
 1.  **布局练习**
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834294758-8b6ab8e2-fe7b-4576-91e7-b2f323162664.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834294758-8b6ab8e2-fe7b-4576-91e7-b2f323162664.jpeg#id=TkQNl&originHeight=263&originWidth=357&originalType=binary∶=1&status=done&style=none)
 这几种布局管理器可以设置在 Frame 里面，也可以设置在 Panel 里面，而 Panel 本身也可以加入到 Frame 里面，因此通过 Frame 与 Panel 的嵌套就可以实现比较复杂的布局；
 【演示】
 
@@ -536,15 +327,15 @@ frame.add(p3); |
 | 52 | | | |
 
 运行结果 :
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834295262-f4128352-4eed-440c-8d23-3d5e3f70dab3.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834295262-f4128352-4eed-440c-8d23-3d5e3f70dab3.png#id=Lv69R&originHeight=290&originWidth=383&originalType=binary∶=1&status=done&style=none)
 
 **四、布局管理器总结**
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834295770-ded94458-0839-47c7-92b0-e7c9b85d2d70.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834295770-ded94458-0839-47c7-92b0-e7c9b85d2d70.jpeg#id=Fmdn9&originHeight=260&originWidth=546&originalType=binary∶=1&status=done&style=none)
 
 **五、事件监听**
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834296326-d8115ea3-6606-4463-b570-69e065276140.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834296326-d8115ea3-6606-4463-b570-69e065276140.jpeg#id=zzrqg&originHeight=275&originWidth=523&originalType=binary∶=1&status=done&style=none)
 
 【**测试代码一**】
 
@@ -685,7 +476,7 @@ setActionCommand()方法设置
 
 # 六、TextField 事件监听
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834296872-cfd8cc3f-5d12-421f-b703-d84f9fa761c2.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834296872-cfd8cc3f-5d12-421f-b703-d84f9fa761c2.jpeg#id=kP49f&originHeight=198&originWidth=544&originalType=binary∶=1&status=done&style=none)
 1
 2
 3
@@ -945,7 +736,7 @@ public static void main(String[] args) { new Calculator2().launchFrame();
 65 }
 
 结果：
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834297240-e763e821-0592-435a-8491-46512a51c0bd.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834297240-e763e821-0592-435a-8491-46512a51c0bd.png#id=MAwYI&originHeight=33&originWidth=462&originalType=binary∶=1&status=done&style=none)
 
 **七、内部类**
 
@@ -1054,7 +845,7 @@ num2.setText("");
 
 每个 Component 都有一个 paint（Graphics g）用于实现绘图目的，每次重画该 Component 时都自动调用 paint 方法。
 Graphics 类中提供了许多绘图方法，如：
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834297493-10fb1f4a-920b-4f02-b1ff-79cdb57788d4.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834297493-10fb1f4a-920b-4f02-b1ff-79cdb57788d4.png#id=ZIH17&originHeight=443&originWidth=402&originalType=binary∶=1&status=done&style=none)
 
 【测试代码】
 
@@ -1174,7 +965,7 @@ MouseEvent 的监听器，只要重写其相应的方法即可。 对于其他�
 
 # 十、window 事件
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834297999-4e65929b-e81f-4cd6-9a66-ddec17107429.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834297999-4e65929b-e81f-4cd6-9a66-ddec17107429.jpeg#id=X0vvX&originHeight=266&originWidth=602&originalType=binary∶=1&status=done&style=none)
 
 1 package com.kuang3; 2
 
@@ -1401,7 +1192,7 @@ new JFrameDemo().CreateJFrame(); // 调用 CreateJFrame()方法
 | 22 | | |
 | 23 | | |
 
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834298468-595a8b39-27e1-4df5-91dc-19a361dfe2a2.png#)结果：
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834298468-595a8b39-27e1-4df5-91dc-19a361dfe2a2.png#id=QCUOk&originHeight=362&originWidth=525&originalType=binary∶=1&status=done&style=none)结果：
 这就是一个 500\*350 的窗体，用的是 setSize()方法；
 标题为“这是一个 JFrame 窗体”，在实例化对象时就可以定义； 窗体关闭方式见窗体右上角为“EXIT_ON_CLOSE”；
 窗体可视 setVisible()方法中的参数为“false”或不写 setVisible()方法时，此窗体不可见。
@@ -1484,7 +1275,7 @@ public static void main(String[] args) { new JFrameDemo2().init();
 }
 
 运行结果：
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834298983-759d7dd8-059e-49c3-9dfc-a2089bad72a5.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834298983-759d7dd8-059e-49c3-9dfc-a2089bad72a5.png#id=hXuZf&originHeight=342&originWidth=481&originalType=binary∶=1&status=done&style=none)
 
 这里继承了 JFrame 类，所以方法中实现时用 this 关键字即可（或直接实现，不加 this）。
 
@@ -1599,7 +1390,7 @@ JLabel 类提供了许多构造方法，可查看 API 选择需要的使用，�
 | 1   | JLabel | jl  | =   | new | JLabel(); |
 | --- | ------ | --- | --- | --- | --------- |
 
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834299501-c6b8f329-85ed-4e66-b736-a257b4529901.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834299501-c6b8f329-85ed-4e66-b736-a257b4529901.png#id=Xh2O7&originHeight=161&originWidth=204&originalType=binary∶=1&status=done&style=none)
 
 1. **图标**
 
@@ -1722,7 +1513,7 @@ public static void main(String[] args) { new IconDemo().init();
 | 55 | | |
 | 56 | | |
 
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834300030-7ab90013-3f50-40bf-a70f-5d784efc8fb0.png#)运行结果如下：
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834300030-7ab90013-3f50-40bf-a70f-5d784efc8fb0.png#id=JkkX4&originHeight=351&originWidth=521&originalType=binary∶=1&status=done&style=none)运行结果如下：
 这样如果需要在窗体中使用图标，就可以用如下代码创建图标：
 
 | 1   | IconDemo | iconDemo | =   | new | IconDemo(15, | 15); |
@@ -1732,7 +1523,7 @@ public static void main(String[] args) { new IconDemo().init();
 
 Swing 中的图标除了可以绘制之外，还可以使用某个特定的图片创建。利用 javax.swing.ImageIcon 类根据现有图片创建图标。
 下面看一个实例，我们先在包下放一个图片（注意放置位置，不同位置路径不同），如下：
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834300499-a31a1518-f086-4496-8d07-feb741b64708.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834300499-a31a1518-f086-4496-8d07-feb741b64708.png#id=iZcjn&originHeight=142&originWidth=200&originalType=binary∶=1&status=done&style=none)
 【下面是实现的代码】
 
 | 1 | package com.kuang4;
@@ -1798,7 +1589,7 @@ public static void main(String[] args) { new ImageIconDemo();
 | 34 | | |
 | 35 | | |
 
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834300747-3453b17b-3cf5-4579-86e5-4abaebb4f095.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834300747-3453b17b-3cf5-4579-86e5-4abaebb4f095.jpeg#id=Rh62Y&originHeight=307&originWidth=475&originalType=binary∶=1&status=done&style=none)
 对于图片标签，我们经常将图片放置在标签上，用 JLabel 中的 setIcon()方法即可，当然也可以在初始化
 JLabel 对象时为标签指定图标，这需要获取一个 Icon 实例。
 而 getResource()方法可以获得资源文件的 URL 路径，这里的路径是相对于前面的那个类的，所以可将该 图片与该类放在同一个文件夹下；如果不在同一个文件夹下，需通过其它方法获取路径。
@@ -1885,8 +1676,8 @@ public static void main(String[] args) { new FlowLayoutDemo();
 }
 
 第一个参数为 2 是右对齐，每个按钮间的水平、垂直间隔都为 10。后两个图分别为参数为 1 居中排列和参数为 0 左对齐。运行结果如下：
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834301034-2aeeaba5-6348-4f57-aafa-60ca740bccfc.png#)
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834301233-a35ee729-204e-47e8-b18c-abf6d39d0ce9.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834301034-2aeeaba5-6348-4f57-aafa-60ca740bccfc.png#id=jgoNn&originHeight=413&originWidth=281&originalType=binary∶=1&status=done&style=none)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834301233-a35ee729-204e-47e8-b18c-abf6d39d0ce9.png#id=Huy9m&originHeight=178&originWidth=279&originalType=binary∶=1&status=done&style=none)
 
 1. **边界布局管理器**
 
@@ -1962,7 +1753,7 @@ this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 public static void main(String[] args) { new BorderLayoutDemo();
 }
 }
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834301547-bf1b18b3-8ecb-4059-972a-e844a00c940a.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834301547-bf1b18b3-8ecb-4059-972a-e844a00c940a.png#id=HRyFg&originHeight=193&originWidth=284&originalType=binary∶=1&status=done&style=none)
 
 1. **网格布局管理器**
 
@@ -2012,7 +1803,7 @@ this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 public static void main(String[] args) { new GirdLayoutDemo();
 }
 }
-![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834302075-8a7482ba-42fe-4eb7-b92d-f472c37f4249.jpeg#)
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625834302075-8a7482ba-42fe-4eb7-b92d-f472c37f4249.jpeg#id=RWmZI&originHeight=312&originWidth=308&originalType=binary∶=1&status=done&style=none)
 
 **四、面板**
 
@@ -2088,7 +1879,7 @@ JPanel 面板可以聚集一些组件来布局。继承自 java.awt.Container �
 50 }
 
 运行结果如下，可自行对比代码与结果理解 JPanel。其中，容器的 GridLayout 布局设置了横纵都为 10 的 间距，JPanel 的 GridLayout 布局没有设置网格间距。
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834302598-c9b4a28e-4814-464d-aef9-1224ae25c1bc.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834302598-c9b4a28e-4814-464d-aef9-1224ae25c1bc.png#id=TQWDa&originHeight=339&originWidth=485&originalType=binary∶=1&status=done&style=none)
 
 1. **JScrollPane**
 
@@ -2148,7 +1939,7 @@ new JScrollPaneDemo();
 29
 30 }
 
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834302788-a0786eb1-78a0-4d6f-b7dd-d57e111acde5.png#)结果：
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834302788-a0786eb1-78a0-4d6f-b7dd-d57e111acde5.png#id=ZxNUD&originHeight=138&originWidth=282&originalType=binary∶=1&status=done&style=none)结果：
 其中 JTextArea 是创建一个文本区域组件，大小为 20\*50，setText()方法是给该文本区域填值。这里在
 new 一个 JScrollPane 时，就将文本区域组件添加到其上。
 
@@ -2210,42 +2001,6 @@ public static void main(String[] args) { new Demo();
 
 默认情况下，单选按钮显示一个圆形图标，通常在其旁放置一些说明性文字。当用户选中某个单选按钮 后，按钮组中其它按钮将被自动取消，这时就需要按钮组（ButtonGroup）来将同组按钮放在一起，该按钮组中的按钮只能选择一个，而不在此按钮中的按钮不受影响。语法格式如下：
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
 37
 package com.kuang5;
 import javax.swing._; import java.awt._;
@@ -2276,54 +2031,6 @@ public static void main(String[] args) { new Demo();
 复选框是一个方块图标，外加一段描述性文字，与单选按钮的区别就是可以多选。每一个复选框都提供
 “选中”与“不选中”两种状态。语法格式如下：
 
-| 1   | package | com.kuang5;        |        |     |
-| --- | ------- | ------------------ | ------ | --- |
-| 2   |         |                    |        |     |
-| 3   | import  | javax.swing.\*;    |        |     |
-| 4   | import  | java.awt.\*;       |        |     |
-| 5   |         |                    |        |     |
-| 6   | public  | class Demo extends | JFrame | {   |
-
-| 7 |
-
-} |
-public Demo(){
-Container container = this.getContentPane();
-
-Icon icon = new ImageIcon(Demo.class.getResource("tx-old.jpg"));
-
-//多选框
-JCheckBox jrb = new JCheckBox("abc"); JCheckBox jrb2 = new JCheckBox("abc"); container.add(jrb); container.add(jrb2,BorderLayout.NORTH);
-
-this.setVisible(true); this.setSize(500, 350);
-this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-}
-
-public static void main(String[] args) { new Demo();
-} |
-| --- | --- | --- |
-| 8 | | |
-| 9 | | |
-| 10 | | |
-| 11 | | |
-| 12 | | |
-| 13 | | |
-| 14 | | |
-| 15 | | |
-| 16 | | |
-| 17 | | |
-| 18 | | |
-| 19 | | |
-| 20 | | |
-| 21 | | |
-| 22 | | |
-| 23 | | |
-| 24 | | |
-| 25 | | |
-| 26 | | |
-| 27 | | |
-| 28 | | |
-
 **六、列表组件**
 
 1. **下拉列表（JComboBox）**
@@ -2331,28 +2038,6 @@ public static void main(String[] args) { new Demo();
 下拉列表框使用 JComboBox 类对象来表示，如下方代码：
 
 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
 24
 package com.kuang5;
 import javax.swing._; import java.awt._;
@@ -2384,37 +2069,12 @@ public static void main(String[] args) { new Demo();
 }
 
 显示的样式如下：
-![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834303113-381e60ce-2277-4c4b-86a6-701d0f639f96.png#)
+![](https://cdn.nlark.com/yuque/0/2021/png/21990331/1625834303113-381e60ce-2277-4c4b-86a6-701d0f639f96.png#id=M1upo&originHeight=143&originWidth=312&originalType=binary∶=1&status=done&style=none)
 
 1. **列表框（JList）**
 
 列表框只是在窗体上占据固定的大小，如果要使列表框具有滚动效果，可以将列表框放入滚动面板中。 使用数组初始化列表框的参数如下。
 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
 27
 package com.kuang5;
 import javax.swing._; import java.awt._;
@@ -2443,33 +2103,6 @@ public static void main(String[] args) { new Demo();
 | 3   | import javax.swing.\*; |
 | 4   | import java.awt.\*;    |
 
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
 import java.util.Vector;
 public class Demo extends JFrame {
 public Demo(){
@@ -2496,12 +2129,6 @@ public static void main(String[] args) { new Demo();
 
 文本框用来显示或编辑一个单行文本，语法格式如下：
 
-| 1   | JTextField jt = new JTextField("aaa"); // 创建一个文本框，值为 aaa              |
-| --- | ------------------------------------------------------------------------------- |
-| 2   | JTextField jt2 = new JTextField("aaa", 20); // 创建一个长度为 20 的文本框，值为 |
-|     | aaa                                                                             |
-| 3   | jt.setText(""); // 将文本框置空                                                 |
-
 其余构造方法可参考 API 或源码。
 
 1. **密码框（JPasswordField）**
@@ -2516,10 +2143,6 @@ public static void main(String[] args) { new Demo();
 
 文本域组件在上面的代码中已经出现了，如下方代码所示：
 
-| 1   | JTextArea tArea = new JTextArea(20, 50);  | // 创建文本区域组件 |
-| --- | ----------------------------------------- | ------------------- |
-| 2   | tArea.setText("欢迎来到西部开源学 Java"); |                     |
-
 **我们对 GUI 编程就讲到这里了，授人以鱼不如授人以渔，相信大家经过这一小段的学习已经能掌握看方 法和源码学习的能力了，之后我们会有一些小游戏专题来巩固我们 JavaSE 阶段的学习。**
 **小游戏：2048**
 
@@ -2528,39 +2151,6 @@ public static void main(String[] args) { new Demo();
 int 数组储存方块的数值，通过监听上下左右的按键进行相应的数据处理，最后通过刷新函数将数据显示 出来并设置颜色。这里提一下胜负判定的实现，胜的判定很简单，就是玩家凑出了至少一个 2048 的方块即为胜利，而失败的判定思路略复杂，主要是通过模拟用户分别按下上、下、左、右键后，判断格子里 是否还有空位，如分别向四个方向移动后都无法产生空位，则判负。
 【Game 类】
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
 import javax.swing._; import java.awt._;
 import java.awt.event.KeyEvent; import java.awt.event.KeyListener; import java.util.ArrayList;
 import java.util.Arrays; import java.util.HashMap;

@@ -2,21 +2,8 @@
 title: Redis笔记
 urlname: mok0nn
 date: '2021-07-05 15:24:05 +0800'
-author: 阿松
-top: true
-hide: false
-cover: true
-toc: false
-mathjax: false
-summary: >-
-  用户的个人信息，社交网络，地理位置。用户自己产生的数据，用户日志等等爆发式增长！这时候我们就需要使用 NoSQL 数据库的，Nosql
-  可以很好的处理以上的情况！
-categories: redis
-tags:
-  - redis
-  - java
-  - 后端
-abbrlink: 20305
+tags: []
+categories: []
 ---
 
 ## 一、Nosql 概述

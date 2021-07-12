@@ -1,5 +1,5 @@
 ---
-title: 2、JavaSE：基础语法
+title: JavaSE：基础语法
 urlname: gntlr2
 date: '2021-07-09 20:35:14 +0800'
 tags: []
