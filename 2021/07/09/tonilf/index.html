@@ -1,0 +1,1527 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="JavaSE：Java入门, 阿松小站">
+    <meta name="description" content="阿松自己的小博客网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>JavaSE：Java入门 | 阿松小站</title>
+    <link rel="icon" type="image/png" href="/blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/my.css">
+
+    <script src="/blog/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/blog/atom.xml" title="阿松小站" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/blog/" class="waves-effect waves-light">
+                    
+                    <img src="/blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">阿松小站</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>媒体</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/blog/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>电影</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>书籍</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/galleries">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>图表</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">阿松小站</div>
+        <div class="logo-desc">
+            
+            阿松自己的小博客网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			媒体
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/blog/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>电影</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>书籍</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/galleries " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>图表</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/blog/libs/cryptojs/crypto-js.min.js"></script>
+<meta name="referrer" content="no-referrer" />
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/blog/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">JavaSE：Java入门</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/blog/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-09
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-12
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    27 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Java-一个帝国的诞生"><a href="#Java-一个帝国的诞生" class="headerlink" title="Java : 一个帝国的诞生"></a>Java : 一个帝国的诞生</h1><h2 id="C-语言帝国的统治"><a href="#C-语言帝国的统治" class="headerlink" title="C 语言帝国的统治"></a>C 语言帝国的统治</h2><p>现在是公元 1995 年， C 语言帝国已经统治了我们 20 多年， 实在是太久了。<br>1972 年， 随着 C 语言的诞生和 Unix 的问世， 帝国迅速建立统治， 从北美到欧洲， 从欧洲到亚洲， 无数程序员臣服在他的脚下。<br>帝国给我们提供了极好的福利：贴近硬件， 运行极快， 效率极高。<br>使用这些福利， 程序员们用 C 开发了很多系统级软件，操作系统， 编译器， 数据库，网络系统…..<br>但是帝国也给我们安上了两个沉重的枷锁： 指针和内存管理<br>虽然指针无比强大， 能直接操作内存， 但是帝国却没有给我们工具去做越界的检查， 导致很多新手程序员轻易犯错。<br>至于内存管理， 帝国更完全是放任的态度： 你自己分配的空间， 自己去释放 ！<br>更要命的是这些问题在编译期发现不了， 在运行时才会突然暴露， 常常让我们手忙脚乱， 昏天黑地去调试。<br>我们的大量时间和宝贵的精力都被浪费在小心翼翼的处理指针和内存分配上。每个程序员都被这两个东西搞的焦头烂额！<br>帝国宣称的可移植性骗了我们，他宣称我们在一个机器上写的程序， 只要在另外一个机器上编译就可以了， 实际上不是这样。 他要求我们尽量用标准的 C 函数库。其次，如果遇到了一些针对特定平台的调用， 需要对每个平台都得写一份 ！ 有一点点小错误，都会导致编译失败。<br>1982 年，帝国又推出了一门新的语言 C++, 添加了面向对象的功能，兼容 C, 有静态类型检查， 性能也很好。<br>但是这门新的语言实在是太复杂了， 复杂到比我聪明的多的人都没有办法完全掌握这门语言，它的很多特性复杂的让人吃惊。<br>C++在图形领域和游戏上取得了一些成功， 但是我一直学不好它。</p>
+<h2 id="反抗"><a href="#反抗" class="headerlink" title="反抗"></a>反抗</h2><p>我决定反抗这个庞大的帝国， 我偷偷的带领着一帮志同道合的兄弟离开了，我们要新建一块清新自由的领地。<br>为了吸引更多的程序员加入我们， 我们要建立一个新的语言，这个语言应该有这样的特性： 语法有点像 C ， 这样大家容易接受<br>没有 C 语言那样的指针<br>再也不要考虑内存管理了， 实在受不了了真正的可移植性， 编写一次， 到处运行面向对象<br>类型安全<br>还有，我们要提供一套高质量的类库， 随语言发行。</p>
+<p>我想把这个语言命名为 C++– , 即 C++减减， 因为我想在 C++的基础上改进，把它简化。后来发现不行， 设计理念差别太大。<br>干脆重启炉灶。<br>我看到门口的一棵橡树， 就把这个语言叫做 Oak。<br>但是后来发布的时候， 发现 Oak 已经被别人用了， 我们讨论很久， 最终决定把这门新的语言叫做<br>Java。<br>为了实现跨平台， 我们在操作系统和应用程序之间增加了一个抽象层： Java 虚拟机用 Java 写的程序都跑在虚拟机上， 除非个别情况， 都不用看到操作系统。</p>
+<h2 id="一鸣惊人"><a href="#一鸣惊人" class="headerlink" title="一鸣惊人"></a>一鸣惊人</h2><p>为了吸引更多的人加入我们的新领地， 我们决定搞一个演示， 向大家展示 Java 的能力。出世未久的 Java 其实还远不完善。 搞点什么好呢？<br>我们把眼光盯上了刚刚兴起的互联网， 1995 年的网页简单而粗糙， 缺乏互动性。 于是我们在浏览器上弄了个小插件， 把 java 运行环境放了上去。<br>然后在上面开发了一个图形界面的程序(Applet)， 让它看起来美轮美奂， 震撼人心。每一个看到他的程序员都会发出“Wow”的惊叹 ！为之倾倒。<br>Java 活了！<br>通过 Applet , 无数的程序员看到了 Java 这门语言，了解了这门语言特性以后， 很多无法忍受 C 帝国暴政的程序员， 很快加入了我们， 我们的领地开始迅速扩大。<br>连 C 语言帝国里的一些商业巨头也纷纷来和我们合作， 其中就包括 Oracle , 微软这样的巨头 ， 微软的头领 Bill Gates 还说 ：这是迄今为止设计的最好的语言！<br>但是 Bill Gates 非常的不地道， 买了我们的 Java 许可以后，虽然在自家的浏览器上也支持 Applet, 但是他们却偷偷的试图修改 Java , 想把 Java 绑死在自家的操作系统上赚钱， Java 会变的不可移植。<br>这是我们难于忍受的， 我们和微软发起了一场旷日持久的游击战争， 逼着微软退出了 Java 领域， 开发了自己的.NET , 这是后话。</p>
+<h2 id="开拓疆土"><a href="#开拓疆土" class="headerlink" title="开拓疆土"></a>开拓疆土</h2><p>从 1995 年到 1997 年，我们依靠 Java 不断的攻城略地， 开拓疆土，我们王国的子民不断增加， 达到了几十万之众， 已经是一个不可忽视的力量了。<br>但是大家发现， Java 除了 Applet, 以及一些小程序之外， 似乎干不了别的事情。<br>C 帝国的人还不断的嘲笑我们慢， 像个玩具。<br>到了 1998 年， 经过密谋， 我们 Java 王国决定派出三只军队向外扩展：<br>Java 2 标准版( J2SE)： 去占领桌面 Java 2 移动版( J2ME)： 去占领手机 Java 2 企业版( J2EE)： 去占领服务器其中的两只大军很快败下阵来。</p>
+<p>J2SE 的首领发现， 开发桌面应用的程序员根本接受不了 Java， 虽然我们有做的很优雅的 Swing 可以开发界面， 但是开发出的界面非常难看， 和原生的桌面差距很大。 尤其是为了运行程序还得安装一个虚拟机， 大家都受不了。<br>J2ME 也是， 一直不受待见， 当然更重要的原因是乔布斯还没有重新发明手机， 移动互联网还没有启动。<br>失之东隅，收之桑榆， J2EE 赶上了好时候， 互联网大发展， 大家忽然发现， Java 简直是为写服务器端程序所发明的！<br>强大， 健壮， 安全， 简单， 跨平台 ！<br>在 J2EE 规范的指导下， 特别适合团队开发复杂的大型项目。<br>我们授权 BEA 公司第一个使用 J2EE 许可证， 推出了 Weblogic, 凭借其集群功能， 第一次展示了复杂应用的可扩展性和高可用性。 【三高：高可用，高性能，高并发】<br>这个后来被称为中间件的东西把程序员从事务管理，安全管理，权限管理等方面解放出来， 让他们专注于业务开发。 这立刻捕获了大量程序员的心。<br>很快 Java 王国的子民就达到数百万之众。<br>榜样的力量是无穷的， 很快其他商业巨头也纷纷入场， 尤其是 IBM，在 Java 上疯狂投入，不仅开发了自己的应用服务器 Websphere, 还推出了 Eclipse 这个极具魅力的开源开发平台。<br>当然 IBM 利用 java 获得了非常可观的效益， 软件+硬件+服务 三驾马车滚滚向前， 把 IBM 推向了一个新的高峰。</p>
+<h2 id="帝国的诞生"><a href="#帝国的诞生" class="headerlink" title="帝国的诞生"></a>帝国的诞生</h2><p>大家也没有想到，除了商业巨头以外， 程序员们也会对 Java 王国 这么热爱， 他们基于 Java 开发了巨多的平台，系统，工具，例如：<br>构建工具: Ant，Maven, Jekins<br>应用服务器： Tomcat，Jetty, Jboss, Websphere, weblogic<br>Web 开发： Struts,Spring,Hibernate, myBatis<br>开发工具： Eclipse, Netbean,intellij idea, Jbuilder<br>。。。。等等等等。。。。并且绝大部分都是开源的 ！<br>微软眼睁睁的看着服务器端的市场被 Java 王国占据， 岂能善罢甘休？ 他们赶紧推出.NET 来对抗， 但我们已经不在乎了， 因为他的系统是封闭的，所有的软件都是自家的：<br>开发工具是 Visual Studio, 应用服务器是 IIS, 数据库是 SQL Server，只要你用.NET，基本上就会绑定微软。<br>另外他们的系统只能运行在 Windows 服务器上， 这个服务器在高端市场的占有率实在是太低了。<br>2005 年底， 一个新的王国突然崛起， 他们号称开发效率比 java 快 5-10 倍， 由此吸引了大批程序员前往加盟。<br>这个新的王国叫做 Ruby on Rails, 它结合了 PHP 体系的优点（快速开发）和 Java 体系的优点（程序规整）， 特别适合快速的开发简单的 Web 网站。<br>虽然发展很快， 但没有对 Java 王国产生实质性的威胁， 使用 Ruby on Rails 搭建大型商业系统的还很少。</p>
+<p>除了 Ruby on Rails ，还有 PHP， Python ， 都适合快速开发不太复杂的 Web 系统。 但是关键的，复杂的商业系统开发还是 Java 王国的统治之下。 所以我们和他们相安无事。<br>2006 年， 一只叫 Hadoop 的军队让 Java 王国入侵了大数据领域， 由于使用 Java 语言， 绝大多数程序员在理解了 Map/Reduce , 分布式文件系统在 Hadoop 中的实现以后， 很快就能编写处理处理海量数据的程序， Java 王国的领地得到了极大的扩展。<br>2008 年， 一个名叫 Android 的系统横空出世， 并且随着移动互联网的爆发迅速普及， 运行在 Android 之上的正是 Java ！<br>Java 王国在 Google 的支持下， 以一种意想不到的方式占领了手机端， 完成了当年 J2ME 壮志未酬的事业<br>！<br>到今年为止， 全世界估计有 1000 万程序员加入了 Java 王国，它领土之广泛， 实力之强大， 是其他语言无法比拟的。<br>Java 占据了大部分的服务器端开发，尤其是关键的复杂的系统， 绝大多数的手机端， 以及大部分的大数据领域。<br>一个伟大的帝国诞生了。</p>
+<h1 id="Java-的特性和优势"><a href="#Java-的特性和优势" class="headerlink" title="Java 的特性和优势"></a>Java 的特性和优势</h1><h3 id="简单性"><a href="#简单性" class="headerlink" title="简单性"></a>简单性</h3><p>就是 c++语法的纯净版。没有头文件，指针运算，结构，联合，操作符重载，虚基类等等。由于语法基于 c，因此学习起来完全不费力。</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>面向对象是一种程序设计技术，他将重点放在数据（即对象）和对象之间的接口上。模拟人的思维写程 序，万物皆对象！</p>
+<h3 id="可移植性-跨平台性"><a href="#可移植性-跨平台性" class="headerlink" title="可移植性(跨平台性)"></a>可移植性(跨平台性)</h3><p>这是 JAVA 的一个重要的优势。JAVA 代码或者说字节码、二进制码可以跨平台的移植，而不用管具体的操 作系统和硬件环境。<br>“一次编写，随处运行”：“write once, run anywhere”<br>JAVA 在设计时就很注重移植和跨平台性。比如：JAVA 的 Int 永远都是 32 位。不像 c++可能是 16，32，可能是根据编译器厂商规定的变化。这样的话程序的移植就会非常麻烦。</p>
+<h3 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h3><p>JIT( JUST IN TIME)即时编译。将一些“热点”字节码编译成本地机器码，并将结果缓存起来，在需要的时候重新调用。这样的话，使 JAVA 程序的执行效率大大提高，某些代码甚至接近 c++的效率。随着这种技术的一天天完善，也许有一天会超越编译代码的效率。</p>
+<h3 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h3><p>JAVA 是为 internet 的分布式环境设计的，因为他能够处理 tcp/ip 协议。事实上，通过 url 访问一个网络资 源和访问本地文件是一样简单的。Java 还支持远程方法调用(RMI,remote method Invocation)，使程序能够通过网络调用方法。</p>
+<h3 id="动态性"><a href="#动态性" class="headerlink" title="动态性"></a>动态性</h3><p>就是在需要时将某些代码添加到正在运行的程序中。反射机制。当需要把某些代码添加到正在运行的程 序中时，动态性是一个非常重要的特性。Java 的动态特性是其面向对象设计方法的扩展。它允许程序动态地装入运行过程中所需要的类，这是 C++语言进行面向对象程序设计所无法实现的</p>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>多线程的使用可以带来更好的交互响应和实时行为。多线程的简单性是 Java 成为主流服务器端开发语言的主要原因之一。</p>
+<h3 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h3><p>Java 适合于网络/分布式环境，为了达到这个目标，在安全性方面投入了很大的精力，使 Java 可以构建防 病毒，防篡改的系统。</p>
+<h3 id="健壮性"><a href="#健壮性" class="headerlink" title="健壮性"></a>健壮性</h3><p>Java 是一种健壮的语言，吸收了 C/C++ 语言的优点，但去掉了其影响程序健壮性的部分（如：指针、内存的申请与释放等）。Java 程序不可能造成计算机崩溃。Java 系统仔细检测对内存的每次访问，确认它是合法的，而且不致引起任何问题。不过，即使 Java 程序也可能有错误。如果出现某种出乎意料之事， 程序也不会崩溃，而是把该例外抛弃。再通过异常处理机制，程序就会发现这类例外，并加以处理。<br>当然，我们学习他这门语言，最初的目的，是因为使用的人多，我们需要去掌握学习，但是当我们慢慢 的越来越深入的时候，你就会爱上他，发现他的无穷魅力并为之沉醉！</p>
+<h1 id="JAVA-语言为什么能够成功"><a href="#JAVA-语言为什么能够成功" class="headerlink" title="JAVA 语言为什么能够成功"></a>JAVA 语言为什么能够成功</h1><p>一个产品的成功和一个人的成功是一个道理。除了自身具备过硬的优势外，还需要那么一点点狗屎运， 甚至狗屎运非常关键。就是我们所讲的天时地利人和。JAVA 的成功除了自己具备跨平台特性外，更重要的是正好踩中了互联网发展的节奏。微软的成功除了 windows 好用外，也是正好踩中了个人电脑发展的节奏。所以，我们除了自己努力外，也需要出去走走努力才踩一坨狗屎才行！<br>学技术，也需要知道很多事情和历史对吧，我们来聊聊硅谷。<br>斯坦福大学依靠自身庞大的校区，创建了斯坦福科技园(硅谷的前身)，初期采用房租免费等方式，鼓励 自己的毕业生在科技园创业、鼓励社会企业入驻。由于免费的方式再加上其他优惠的政策，吸引了大量 的创业者加入进来。最终大家添柴加火，造就了今天的硅谷。这才是最高明的房地产商啊！说到房地 产，我们现在这个社会是不是就很难受了，年薪 20 万，买一套房子 180 万，你算算，是不是大概下来就需要十年了，你说你一个大好青年，因为一个房子，就一下变成中年大叔了！哎，人间不值得啊，所以 我们需要通过不断的学习来提高自己，从而进步！让自己的人生更有价值，而不是活着而已。<br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%A4%A7%E5%AD%A6/278716?fr=aladdin&amp;6">斯坦福大学百科</a><br>看着这么多的牛人，各位，是不是我们也得努努力了，少刷点抖音，少玩点王者，吃鸡（玩得时候带带 我~）多跟着我敲敲代码，没准以后咋们的同学也能搞出一个改变世界的东西是吧。<br>好了，不多说话，我们先来认识一下我们即将要学习的最终要的阶段，JavaSE。</p>
+<h1 id="Java-三大版本"><a href="#Java-三大版本" class="headerlink" title="Java 三大版本"></a>Java 三大版本</h1><p>首先，新人在刚入行的时候，不论是抱着什么目的（当然最后是因为兴趣，因为兴趣是一个很强的推动 力），我们要了解学习什么东西，或者说从什么东西学起 JAVA。作为一款高级程序设计语言，它的学<br>习难度上面，至少我认为要比 C 语言简单许多，再加上如今市场对这方面的人才需求非常大，所以很多 人将它作为了首选。目前来说 JAVA 的应用比较偏向于 WEB 的设计，也是我们很多学习 JAVA 的同志，日久 就业的一个方向。</p>
+<h3 id="JAVA-最大的特点："><a href="#JAVA-最大的特点：" class="headerlink" title="JAVA 最大的特点："></a>JAVA 最大的特点：</h3><p>Java 的主要优势在于其做出的 WORA：即一次编写（Write Once）、随处运行（Run Anywhere）。简单来讲，这意味着开发团队能够利用 Java 编写一款应用程序，并将其编译为可执行形式，而后将其运行在任何支持 Java 的平台之上。这显然能够极大提高编程工作的实际效率，这种优势来源于 Java Virtual<br>Machine( JAVA 虚拟机的缩写)，JVM 是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。JAVA 语言的一个非常重要的特点就是与平台的无关性，而使用 Java 虚拟机是实现这一特点的关键。</p>
+<h3 id="JAVA-的三大版本："><a href="#JAVA-的三大版本：" class="headerlink" title="JAVA 的三大版本："></a>JAVA 的三大版本：</h3><ol>
+<li>JAVA SE：它是 JAVA 的标准版，是整个 JAVA 的基础和核心，这是我们主要学习的一个部分，也是</li>
+</ol>
+<p>JAVAEE 和 JAVAME 技术的基础，主要用于开发桌面应用程序。学会后可以做一些简单的桌面应用 如：扫雷，连连看等。</p>
+<ol>
+<li>JAVA ME：它是 JAVA 的微缩版，主要应用于嵌入式开发，比如手机程序的开发。目前来说就业范围不是很广，在一些城市可能相对的不好找工作。</li>
+<li>JAVA EE：也叫 JAVA 的企业版，它提供了企业级应用开发的完整解决方案，比如开发网站，还有企业的一些应用系统，是 JAVA 技术应用最广泛的领域。主要还是偏向于 WEB 的开发，而 JAVA EE 的基础就是 JAVA SE，所以我们在学习 JAVA SE 的时候，基础一定要打好，因为这是最基本的，也是最核心的。</li>
+</ol>
+<h3 id="Java-SE："><a href="#Java-SE：" class="headerlink" title="Java SE："></a>Java SE：</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625833728529-5cf2fbee-19c1-4348-8e81-da6c0224b15d.jpeg#id=zq2Wj&amp;originHeight=497&amp;originWidth=751&amp;originalType=binary%E2%88%B6=1&amp;status=done&amp;style=none"><br>经过这么多的介绍，相信大家已经很明白，如果学习 JAVA 的目的是为了就业，我们应该先学好 JAVA SE，然后继续学习 JAVA EE。精髓在于多思考，多练习，不要怕会出错，没有完美的程序，都是不断的在改进，不断的在完善，出错是好事，这样你可以了解更多的异常情况和突发情况，可以为日后工作中出 现问题时及时解决积累足够的经验。<br>最后希望大家在学习程序开发的时候，要有一定勇于探索的精神，搞不懂的问题可以自己先思考（程序 开发的核心也是在于不断思考），实在搞不懂可以在网上查询，也可以和大家讨论，但是不要太过于较 真，毕竟学海无涯，你永远都学不完所有的东西，要劳逸结合，不要让自己过于疲惫，为了学习更多的 东西牺牲健康，那是伟人才会做的事情，得不偿失。</p>
+<h1 id="JDK-和-JRE"><a href="#JDK-和-JRE" class="headerlink" title="JDK 和 JRE"></a>JDK 和 JRE</h1><p>我们回头看看我们 JavaSE 的图。<br><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625833729033-40d438b3-ccfe-4020-b745-3b744854a07b.jpeg#id=WMjGk&amp;originHeight=497&amp;originWidth=751&amp;originalType=binary%E2%88%B6=1&amp;status=done&amp;style=none">[</p>
+<h3 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h3><p>Java 2 SDK (Development Kit)包含：JRE 的超集，包含编译器和调试器等用于程序开发的文件</p>
+<h3 id="JRE"><a href="#JRE" class="headerlink" title="JRE"></a>JRE</h3><p>Java Runtime Environment ( JRE) 包含：Java 虚拟机、库函数、运行 Java 应用程序和 Applet 所必须文件<br>Java 运行环境的三项主要功能：<br>加载代码：由 class loader 完成；<br>校验代码：由 bytecode veriﬁer 完成； 执行代码：由 runtime interpreter 完成。</p>
+<h3 id="区别和联系："><a href="#区别和联系：" class="headerlink" title="区别和联系："></a>区别和联系：</h3><p>sdk（也就是 jdk）是 jre 的超集，是在 jre 的基础上增加了编译器及其他一些开发工具。<br>jre 就是 java 运行时环境，包括了 jvm 和其它一些 java 核心 api,任何一台电脑，只有安装了 jre 才可以运行<br>java 程序.<br>如果只是要运行 JAVA 程序，之需要 JRE 就可以。 JRE 通常非常小，也包含了 JVM.<br>如果要开发 JAVA 程序，就需要安装 JDK。</p>
+<h1 id="初识-JVM"><a href="#初识-JVM" class="headerlink" title="初识 JVM"></a>初识 JVM</h1><p>（JAVA Virtual Machine）<br>JVM 是一种规范，可以使用软件来实现，也可以使用硬件来实现，就是一个虚拟的用于执行 bytecodes<br>字节码的计算机。他也定义了指令集、寄存器集、结构栈、垃圾收集堆、内存区域。</p>
+<p>JVM 负责将 java 字节码解释运行，边解释边运行，这样，速度就会受到一定的影响。JAVA 提供了另一种 解释运行的方法 JIT（just in time），可以一次解释完，再运行特定平台上的机器码，高级的 JIT 可以只能分析热点代码，并将这些代码转成本地机器码，并将结果缓存起来，下次直接从内存中调用，这样就大 大提高了执行 JAVA 代码的效率。这样就实现了跨平台、可移植的功能。</p>
+<ol>
+<li>JVM 是指在一台计算机上由软件或硬件模拟的计算机；它类似一个小巧而高效的 CPU。</li>
+<li>byte-code 代码是与平台无关的是虚拟机的机器指令。</li>
+<li>java 字节代码运行的两种方式:</li>
+<li>方式 interpreter(解释)</li>
+<li>Just-in-time(即时编译):由代码生成器将字节代码转换成本机的机器代码,然后可以以较高速度执行。JAVA 的跨平台实现的核心是不同平台使用不同的虚拟机</li>
+</ol>
+<p>不同的操作系统有不同的虚拟机。Java 虚拟机机制屏蔽了底层运行平台的差别，实现了“一次编译，随处运行”。</p>
+<h3 id="欲工善其事必先利其器，我们先把我们的环境搭建好，才能开始咋们的征程！"><a href="#欲工善其事必先利其器，我们先把我们的环境搭建好，才能开始咋们的征程！" class="headerlink" title="欲工善其事必先利其器，我们先把我们的环境搭建好，才能开始咋们的征程！"></a>欲工善其事必先利其器，我们先把我们的环境搭建好，才能开始咋们的征程！</h3><p><strong>Java 开发环境搭建</strong></p>
+<p>百度搜索 JDK，找到下载地址，浏览 Oracle 的网站。<br><a target="_blank" rel="noopener" href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">JDK 下载地址：https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133 151.html</a></p>
+<ol>
+<li> 选择版本（我们采用 JDK8）</li>
+<li> 同意协议（流氓协议）</li>
+<li> 查看电脑的环境（64 位，还是 32 位等等）</li>
+<li> 下载安装包</li>
+<li> 安装 JDK ，JRE （改安装目录，注意规范，作为一个程序人，规范很重要。所以给电脑上环境单独分类最好，）</li>
+<li>配置电脑的环境变量 ：<ol>
+<li>我的电脑–&gt;右键—&gt;属性</li>
+<li>环境变量–&gt;添加 JAVA_HOME （JDK 的安装地址：D:Environmentjavajdk1.8.0_201）</li>
+<li>配置 path：%JAVA_HOME%bin ；%JAVA_HOME%jrebin</li>
+</ol>
+</li>
+<li>测试是否安装成功：<ol>
+<li>打开 cmd（命令行窗口）</li>
+<li>输出 java –version 查看版本信息，是否成功输出！</li>
+</ol>
+</li>
+<li> 安装 notpad++，或者一个好用的文本编辑器，最好不要用记事本，很不方便！</li>
+</ol>
+<h1 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h1><p>环境安装好了，测试代码一定要写 HelloWorld！代表你向这个世界的呐喊，仪式感很重要，就像你生活中和家人，朋友，妻子在节日中或者纪念日一定要做一些事情，这就是仪式感，所以各位来跟着我写 哈！</p>
+<ol>
+<li>我们先随便建立一个文件夹，放我们的代码</li>
+<li>新建文件 Hello.java</li>
+<li>编写我们的 HelloWorld 程序！</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Hello</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+       <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello,World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token number">4</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>保存文件，打开命令行，利用 javac 编译！</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">javac <span class="token class-name">Hello</span><span class="token punctuation">.</span>java
+# 如果没有报错，查看文件夹下是否有新的一个文件
+# <span class="token class-name">Hello</span><span class="token punctuation">.</span><span class="token keyword">class</span>
+# 如果没有出现，恭喜！说明你遇到了你在学<span class="token class-name">Java</span>当中的第一个<span class="token class-name">Bug</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>java 执行！</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">java <span class="token class-name">Hello</span>
+# 成功输出<span class="token class-name">Hello</span>，<span class="token class-name">World</span>！<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/21990331/1625833729417-74b14eac-9113-46f2-b54e-dc7bd042a127.png#id=CMbNe&amp;originHeight=80&amp;originWidth=244&amp;originalType=binary%E2%88%B6=1&amp;status=done&amp;style=none"></p>
+<ol>
+<li> 如果出现错误，检查字母大小写是否有错误，或者是否标点符号错误，文件名错误等等，一定要确保成功输出，我们之后再来研究，它是怎么输出的！</li>
+</ol>
+<h3 id="编写-Java-程序时，应注意以下几点："><a href="#编写-Java-程序时，应注意以下几点：" class="headerlink" title="编写 Java 程序时，应注意以下几点："></a>编写 Java 程序时，应注意以下几点：</h3><p><strong>大小写敏感</strong>：Java 是大小写敏感的，这就意味着标识符 Hello 与 hello 是不同的。<br><strong>类名</strong>：对于所有的类来说，类名的首字母应该大写。如果类名由若干单词组成，那么每个单词的首 字母应该大写，例如 **MyFirstJavaClass **。<br><strong>方法名</strong>：所有的方法名都应该以小写字母开头。如果方法名含有若干单词，则后面的每个单词首字 母大写。<br><strong>源文件名</strong>：源文件名必须和类名相同。当保存文件的时候，你应该使用类名作为文件名保存（切记<br>Java 是大小写敏感的），文件名的后缀为 <strong>.java</strong>。（如果文件名和类名不相同则会导致编译错误）。<br><strong>主方法入口</strong>：所有的 Java 程序由 **public static void main(String []args) **方法开始执行。</p>
+<h1 id="JAVA-程序运行机制"><a href="#JAVA-程序运行机制" class="headerlink" title="JAVA 程序运行机制"></a>JAVA 程序运行机制</h1><p>计算机的高级编程语言类型: 编译型 ，解释型. Java 语言是两种类型的结合；<br>【科普：编译型 ，解释型】</p>
+<pre class="line-numbers language-none"><code class="language-none">//从字面上看，“编译”和“解释”的确都有“翻译”的意思，它们的区别则在于翻译的时机安排不大一样。
+
+//我们先看看编译型:有一个负责翻译的程序来对我们的源代码进行转换，生成相对应的可执行代码。这
+个过程说得专业一点，就称为编译（Compile），而负责编译的程序自然就称为编译器（Compiler）。
+就类似于把一本中文书直接翻译成英文版进行出售。
+
+//现在再看看解释型：打个比方：假如你打算阅读一本外文书，而你不知道这门外语，那么你可以找一
+名翻译，给他足够的时间让他从头到尾把整本书翻译好，然后把书的母语版交给你阅读（编译型）；或
+者，你也立刻让这名翻译辅助你阅读，让他一句一句给你翻译，如果你想往回看某个章节，他也得重新给
+你翻译。（解释型）
+
+//编译型与解释型，两者各有利弊。前者由于程序执行速度快，同等条件下对系统要求较低，因此像开
+发操作系统、大型应用程序、数据库系统等时都采用它，像C/C++、Pascal/Object
+Pascal（Delphi）、VB等基本都可视为编译语言，而一些网页脚本、服务器脚本及辅助开发接口这样
+的对速度要求不高、对不同系统平台间的兼容性有一定要求的程序则通常使用解释性语言，如Java、
+JavaScript、VBScript、Perl、Python等等。
+
+//Java语言虽然比较接近解释型语言的特征，但在执行之前已经预先进行一次预编译，生成的代码是介
+于机器码和Java源代码之间的中介代码，运行的时候则由JVM（Java的虚拟机平台，可视为解释器）解
+释执行。它既保留了源代码的高抽象、可移植的特点，又已经完成了对源代码的大部分预编译工作，所以
+执行起来比“纯解释型”程序要快许多。
+
+//总之，随着设计技术与硬件的不断发展，编译型与解释型两种方式的界限正在不断变得模糊。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="第一步：编译"><a href="#第一步：编译" class="headerlink" title="第一步：编译"></a>第一步：编译</h3><p>利用编译器（javac）将源程序编译成字节码 à 字节码文件名：源文件名.class</p>
+<h3 id="第二部：运行"><a href="#第二部：运行" class="headerlink" title="第二部：运行"></a>第二部：运行</h3><p>利用虚拟机（解释器，java）解释执行 class 字节码文件。<br><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625833730005-1509e5ce-d059-4cec-89ee-1aaeffdbd250.jpeg#id=QlKlO&amp;originHeight=288&amp;originWidth=481&amp;originalType=binary%E2%88%B6=1&amp;status=done&amp;style=none"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>我们了解了计算机的发展史看到了 Java 帝国的诞生<br>了解了 Java 这门语言的特性<br>跟着历史看懂了 Java 的三大版本安装了 Java 的开发环境</p>
+<p>写了自己的第一个程序 HelloWorld！ 知道了编译型和解释型语言的区别<br>当然，我认为这些都不是最重要的，关键是，今天我们踏出了第一步，我看过这样一个故事：<br>一个原始人抬头仰望星空，宇宙发出了警告！人类问为什么，宇宙使者说：从他抬头仰望星空开始，整 个人类的发展就不过是为了实现他的愿望而已！<br>所以，只要确定了方向，只要不停下脚步，我们终会抵达终点，实现自己的梦！</p>
+<h1 id="安装-IDEA"><a href="#安装-IDEA" class="headerlink" title="安装 IDEA"></a>安装 IDEA</h1><p>每次都要利用记事本去编写代码的话，那将是十分麻烦的，工程量大，不易于调试，所以我们迫切需要 一款智能的开发工具，于是 Eclipse，myEclipse，netbeans，Intellij IDEA 等智能的 IDE 诞生了。早时候学习都是利用的 Eclipse，不过现在我们学习和工作大部分都利用 IDEA 了。这也是互联网的残酷性，每个时代都有自己的宠儿。所以我们无论什么时候都需要有危机感，不能忘记学习！<br>我们来看看 IDEA，它是 JetBrains 公司下的 Java 集成开发环境，在业界被公认为是最好的 Java 开发工具之一；JetBrains 是捷克的一家软件公司，该公司总部位于捷克共和国的首都布拉格，开发人员以严谨著称的东欧程序员为主，旗下开发了多款软件开发工具；<br>官方网站：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/">https://www.jetbrains.com/</a></p>
+<h3 id="演示：浏览并介绍-jetbrains-的官网"><a href="#演示：浏览并介绍-jetbrains-的官网" class="headerlink" title="演示：浏览并介绍 jetbrains 的官网"></a><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/21990331/1625833730590-73e1b095-d5dd-42e3-a735-27a2260f275d.jpeg#id=vjMZ9&amp;originHeight=715&amp;originWidth=1366&amp;originalType=binary%E2%88%B6=1&amp;status=done&amp;style=none">演示：浏览并介绍 jetbrains 的官网</h3><p>目前 IntelliJ IDEA 有免费的社区版（功能相对较少），和收费的旗舰版（功能比较全面）； 我们看自己需要和能力下载，有条件的话，用人家的东西还是可以用正版的。<br>IDEA 破解版下载地址：</p>
+<ol>
+<li>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1_9CDV4jL3BTzi6omT79ulQ">https://pan.baidu.com/s/1_9CDV4jL3BTzi6omT79ulQ</a></li>
+<li>提取码：xmxq</li>
+</ol>
+<p>官方下载地址:<a target="_blank" rel="noopener" href="http://www.jetbrains.com/idea/download/#section%3Dwindows">http://www.jetbrains.com/idea/download/#section=windows</a></p>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤:"></a>安装步骤:</h3><ol>
+<li>直接安装完成</li>
+<li>下载破解补丁：<a target="_blank" rel="noopener" href="http://idea.lanyus.com/">http://idea.lanyus.com/</a></li>
+<li>得到 JetbrainsCrack-2.6.10-release-enc.jar 我们重命名去掉 -release-enc 然后放在 idea 安装目录的 bin 文件夹下</li>
+<li>在 IDEA 安装目录 bin 目录里找到 idea.exe.vmoptions 和 idea64.exe.vmoptions 两个文件打开，在最后一行添加 -javaagent:D:IDEAIntelliJ IDEA 2017.2.5binJetbrainsCrack-2.6.10.jar</li>
+<li>打开 IDEA 激活码填写</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ThisCrackLicenseId</span><span class="token operator">-</span><span class="token punctuation">{</span>
+<span class="token string">"licenseId"</span><span class="token operator">:</span><span class="token string">"ThisCrackLicenseId"</span><span class="token punctuation">,</span>
+<span class="token string">"licenseeName"</span><span class="token operator">:</span><span class="token string">"idea"</span><span class="token punctuation">,</span>
+<span class="token string">"assigneeName"</span><span class="token operator">:</span><span class="token string">"kuangshen"</span><span class="token punctuation">,</span>
+<span class="token string">"assigneeEmail"</span><span class="token operator">:</span><span class="token string">"24736743@qq.com"</span><span class="token punctuation">,</span>
+<span class="token string">"licenseRestriction"</span><span class="token operator">:</span><span class="token string">"For This Crack, Only Test! Please support genuine!!!"</span><span class="token punctuation">,</span>
+<span class="token string">"checkConcurrentUse"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token string">"products"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"II"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"DM"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"AC"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"RS0"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"WS"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"DPN"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"RC"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"PS"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"DC"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"RM"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"CL"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span><span class="token operator">:</span><span class="token string">"PC"</span><span class="token punctuation">,</span><span class="token string">"paidUpTo"</span><span class="token operator">:</span><span class="token string">"2099-12-31"</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token string">"hash"</span><span class="token operator">:</span><span class="token string">"2911276/0"</span><span class="token punctuation">,</span>
+<span class="token string">"gracePeriodDays"</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">,</span>
+<span class="token string">"autoProlongated"</span><span class="token operator">:</span><span class="token boolean">false</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>复制汉化文件到 lib ： （汉化有 BUG，不建议大家汉化，顺便也能提高英语水平！）</li>
+<li>IDEA 优化配置参考 :<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/dca1fa6f6af95af1a540527d.html">https://jingyan.baidu.com/article/dca1fa6f6af95af1a540527d.html</a><ol>
+<li>调节字体</li>
+<li>鼠标滚动大小</li>
+<li>注释颜色</li>
+<li>字符编码设置</li>
+<li>常用快捷键</li>
+<li>项目属性浏览</li>
+</ol>
+</li>
+<li>利用 IDEA 编写 HelloWorld！查看控制台输出结果！</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/blog/about" rel="external nofollow noreferrer">阿松</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://asong123.github.io/blog/2021/07/09/tonilf/">https://asong123.github.io/blog/2021/07/09/tonilf/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/blog/about" target="_blank">阿松</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/blog/2021/07/09/gntlr2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/24.jpg" class="responsive-img" alt="JavaSE：基础语法">
+                        
+                        <span class="card-title">JavaSE：基础语法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            阿松
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/2021/07/08/czmr1f/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/6.jpg" class="responsive-img" alt="hexo-theme-matery说明文档">
+                        
+                        <span class="card-title">hexo-theme-matery说明文档</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这是一个采用 `Material Design` 和响应式设计的 Hexo 博客主题。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/hexo-theme-matery/" class="post-category">
+                                    hexo-theme-matery
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/hexo-theme-matery/">
+                        <span class="chip bg-color">hexo-theme-matery</span>
+                    </a>
+                    
+                    <a href="/blog/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/blog/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/blog/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/blog/about" target="_blank">阿松</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">177.1k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:835549978@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=835549978" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 835549978" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/blog/libs/materialize/materialize.min.js"></script>
+    <script src="/blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/blog/libs/aos/aos.js"></script>
+    <script src="/blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+
+</html>

@@ -6,7 +6,7 @@
   <link href="https://asong123.github.io/atom.xml" rel="self"/>
   
   <link href="https://asong123.github.io/"/>
-  <updated>2021-07-09T11:40:32.053Z</updated>
+  <updated>2021-07-12T05:10:59.247Z</updated>
   <id>https://asong123.github.io/</id>
   
   <author>
@@ -17,11 +17,351 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JAVAWEB</title>
+    <link href="https://asong123.github.io/2021/07/12/siqkqy/"/>
+    <id>https://asong123.github.io/2021/07/12/siqkqy/</id>
+    <published>2021-07-12T04:55:04.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;hr&gt;
+&lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;hr&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA-多线程</title>
+    <link href="https://asong123.github.io/2021/07/12/gaygae/"/>
+    <id>https://asong123.github.io/2021/07/12/gaygae/</id>
+    <published>2021-07-12T04:54:13.000Z</published>
+    <updated>2021-07-12T05:10:59.243Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;参考内容：&lt;br&gt;狂神说 Java(多线程学习) &lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CSS3入门学习</title>
+    <link href="https://asong123.github.io/2021/07/12/ugov60/"/>
+    <id>https://asong123.github.io/2021/07/12/ugov60/</id>
+    <published>2021-07-12T04:53:02.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;h1 id=&quot;什么是-CSS&quot;&gt;&lt;a href=&quot;#什么是-CSS&quot; class=&quot;headerlink&quot; title=&quot;什么是 CSS&quot;&gt;&lt;/a&gt;什么是</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA注解与反射</title>
+    <link href="https://asong123.github.io/2021/07/12/lurog0/"/>
+    <id>https://asong123.github.io/2021/07/12/lurog0/</id>
+    <published>2021-07-12T04:52:26.000Z</published>
+    <updated>2021-07-12T05:10:59.243Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;注解-Annotation&quot;&gt;&lt;a href=&quot;#注解-Annotation&quot; class=&quot;headerlink&quot; title=&quot;注解(Annotation)&quot;&gt;&lt;/a&gt;注解(Annotation)&lt;/h1&gt;&lt;h2 id=&quot;注解入门&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE-IO文件</title>
+    <link href="https://asong123.github.io/2021/07/12/pgubxp/"/>
+    <id>https://asong123.github.io/2021/07/12/pgubxp/</id>
+    <published>2021-07-12T04:50:55.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis-Plus</title>
+    <link href="https://asong123.github.io/2021/07/12/vn3op8/"/>
+    <id>https://asong123.github.io/2021/07/12/vn3op8/</id>
+    <published>2021-07-12T04:45:46.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、分布式系统唯一-ID-生成方案汇总（数据库-ID-号）&quot;&gt;&lt;a href=&quot;#一、分布式系统唯一-ID-生成方案汇总（数据库-ID-号）&quot; class=&quot;headerlink&quot; title=&quot;一、分布式系统唯一 ID 生成方案汇总（数据库 ID</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：IO流</title>
+    <link href="https://asong123.github.io/2021/07/09/bnoiyu/"/>
+    <id>https://asong123.github.io/2021/07/09/bnoiyu/</id>
+    <published>2021-07-09T12:36:59.000Z</published>
+    <updated>2021-07-12T05:10:59.243Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、JAVA-流式输入-输出原理&quot;&gt;&lt;a href=&quot;#一、JAVA-流式输入-输出原理&quot; class=&quot;headerlink&quot; title=&quot;一、JAVA 流式输入/输出原理&quot;&gt;&lt;/a&gt;一、JAVA 流式输入/输出原理&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：集合框架</title>
+    <link href="https://asong123.github.io/2021/07/09/gtppsi/"/>
+    <id>https://asong123.github.io/2021/07/09/gtppsi/</id>
+    <published>2021-07-09T12:36:34.000Z</published>
+    <updated>2021-07-12T05:10:59.243Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;集合框架&lt;/p&gt;
+&lt;h2 id=&quot;1、为什么使用集合框架？&quot;&gt;&lt;a href=&quot;#1、为什么使用集合框架？&quot; class=&quot;headerlink&quot; title=&quot;1、为什么使用集合框架？&quot;&gt;&lt;/a&gt;1、为什么使用集合框架？&lt;/h2&gt;&lt;p&gt;假设，一个班级有 30</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：常用类</title>
+    <link href="https://asong123.github.io/2021/07/09/ggwy9l/"/>
+    <id>https://asong123.github.io/2021/07/09/ggwy9l/</id>
+    <published>2021-07-09T12:36:18.000Z</published>
+    <updated>2021-07-12T05:10:59.243Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;ok,,那么从今天开始，我们就正式开始迈入 Java 常用类的学习了.之前呢，我们已经学习了面向对象相关的知识，也算正式踏入了 Java</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：异常机制</title>
+    <link href="https://asong123.github.io/2021/07/09/xde7uq/"/>
+    <id>https://asong123.github.io/2021/07/09/xde7uq/</id>
+    <published>2021-07-09T12:36:08.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;异常概念&quot;&gt;&lt;a href=&quot;#异常概念&quot; class=&quot;headerlink&quot; title=&quot;异常概念&quot;&gt;&lt;/a&gt;异常概念&lt;/h1&gt;&lt;p&gt;在我们日常生活中,有时会出现各种各样的异常,例如:职工小王开车去上班,在正常情况下,小王会准时到达</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：面向对象</title>
+    <link href="https://asong123.github.io/2021/07/09/oono9f/"/>
+    <id>https://asong123.github.io/2021/07/09/oono9f/</id>
+    <published>2021-07-09T12:35:58.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;面向过程-amp-面向对象&quot;&gt;&lt;a href=&quot;#面向过程-amp-面向对象&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：数组</title>
+    <link href="https://asong123.github.io/2021/07/09/uuh3b6/"/>
+    <id>https://asong123.github.io/2021/07/09/uuh3b6/</id>
+    <published>2021-07-09T12:35:48.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;数组概述&quot;&gt;&lt;a href=&quot;#数组概述&quot; class=&quot;headerlink&quot; title=&quot;数组概述&quot;&gt;&lt;/a&gt;数组概述&lt;/h1&gt;&lt;p&gt;关于数组我们可以把它看作是一个类型的所有数据的一个集合，并用一个数组下标来区分或指定每一个</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：方法</title>
+    <link href="https://asong123.github.io/2021/07/09/ykf0ym/"/>
+    <id>https://asong123.github.io/2021/07/09/ykf0ym/</id>
+    <published>2021-07-09T12:35:37.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;方法&quot;&gt;&lt;a href=&quot;#方法&quot; class=&quot;headerlink&quot; title=&quot;方法&quot;&gt;&lt;/a&gt;方法&lt;/h1&gt;&lt;h2 id=&quot;1、何谓方法？&quot;&gt;&lt;a href=&quot;#1、何谓方法？&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：流程控制</title>
+    <link href="https://asong123.github.io/2021/07/09/wqbe1t/"/>
+    <id>https://asong123.github.io/2021/07/09/wqbe1t/</id>
+    <published>2021-07-09T12:35:27.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;用户交互-Scanner&quot;&gt;&lt;a href=&quot;#用户交互-Scanner&quot; class=&quot;headerlink&quot; title=&quot;用户交互 Scanner&quot;&gt;&lt;/a&gt;用户交互 Scanner&lt;/h1&gt;&lt;h2 id=&quot;1、Scanner-对象&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：基础语法</title>
+    <link href="https://asong123.github.io/2021/07/09/gntlr2/"/>
+    <id>https://asong123.github.io/2021/07/09/gntlr2/</id>
+    <published>2021-07-09T12:35:14.000Z</published>
+    <updated>2021-07-12T05:10:59.243Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;注释&quot;&gt;&lt;a href=&quot;#注释&quot; class=&quot;headerlink&quot; title=&quot;注释&quot;&gt;&lt;/a&gt;注释&lt;/h1&gt;&lt;p&gt;平时我们编写代码，在代码量比较少的时候，我们还可以看懂自己写的，但是当项目结构一旦复杂起</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaSE：Java入门</title>
+    <link href="https://asong123.github.io/2021/07/09/tonilf/"/>
+    <id>https://asong123.github.io/2021/07/09/tonilf/</id>
+    <published>2021-07-09T12:28:47.000Z</published>
+    <updated>2021-07-12T05:10:59.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java-一个帝国的诞生&quot;&gt;&lt;a href=&quot;#Java-一个帝国的诞生&quot; class=&quot;headerlink&quot; title=&quot;Java : 一个帝国的诞生&quot;&gt;&lt;/a&gt;Java : 一个帝国的诞生&lt;/h1&gt;&lt;h2 id=&quot;C-语言帝国的统治&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>hexo-theme-matery说明文档</title>
     <link href="https://asong123.github.io/2021/07/08/czmr1f/"/>
     <id>https://asong123.github.io/2021/07/08/czmr1f/</id>
     <published>2021-07-08T07:42:35.000Z</published>
-    <updated>2021-07-09T11:40:32.053Z</updated>
+    <updated>2021-07-12T05:10:59.243Z</updated>
     
     
       
@@ -51,7 +391,7 @@
     <link href="https://asong123.github.io/2021/07/05/mkgnis/"/>
     <id>https://asong123.github.io/2021/07/05/mkgnis/</id>
     <published>2021-07-05T07:26:08.000Z</published>
-    <updated>2021-07-09T11:40:32.053Z</updated>
+    <updated>2021-07-12T05:10:59.243Z</updated>
     
     
       
@@ -80,7 +420,7 @@
     <link href="https://asong123.github.io/2021/07/05/mok0nn/"/>
     <id>https://asong123.github.io/2021/07/05/mok0nn/</id>
     <published>2021-07-05T07:24:05.000Z</published>
-    <updated>2021-07-09T11:40:32.057Z</updated>
+    <updated>2021-07-12T05:10:59.243Z</updated>
     
     
       
@@ -93,14 +433,6 @@
     
     
     
-    <category term="redis" scheme="https://asong123.github.io/categories/redis/"/>
-    
-    
-    <category term="java" scheme="https://asong123.github.io/tags/java/"/>
-    
-    <category term="后端" scheme="https://asong123.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="redis" scheme="https://asong123.github.io/tags/redis/"/>
     
   </entry>
   
@@ -109,7 +441,7 @@
     <link href="https://asong123.github.io/2021/07/04/ny150b/"/>
     <id>https://asong123.github.io/2021/07/04/ny150b/</id>
     <published>2021-07-04T13:51:03.000Z</published>
-    <updated>2021-07-09T11:40:32.057Z</updated>
+    <updated>2021-07-12T05:10:59.243Z</updated>
     
     
       
