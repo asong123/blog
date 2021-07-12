@@ -4,6 +4,7 @@ urlname: oono9f
 date: '2021-07-09 20:35:58 +0800'
 tags: []
 categories: []
+abbrlink: 1898
 ---
 
 # 面向过程&面向对象

@@ -4,6 +4,7 @@ urlname: vn3op8
 date: '2021-07-12 12:45:46 +0800'
 tags: []
 categories: []
+abbrlink: 60289
 ---
 
 # 一、分布式系统唯一 ID 生成方案汇总（数据库 ID 号）
