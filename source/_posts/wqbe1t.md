@@ -2,9 +2,18 @@
 title: JavaSE：流程控制
 urlname: wqbe1t
 date: '2021-07-09 20:35:27 +0800'
-tags: []
-categories: []
-abbrlink: 17623
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 之前我们学的基本语法中我们并没有实现程序和人的交互，但是 Java 给我们提供了这样一个工具类，我 们可以获取用户的输入。java.util.Scanner 是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。
+categories: JavaSE：流程控制
+tags:
+  - java
+  - JavaSE
+  - 后端
 ---
 
 # 用户交互 Scanner

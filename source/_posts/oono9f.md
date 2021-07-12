@@ -2,9 +2,19 @@
 title: JavaSE：面向对象
 urlname: oono9f
 date: '2021-07-09 20:35:58 +0800'
-tags: []
-categories: []
-abbrlink: 1898
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 语言的进化发展跟生物的进化发展其实是一回事，都是”物以类聚”。相近的感光细胞聚到一起变成了我们的眼睛，相近的嗅觉细胞聚到一起变成了我们的鼻子。
+语句多了，我们将完成同样功能的相近的语句，聚到了一块儿，便于我们使用。于是，方法出现了！
+categories: 面向对象
+tags:
+  - java
+  - JavaSE
+  - 面向对象
 ---
 
 # 面向过程&面向对象

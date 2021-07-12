@@ -2,9 +2,19 @@
 title: JavaSE：方法
 urlname: ykf0ym
 date: '2021-07-09 20:35:37 +0800'
-tags: []
-categories: []
-abbrlink: 20971
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 这句话的用法是调用系统类 System 中的标准输出对象 out 中的方法 println()。
+categories: JavaSE：方法
+tags:
+  - java
+  - JavaSE
+  - JavaSE：方法
+  - 后端
 ---
 
 # 方法

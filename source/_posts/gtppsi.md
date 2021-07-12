@@ -2,9 +2,20 @@
 title: JavaSE：集合框架
 urlname: gtppsi
 date: '2021-07-09 20:36:34 +0800'
-tags: []
-categories: []
-abbrlink: 60132
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 为什么使用集合框架？如果并不知道程序运行时会需要多少对象，或者需要更复杂的方式存储对象，那我们就可以使用 Java 的集合框架！
+categories: JavaSE：集合框架
+tags:
+  - java
+  - JavaSE
+  - JavaSE：集合框架
+  - 后端
+  - 框架
 ---
 
 集合框架

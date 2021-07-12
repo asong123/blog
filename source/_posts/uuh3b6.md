@@ -2,9 +2,18 @@
 title: JavaSE：数组
 urlname: uuh3b6
 date: '2021-07-09 20:35:48 +0800'
-tags: []
-categories: []
-abbrlink: 49466
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 关于数组我们可以把它看作是一个类型的所有数据的一个集合，并用一个数组下标来区分或指定每一个 数....
+categories: 数组
+tags:
+  - java
+  - JavaSE
+  - 数组
 ---
 
 # 数组概述

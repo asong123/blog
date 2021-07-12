@@ -2,9 +2,19 @@
 title: Mybatis-Plus
 urlname: vn3op8
 date: '2021-07-12 12:45:46 +0800'
-tags: []
-categories: []
-abbrlink: 60289
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 项目中经常会遇到一些数据，每次都使用相同的方式填充，例如记录的创建时间，更新时间等。
+categories: Mybatis
+tags:
+  - java
+  - JavaSE
+  - Mybatis
+  - 数据库
 ---
 
 # 一、分布式系统唯一 ID 生成方案汇总（数据库 ID 号）

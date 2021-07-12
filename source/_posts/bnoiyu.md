@@ -2,9 +2,18 @@
 title: JavaSE：IO流
 urlname: bnoiyu
 date: '2021-07-09 20:36:59 +0800'
-tags: []
-categories: []
-abbrlink: 55348
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 在 Java 程序中，对于数据的输入/输出操作以“流”（Stream）方式进行；J2SDK 提供了各种各样的“流” 类，用以获取不同种类的数据：程序中通过标准的方法输入或输出数据
+categories: java
+tags:
+  - java
+  - JavaSE
+  - IO流
 ---
 
 # 一、JAVA 流式输入/输出原理

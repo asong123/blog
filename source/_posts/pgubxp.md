@@ -2,9 +2,18 @@
 title: JavaSE-IO文件
 urlname: pgubxp
 date: '2021-07-12 12:50:55 +0800'
-tags: []
-categories: []
-abbrlink: 45827
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 生活中，你肯定经历过这样的场景。当你编辑一个文本文件，忘记了`ctrl+s` ，可能文件就白白编辑了。当你电脑上插入一个 U 盘，可以把一个视频，拷贝到你的电脑硬盘里。那么数据都是在哪些设备上的呢？键盘、内存、硬盘、外接设备等等。我们把这种数据的传输，可以看做是一种数据的流动，按照流动的方向，以内存为基准，分为`输入input` 和`输出output` ，即流向内存是输入流，流出内存的输出流。
+categories: IO
+tags:
+  - java
+  - JavaSE
+  - IO
 ---
 
 # 总结

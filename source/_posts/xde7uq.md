@@ -2,9 +2,19 @@
 title: JavaSE：异常机制
 urlname: xde7uq
 date: '2021-07-09 20:36:08 +0800'
-tags: []
-categories: []
-abbrlink: 54184
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 在我们日常生活中,有时会出现各种各样的异常,例如:职工小王开车去上班,在正常情况下,小王会准时到达 单位。但是天有不测风云,在小王去上班时,可能会遇到一些异常情况,比如小王的车子出了故障,小王只能 改为步行.
+categories: JavaSE：异常机制
+tags:
+  - java
+  - JavaSE
+  - 后端
+  - 异常机制
 ---
 
 # 异常概念

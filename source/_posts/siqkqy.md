@@ -2,9 +2,18 @@
 title: JAVAWEB
 urlname: siqkqy
 date: '2021-07-12 12:55:04 +0800'
-tags: []
-categories: []
-abbrlink: 38075
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 在 java 中，动态 web 资源开发的技术统称为 JavaWeb；
+categories: JAVAWEB
+tags:
+  - java
+  - JavaSE
+  - JAVAWEB
 ---
 
 ---

@@ -2,9 +2,18 @@
 title: JAVA-多线程
 urlname: gaygae
 date: '2021-07-12 12:54:13 +0800'
-tags: []
-categories: []
-abbrlink: 61469
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础，每个应用程序就是一个进程
+categories: java多线程
+tags:
+  - java
+  - JavaSE
+  - java多线程
 ---
 
 > 参考内容：

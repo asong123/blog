@@ -2,9 +2,18 @@
 title: Redis笔记
 urlname: mok0nn
 date: '2021-07-05 15:24:05 +0800'
-tags: []
-categories: []
-abbrlink: 20305
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 90 年代,一个网站的访问量一般不会太大，单个数据库完全够用。随着用户增多，网站出现以下问题
+categories: Redis
+tags:
+  - java
+  - JavaSE
+  - Redis
 ---
 
 ## 一、Nosql 概述

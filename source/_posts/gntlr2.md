@@ -2,9 +2,18 @@
 title: JavaSE：基础语法
 urlname: gntlr2
 date: '2021-07-09 20:35:14 +0800'
-tags: []
-categories: []
-abbrlink: 61518
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 平时我们编写代码，在代码量比较少的时候，我们还可以看懂自己写的，但是当项目结构一旦复杂起 来，我们就需要用到一个注释了，注释就类似于我们上学时候写的笔记，我们看着笔记就知道自己写的 什么东西了！在程序中也是如此
+categories: java基础语法
+tags:
+  - java
+  - JavaSE
+  - java基础语法
 ---
 
 # 注释

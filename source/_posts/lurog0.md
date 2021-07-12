@@ -2,9 +2,18 @@
 title: JAVA注解与反射
 urlname: lurog0
 date: '2021-07-12 12:52:26 +0800'
-tags: []
-categories: []
-abbrlink: 59568
+author: 阿松
+top: false
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: Annotation 是 JDK5.0 开始引入的技术
+categories: JAVA注解与反射
+tags:
+  - java
+  - JavaSE
+  - JAVA注解与反射
 ---
 
 # 注解(Annotation)
