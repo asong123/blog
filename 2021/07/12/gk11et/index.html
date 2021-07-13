@@ -1,0 +1,1834 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="容器编排Docker Swarm, 阿松小站">
+    <meta name="description" content="阿松自己的小博客网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>容器编排Docker Swarm | 阿松小站</title>
+    <link rel="icon" type="image/png" href="/blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/my.css">
+
+    <script src="/blog/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/blog/atom.xml" title="阿松小站" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/blog/" class="waves-effect waves-light">
+                    
+                    <img src="/blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">阿松小站</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>媒体</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/blog/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>电影</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>书籍</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/galleries">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>图表</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">阿松小站</div>
+        <div class="logo-desc">
+            
+            阿松自己的小博客网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			媒体
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/blog/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>电影</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>书籍</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/galleries " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>图表</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/blog/libs/cryptojs/crypto-js.min.js"></script>
+<meta name="referrer" content="no-referrer" />
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/blog/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/29.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">容器编排Docker Swarm</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/blog/tags/docker/">
+                                <span class="chip bg-color">docker</span>
+                            </a>
+                        
+                            <a href="/blog/tags/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92Docker/">
+                                <span class="chip bg-color">容器编排Docker</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/blog/categories/docker/" class="post-category">
+                                docker
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-13
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    20 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="1-Docker-Swarm-介绍"><a href="#1-Docker-Swarm-介绍" class="headerlink" title="1. Docker Swarm 介绍"></a>1. Docker Swarm 介绍</h3><ul>
+<li>怎么去管理多个容器？</li>
+<li>怎么能去方便横向扩展</li>
+<li>如果容器 down 了，怎么能自动恢复？</li>
+<li>如何去更新容器而不影响业务？</li>
+<li>如何去监控追踪这些容器？</li>
+<li>怎么去调度容器的创建？</li>
+<li>保护隐私数据？</li>
+</ul>
+<blockquote>
+<p>Docker Swarm 就是为了解决这些等等问题而诞生的。</p>
+</blockquote>
+<h4 id="Docker-Swarm-两种角色-Manager-与-Worker"><a href="#Docker-Swarm-两种角色-Manager-与-Worker" class="headerlink" title="Docker Swarm 两种角色 Manager 与 Worker"></a>Docker Swarm 两种角色 Manager 与 Worker</h4><p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575967386889-83dd5fa2-b777-4750-976d-fbf174c6e989.png#height=500&amp;id=F2p2T&amp;name=image-20191117093158710.png&amp;originHeight=500&amp;originWidth=1064&amp;originalType=binary%E2%88%B6=1&amp;size=240475&amp;status=done&amp;style=none&amp;width=1064" alt="image-20191117093158710.png"></p>
+<h4 id="Docker-Swarm-两种概念-Service-和-Replicas"><a href="#Docker-Swarm-两种概念-Service-和-Replicas" class="headerlink" title="Docker Swarm 两种概念 Service 和 Replicas"></a>Docker Swarm 两种概念 Service 和 Replicas</h4><ul>
+<li>一个 Service 代表一个 container，这个 container 可以从 dockerhub 拉取的 image 创建，或者从本地的 Dockerfile build 出来的 image 创建</li>
+<li>Replicas 表示横向扩展，一个 Replicas 表示横向扩展一个容器</li>
+</ul>
+<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575967475549-db76679e-e819-4e15-81fc-a79371b6be89.png#height=591&amp;id=bTtPL&amp;name=image-20191117093942954.png&amp;originHeight=591&amp;originWidth=767&amp;originalType=binary%E2%88%B6=1&amp;size=191017&amp;status=done&amp;style=none&amp;width=767" alt="image-20191117093942954.png"></h4><blockquote>
+<p>一个 nginx 的 Service 横向扩展三个 Replicas，上图实际过程中会产生三个容器，这三个容器会通过我们的调度系统计算哪一个 node 负载较轻，然后调度到不同的 node 上面去。</p>
+</blockquote>
+<ul>
+<li>swarm 服务创建和调度的过程</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575967488508-449106fd-c0d0-4cdf-a634-40031d6f0116.png#height=767&amp;id=PRwMo&amp;name=image-20191117094524432.png&amp;originHeight=767&amp;originWidth=1296&amp;originalType=binary%E2%88%B6=1&amp;size=335369&amp;status=done&amp;style=none&amp;width=1296" alt="image-20191117094524432.png"></p>
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><p>Docker Swarm 由 docker 公司开发，存在于 docker 中，安装好 docker docker swarm 也就安装好了。</p>
+<h3 id="3-创建一个三节点的-swarm-集群"><a href="#3-创建一个三节点的-swarm-集群" class="headerlink" title="3. 创建一个三节点的 swarm 集群"></a>3. 创建一个三节点的 swarm 集群</h3><h4 id="使用-Vagrantfile-创建"><a href="#使用-Vagrantfile-创建" class="headerlink" title="使用 Vagrantfile 创建"></a>使用 Vagrantfile 创建</h4><ul>
+<li>Vagrantfile 文件</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># -*- mode: ruby -*-</span>
+<span class="token comment"># vi: set ft=ruby :</span>
+
+Vagrant.require_version <span class="token string">"&gt;= 1.6.0"</span>
+
+boxes <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        :name <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"swarm-manager"</span>,
+        :eth1 <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"192.168.205.10"</span>,
+        :mem <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"1024"</span>,
+        :cpu <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"1"</span>
+    <span class="token punctuation">}</span>,
+    <span class="token punctuation">{</span>
+        :name <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"swarm-worker1"</span>,
+        :eth1 <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"192.168.205.11"</span>,
+        :mem <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"1024"</span>,
+        :cpu <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"1"</span>
+    <span class="token punctuation">}</span>,
+    <span class="token punctuation">{</span>
+        :name <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"swarm-worker2"</span>,
+        :eth1 <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"192.168.205.12"</span>,
+        :mem <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"1024"</span>,
+        :cpu <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">"1"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+Vagrant.configure<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>config<span class="token operator">|</span>
+
+  config.vm.box <span class="token operator">=</span> <span class="token string">"centos/7"</span>
+
+  boxes.each <span class="token keyword">do</span> <span class="token operator">|</span>opts<span class="token operator">|</span>
+      config.vm.define opts<span class="token punctuation">[</span>:name<span class="token punctuation">]</span> <span class="token keyword">do</span> <span class="token operator">|</span>config<span class="token operator">|</span>
+        config.vm.hostname <span class="token operator">=</span> opts<span class="token punctuation">[</span>:name<span class="token punctuation">]</span>
+        config.vm.provider <span class="token string">"vmware_fusion"</span> <span class="token keyword">do</span> <span class="token operator">|</span><span class="token function">v</span><span class="token operator">|</span>
+          v.vmx<span class="token punctuation">[</span><span class="token string">"memsize"</span><span class="token punctuation">]</span> <span class="token operator">=</span> opts<span class="token punctuation">[</span>:mem<span class="token punctuation">]</span>
+          v.vmx<span class="token punctuation">[</span><span class="token string">"numvcpus"</span><span class="token punctuation">]</span> <span class="token operator">=</span> opts<span class="token punctuation">[</span>:cpu<span class="token punctuation">]</span>
+        end
+
+        config.vm.provider <span class="token string">"virtualbox"</span> <span class="token keyword">do</span> <span class="token operator">|</span><span class="token function">v</span><span class="token operator">|</span>
+          v.customize <span class="token punctuation">[</span><span class="token string">"modifyvm"</span>, :id, <span class="token string">"--memory"</span>, opts<span class="token punctuation">[</span>:mem<span class="token punctuation">]</span><span class="token punctuation">]</span>
+          v.customize <span class="token punctuation">[</span><span class="token string">"modifyvm"</span>, :id, <span class="token string">"--cpus"</span>, opts<span class="token punctuation">[</span>:cpu<span class="token punctuation">]</span><span class="token punctuation">]</span>
+        end
+
+        config.vm.network :private_network, ip: opts<span class="token punctuation">[</span>:eth1<span class="token punctuation">]</span>
+      end
+  end
+
+  config.vm.synced_folder <span class="token string">"./labs"</span>, <span class="token string">"/home/vagrant/labs"</span>
+  config.vm.provision <span class="token string">"shell"</span>, privileged: true, path: <span class="token string">"./setup.sh"</span>
+
+end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>创建虚拟主机</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token number">192</span>:chapter7 webxudong$ vagrant up
+<span class="token number">192</span>:chapter7 webxudong$ vagrant status
+Current machine states:
+
+swarm-manager             running <span class="token punctuation">(</span>virtualbox<span class="token punctuation">)</span>
+swarm-worker1             running <span class="token punctuation">(</span>virtualbox<span class="token punctuation">)</span>
+swarm-worker2             running <span class="token punctuation">(</span>virtualbox<span class="token punctuation">)</span>
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For <span class="token function">more</span> information about a specific
+VM, run <span class="token variable"><span class="token variable">`</span>vagrant status NAME<span class="token variable">`</span></span><span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="进入三台虚拟主机"><a href="#进入三台虚拟主机" class="headerlink" title="进入三台虚拟主机"></a>进入三台虚拟主机</h4><pre class="line-numbers language-none"><code class="language-none">192:chapter7 webxudong$ vagrant ssh swarm-manager
+[vagrant@swarm-manager ~]$
+
+192:chapter7 webxudong$ vagrant ssh swarm-worker1
+[vagrant@swarm-worker1 ~]$
+
+192:chapter7 webxudong$ vagrant ssh swarm-worker2
+[vagrant@swarm-worker2 ~]$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="三台虚拟主机初始化-docker-swarm"><a href="#三台虚拟主机初始化-docker-swarm" class="headerlink" title="三台虚拟主机初始化 docker swarm"></a>三台虚拟主机初始化 docker swarm</h4><ul>
+<li>swarm-manager 节点上运行</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager ~]$ docker swarm init --advertise-addr 192.168.205.10
+Swarm initialized: current node (j60cxemf5q7twe6p65qpzhpv4) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-07gcjx7j45mcjut8aswso26hb5x1futswqbua47pt6b1ik2xlq-aazwz5ra9z4v4erxr8qzixp1o 192.168.205.10:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>swarm-worker1 节点上运行</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-worker1 ~]$ docker swarm join --token SWMTKN-1-07gcjx7j45mcjut8aswso26hb5x1futswqbua47pt6b1ik2xlq-aazwz5ra9z4v4erxr8qzixp1o 192.168.205.10:2377
+This node joined a swarm as a worker.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>swarm-worker1 节点上运行</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-worker2 ~]$ docker swarm join --token SWMTKN-1-07gcjx7j45mcjut8aswso26hb5x1futswqbua47pt6b1ik2xlq-aazwz5ra9z4v4erxr8qzixp1o 192.168.205.10:2377
+This node joined a swarm as a worker.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>swarm-manager 节点上查看 swarm 集群</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager ~]$ docker node ls
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+j60cxemf5q7twe6p65qpzhpv4 *   swarm-manager       Ready               Active              Leader              19.03.5
+j362tummq26toh1sr6rfarfl0     swarm-worker1       Ready               Active                                  19.03.5
+o59j6gjuy45p9ix1rlv127bdx     swarm-worker2       Ready               Active                                  19.03.5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-Service-的创建维护和水平扩展"><a href="#4-Service-的创建维护和水平扩展" class="headerlink" title="4. Service 的创建维护和水平扩展"></a>4. Service 的创建维护和水平扩展</h3><h4 id="创建-Service"><a href="#创建-Service" class="headerlink" title="创建 Service"></a>创建 Service</h4><ul>
+<li>swarm-manager 节点上运行</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@swarm-manager ~<span class="token punctuation">]</span>$ docker <span class="token function">service</span> create --name demo busybox <span class="token function">sh</span> -c <span class="token string">"while true;do sleep 3600;done"</span>
+<span class="token punctuation">[</span>vagrant@swarm-manager ~<span class="token punctuation">]</span>$ docker <span class="token function">service</span> <span class="token function">ls</span>
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+24jntr5hdpxp        demo                replicated          <span class="token number">1</span>/1                 busybox:latest
+<span class="token comment"># 查看demo container运行在哪个node</span>
+<span class="token punctuation">[</span>vagrant@swarm-manager ~<span class="token punctuation">]</span>$ docker <span class="token function">service</span> <span class="token function">ps</span> demo
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE                ERROR               PORTS
+ivvn28n2ss52        demo.1              busybox:latest      swarm-manager       Running             Running about a minute ago
+<span class="token punctuation">[</span>vagrant@swarm-manager ~<span class="token punctuation">]</span>$ docker <span class="token function">service</span> <span class="token function">ls</span>
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+24jntr5hdpxp        demo                replicated          <span class="token number">1</span>/1                 busybox:latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>MODE</code>: 模式<br><code>REPLICAS</code>: 水平扩展 1/1 分母表示水平扩展个数，分子表示运行的个数</p>
+</blockquote>
+<h4 id="Service-水平扩展"><a href="#Service-水平扩展" class="headerlink" title="Service 水平扩展"></a>Service 水平扩展</h4><ul>
+<li>swarm-manager 节点上运行</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager ~]$ docker service scale demo=5
+demo scaled to 5
+overall progress: 5 out of 5 tasks
+1/5: running   [==================================================&gt;]
+2/5: running   [==================================================&gt;]
+3/5: running   [==================================================&gt;]
+4/5: running   [==================================================&gt;]
+5/5: running   [==================================================&gt;]
+verify: Service converged
+[vagrant@swarm-manager ~]$ docker service ps demo
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR               PORTS
+ivvn28n2ss52        demo.1              busybox:latest      swarm-manager       Running             Running 13 minutes ago
+u5typ20d0y4v        demo.2              busybox:latest      swarm-worker2       Running             Running 11 seconds ago
+ialhh3zp6j44        demo.3              busybox:latest      swarm-worker2       Running             Running 11 seconds ago
+ujz455zw5e72        demo.4              busybox:latest      swarm-manager       Running             Running 24 seconds ago
+aqoucqu52nhp        demo.5              busybox:latest      swarm-worker1       Running             Running 10 seconds ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>通过<code>NODE</code>节点观察，可发现有水平扩展后的 5 个 demo container，2 个在 swarm-manager 节点上，2 个在 swarm-worker2 节点上，1 个在 swarm-worker1 节点上。</p>
+</blockquote>
+<ul>
+<li>swarm-worker2 节点上运行</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager ~]$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+f4081ed632ba        busybox:latest      "sh -c 'while true;d…"   6 minutes ago       Up 6 minutes                            demo.4.ujz455zw5e7223txnxv9s7ppw
+284153a86f6b        busybox:latest      "sh -c 'while true;d…"   20 minutes ago      Up 20 minutes                           demo.1.ivvn28n2ss52uzeryn9nodkm1
+# 在swarm-worker2 node上强制删除一个demo container
+[vagrant@swarm-worker2 ~]$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+a915a5b0b425        busybox:latest      "sh -c 'while true;d…"   9 minutes ago       Up 8 minutes                            demo.2.u5typ20d0y4vqn2kky0c7r2ib
+7356c9c03d67        busybox:latest      "sh -c 'while true;d…"   9 minutes ago       Up 8 minutes                            demo.3.ialhh3zp6j44mbojzyv82j84l
+[vagrant@swarm-worker2 ~]$ docker rm -f 7356c9c03d67
+7356c9c03d67<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>swarm-manager 节点上运行</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager ~]$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+24jntr5hdpxp        demo                replicated          5/5                 busybox:latest
+[vagrant@swarm-manager ~]$ docker service ps demo
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR                         PORTS
+ivvn28n2ss52        demo.1              busybox:latest      swarm-manager       Running             Running 23 minutes ago
+u5typ20d0y4v        demo.2              busybox:latest      swarm-worker2       Running             Running 9 minutes ago
+rhsryeg7n21u        demo.3              busybox:latest      swarm-worker1       Running             Running 21 seconds ago
+ialhh3zp6j44         \_ demo.3          busybox:latest      swarm-worker2       Shutdown            Failed 26 seconds ago    "task: non-zero exit (137)"
+ujz455zw5e72        demo.4              busybox:latest      swarm-manager       Running             Running 9 minutes ago
+aqoucqu52nhp        demo.5              busybox:latest      swarm-worker1       Running             Running 9 minutes ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>可以观察出 我们在 swarm-worker2 上删除一个 demo container 之后，在 swarm-worker1 上多出了一个 demo container。<br><code>这就说明swarm scale不仅可以做到横向扩展，而且可以确保我们一定数目的扩展是有效的。</code></p>
+</blockquote>
+<h4 id="删除-Service"><a href="#删除-Service" class="headerlink" title="删除 Service"></a>删除 Service</h4><ul>
+<li>swarm-manager 节点上运行</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager ~]$ docker service rm demo
+demo
+[vagrant@swarm-manager ~]$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-swarm-集群里通过-service-部署-wordpress"><a href="#5-swarm-集群里通过-service-部署-wordpress" class="headerlink" title="5. swarm 集群里通过 service 部署 wordpress"></a>5. swarm 集群里通过 service 部署 wordpress</h3><h4 id="创建网络"><a href="#创建网络" class="headerlink" title="创建网络"></a>创建网络</h4><ul>
+<li>在 swarm-manager 节点上创建一个 overlay 的网络，使集群之间的 container 网络互通</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager ~]$ docker network create -d overlay demo
+jd53h59af2rjd12t0s7ibuwha
+[vagrant@swarm-manager ~]$ docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+fbbe012e1221        bridge              bridge              local
+jd53h59af2rj        demo                overlay             swarm
+594d137fcf21        docker_gwbridge     bridge              local
+1df5f5c0357a        host                host                local
+m0nxe0fd0k7p        ingress             overlay             swarm
+8b8926c5e805        none                null                local<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="创建-service-容器"><a href="#创建-service-容器" class="headerlink" title="创建 service 容器"></a>创建 service 容器</h4><ul>
+<li>在 swarm-manager 节点上 创建 mysql 容器</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager ~]$ docker service create --name mysql --env MYSQL_ROOT_PASSWORD=root --env MYSQL_DATABASE=wordpress --network demo --mount type=volume,source=mysql-data,destination=/var/lib/mysql mysql:5.7
+[vagrant@swarm-manager ~]$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+5veg8wfapdki        mysql               replicated          1/1                 mysql:latest
+[vagrant@swarm-manager ~]$ docker service ps mysql
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS
+vpgxe1saj60e        mysql.1             mysql:latest        swarm-manager       Running             Running 2 minutes ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>在 swarm-manager 节点上 创建 wordpress 容器</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 这里 WORDPRESS_DB_HOST 地址一定要填写Container容器的名称来访问。
+[vagrant@swarm-manager ~]$ docker service create --name wordpress -p 80:80 --env WORDPRESS_DB_PASSWORD=root --env WORDPRESS_DB_HOST=mysql:3306 --network demo wordpress
+[vagrant@swarm-manager ~]$ docker service ps wordpress
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE                ERROR               PORTS
+pb8xcsubwxrc        wordpress.1         wordpress:latest    swarm-worker1       Running             Running about a minute ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>访问测试<blockquote>
+<p>输入任意虚拟主机 IP 地址即可访问<br>例如： 192.168.250.11</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="6-集群服务间通信之-Routing-mesh"><a href="#6-集群服务间通信之-Routing-mesh" class="headerlink" title="6. 集群服务间通信之 Routing mesh"></a>6. 集群服务间通信之 Routing mesh</h3><blockquote>
+<p>swarm 集群之间的通信主要是由 Routing Mesh 实现的。<br>实例：<code>第5点的创建网络</code></p>
+</blockquote>
+<h4 id="Routing-Mesh-的两种体现"><a href="#Routing-Mesh-的两种体现" class="headerlink" title="Routing Mesh 的两种体现"></a>Routing Mesh 的两种体现</h4><h5 id="Internal"><a href="#Internal" class="headerlink" title="Internal"></a><code>Internal</code></h5><p><code>Internal</code> – <strong>Container 和 Container 之间</strong>的访问通过 overlay 网络（通过 VIP 也就是虚拟 IP）,然后经过 LVS 映射到具体哪一个 node 的 Container 上访问。已达到负载均衡。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575967641972-d9e17846-6b96-40fd-aae1-400794f44f09.png#height=409&amp;id=ewFL8&amp;name=image-20191117164742048.png&amp;originHeight=409&amp;originWidth=1045&amp;originalType=binary%E2%88%B6=1&amp;size=107506&amp;status=done&amp;style=none&amp;width=1045" alt="image-20191117164742048.png">/</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575967631207-ab0dc564-b806-4a54-935c-bbc81916ce0f.png#height=822&amp;id=snXt4&amp;name=image-20191117165846145.png&amp;originHeight=822&amp;originWidth=1481&amp;originalType=binary%E2%88%B6=1&amp;size=544535&amp;status=done&amp;style=none&amp;width=1481" alt="image-20191117165846145.png"></p>
+<h5 id="Ingress"><a href="#Ingress" class="headerlink" title="Ingress"></a><code>Ingress</code></h5><p><code>Ingress</code> – 如果服务有绑定接口，则此服务可以通过任意 swarm 节点的相应接口访问。</p>
+<ul>
+<li>比如 A、B 两个 node 做了 swarm 集群，若 A node 有一个开放了 8080 端口的容器，则通过 B node 的 8080 端口也可以进行访问。</li>
+</ul>
+<p>Ingress 的三个特性</p>
+<ul>
+<li>外部访问的负载均衡</li>
+<li>服务端口被暴露到各个 swarm 节点</li>
+<li>内部通过 IPVS 进行负载均衡</li>
+</ul>
+<p>VIP:10.0.9.4<br>web:10.0.9.4<br>web.1<br>web.2<br>client<br>10.0.9.5<br>10.0.9.3<br>10.0.9.6<br>DNSServer<br>DNSServer<br>DNSServer<br>Swarm-manager<br>Swarm-worker1<br>Swarm-worker2</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575967616587-53094a8a-36d3-4def-8bd6-5ecce2668c0c.png#height=545&amp;id=ONRVT&amp;name=image-20191117170651834.png&amp;originHeight=545&amp;originWidth=448&amp;originalType=binary%E2%88%B6=1&amp;size=123756&amp;status=done&amp;style=none&amp;width=448" alt="image-20191117170651834.png"></p>
+<blockquote>
+<p>上图表示 当一个 request 请求到 host3 节点时，因为 host3 没有对应的服务容器，所以 host3 节点的 IPV6 就会将该请求转发到有服务容器的 host2 节点进行处理请求并返回消息。</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575967582769-509a789c-bccd-43a6-9017-9cb576413e02.png#height=579&amp;id=X8TJV&amp;name=image-20191117171802547.png&amp;originHeight=579&amp;originWidth=983&amp;originalType=binary%E2%88%B6=1&amp;size=288107&amp;status=done&amp;style=none&amp;width=983" alt="image-20191117171802547.png"></p>
+<blockquote>
+<p>具体讲解：<a target="_blank" rel="noopener" href="https://coding.imooc.com/lesson/189.html#mid=11817">https://coding.imooc.com/lesson/189.html#mid=11817</a></p>
+</blockquote>
+<h3 id="7-Docker-Stack-部署-Wordpress"><a href="#7-Docker-Stack-部署-Wordpress" class="headerlink" title="7. Docker Stack 部署 Wordpress"></a>7. Docker Stack 部署 Wordpress</h3><p>Docker Compose 方式部署 Docker Swarm 集群</p>
+<p><code>官方文档</code>: <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#deploy">https://docs.docker.com/compose/compose-file/#deploy</a></p>
+<h4 id="docker-compose-yml-文件"><a href="#docker-compose-yml-文件" class="headerlink" title="docker-compose.yml 文件"></a>docker-compose.yml 文件</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">web</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wordpress
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 8080<span class="token punctuation">:</span><span class="token number">80</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">WORDPRESS_DB_HOST</span><span class="token punctuation">:</span> mysql
+      <span class="token key atrule">WORDPRESS_DB_PASSWORD</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> my<span class="token punctuation">-</span>network
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">mode</span><span class="token punctuation">:</span> replicated
+      <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+      <span class="token key atrule">restart_policy</span><span class="token punctuation">:</span>
+        <span class="token key atrule">condition</span><span class="token punctuation">:</span> on<span class="token punctuation">-</span>failure
+        <span class="token key atrule">delay</span><span class="token punctuation">:</span> 5s
+        <span class="token key atrule">max_attempts</span><span class="token punctuation">:</span> <span class="token number">3</span>
+      <span class="token key atrule">update_config</span><span class="token punctuation">:</span>
+        <span class="token key atrule">parallelism</span><span class="token punctuation">:</span> <span class="token number">1</span>
+        <span class="token key atrule">delay</span><span class="token punctuation">:</span> 10s
+
+  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span><span class="token number">5.7</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">MYSQL_ROOT_PASSWORD</span><span class="token punctuation">:</span> root
+      <span class="token key atrule">MYSQL_DATABASE</span><span class="token punctuation">:</span> wordpress
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql<span class="token punctuation">-</span>data<span class="token punctuation">:</span>/var/lib/mysql
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> my<span class="token punctuation">-</span>network
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">mode</span><span class="token punctuation">:</span> global
+      <span class="token key atrule">placement</span><span class="token punctuation">:</span>
+        <span class="token key atrule">constraints</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> node.role == manager
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mysql-data</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">my-network</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> overlay<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>mode</code>: 模式，<code>global</code>（swarm 集群只有一个容器）或<code>replicated</code>（容器的指定数量）。默认值为<code>replicated</code>。<br><code>constraints</code>: 指定容器存放在哪一个节点<br><code>replicas</code>: 初始化容器的数量<br><code>restart_policy</code>: 配置是否以及如何在容器退出时重新启动容器</p>
+<ul>
+<li><code>condition</code>：重启策略，<code>none</code>，<code>on-failure</code>（如果失败就重启）或者<code>any</code>（默认值：<code>any</code>）。</li>
+<li><code>delay</code>：尝试重新启动等待的时间（默认值：0）。</li>
+<li><code>max_attempts</code>：在放弃之前尝试重新启动容器的次数（默认值：<code>never give up</code>）。如果在配置的<code>window</code>内重新启动未成功，则此尝试不计入配置的<code>max_attempts</code>值。例如，如果<code>max_attempts</code>设置为“ 2”，并且第一次尝试时重新启动失败，则可能会尝试两次以上的重新启动。</li>
+<li><code>window</code>：决定重新启动是否成功之前要等待的<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#specifying-durations">时间</a>，指定为<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#specifying-durations">持续时间</a>（默认值：立即决定）。</li>
+</ul>
+<p><code>update_config</code>: 配置应如何更新服务。</p>
+<ul>
+<li><code>parallelism</code>: 一次更新的容器数量。</li>
+<li><code>delay</code>: 更新一组容器之间的等待时间。</li>
+<li><code>failure_action</code>:如果更新失败该怎么办。 &nbsp;<code>continue</code>, <code>rollback</code>, or <code>pause</code>之一 (default: <code>pause</code>).</li>
+<li><code>monitor</code>: 每个任务更新后监视失败的持续时间 <code>(ns|us|ms|s|m|h)</code> (default 0s).</li>
+<li><code>max_failure_ratio</code>: 更新期间容忍的失败率。</li>
+<li><code>order</code>: 更新期间的操作顺序. One of <code>stop-first</code> (旧任务在启动新任务之前停止), or <code>start-first</code> (新任务先启动与正在运行的任务短暂重叠) (默认 <code>stop-first</code>) <strong>Note</strong>: Only supported for v3.4 and higher</li>
+</ul>
+</blockquote>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ ll
+-rw-r--r--. 1 vagrant vagrant 797 11月  9 01:36 docker-compose.yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="定义一个-stack"><a href="#定义一个-stack" class="headerlink" title="定义一个 stack"></a>定义一个 stack</h4><ul>
+<li>在 swarm-manager 虚拟机上运行</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">#wordpress 表示stack的name		--compose-file可简化为-c
+[vagrant@swarm-manager wordpress]$ docker stack deploy wordpress --compose-file=docker-compose.yml
+Creating network wordpress_my-network
+Creating service wordpress_web
+Creating service wordpress_mysql
+[vagrant@swarm-manager wordpress]$ docker stack ls
+NAME                SERVICES            ORCHESTRATOR
+wordpress           2                   Swarm
+[vagrant@swarm-manager wordpress]$ docker stack ps wordpress
+ID                  NAME                                        IMAGE               NODE                DESIRED STATE       CURRENT STATE                ERROR               PORTS
+lrrljhecevie        wordpress_mysql.j60cxemf5q7twe6p65qpzhpv4   mysql:5.7           swarm-manager       Running             Running about a minute ago
+lv8pp54nocv5        wordpress_web.1                             wordpress:latest    swarm-worker2       Running             Running about a minute ago
+4e5n61cxluc8        wordpress_web.2                             wordpress:latest    swarm-manager       Running             Running 17 seconds ago
+j5ygi22idfa9        wordpress_web.3                             wordpress:latest    swarm-worker1       Running             Running about a minute ago
+[vagrant@swarm-manager wordpress]$ docker stack services wordpress
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+5dvzninwbelp        wordpress_web       replicated          3/3                 wordpress:latest    *:8080-&gt;80/tcp
+kn54k9wirhi6        wordpress_mysql     global              1/1                 mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="访问测试"><a href="#访问测试" class="headerlink" title="访问测试"></a>访问测试</h4><blockquote>
+<p>输入三台虚拟主机任意 ip 即可<br>例如：<a target="_blank" rel="noopener" href="http://192.168.205.12:8080/">http://192.168.205.12:8080/</a></p>
+</blockquote>
+<h4 id="删除-stack"><a href="#删除-stack" class="headerlink" title="删除 stack"></a>删除 stack</h4><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ docker stack rm wordpress
+Removing service wordpress_mysql
+Removing service wordpress_web
+Removing network wordpress_my-network
+[vagrant@swarm-manager wordpress]$ docker stack ls
+NAME                SERVICES            ORCHESTRATOR<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="8-Docker-Secret-管理和使用"><a href="#8-Docker-Secret-管理和使用" class="headerlink" title="8. Docker Secret 管理和使用"></a>8. Docker Secret 管理和使用</h3><h4 id="什么是-Secret"><a href="#什么是-Secret" class="headerlink" title="什么是 Secret"></a>什么是 Secret</h4><ul>
+<li>用户名密码</li>
+<li>SSH key</li>
+<li>TLS 认证</li>
+<li>任何不想让人看到的数据</li>
+</ul>
+<h4 id="Secret-Management"><a href="#Secret-Management" class="headerlink" title="Secret Management"></a>Secret Management</h4><ul>
+<li>存在 Swarm Manager 节点 Raft database 里。</li>
+<li>Secret 可以 assign 给一个 service，这个 service 就能看到这个 secret</li>
+<li>在 container 内部 Secret 看起来像文件，但实际是存在内存中的</li>
+</ul>
+<h4 id="创建-Secret"><a href="#创建-Secret" class="headerlink" title="创建 Secret"></a>创建 Secret</h4><ul>
+<li>文件创建（swarm-manager node）</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># password 的内容为 admin123
+[vagrant@swarm-manager wordpress]$ vim password
+[vagrant@swarm-manager wordpress]$ docker secret create my-pw password
+k2cdynlhfrndmmmzsdy8ypu08
+[vagrant@swarm-manager wordpress]$ rm -rf password
+[vagrant@swarm-manager wordpress]$ docker secret ls
+ID                          NAME                DRIVER              CREATED             UPDATED
+k2cdynlhfrndmmmzsdy8ypu08   my-pw                                   42 seconds ago      42 seconds ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>标准输入创建（swarm-manager node）</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ echo "adminadmin" | docker secret create my-pw2 -
+44jotpnunsf6g6r08p5aych2g
+[vagrant@swarm-manager wordpress]$ docker secret ls
+ID                          NAME                DRIVER              CREATED             UPDATED
+k2cdynlhfrndmmmzsdy8ypu08   my-pw                                   2 minutes ago       2 minutes ago
+44jotpnunsf6g6r08p5aych2g   my-pw2                                  3 seconds ago       3 seconds ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>删除 secret（swarm-manager node）</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ docker secret rm my-pw2
+my-pw2
+[vagrant@swarm-manager wordpress]$ docker secret ls
+ID                          NAME                DRIVER              CREATED             UPDATED
+k2cdynlhfrndmmmzsdy8ypu08   my-pw                                   3 minutes ago       3 minutes ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="使用-secret"><a href="#使用-secret" class="headerlink" title="使用 secret"></a>使用 secret</h4><ul>
+<li>示例（swarm-manager node）</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 传入多个secret时 指定多个--secret即可 如：--secret my-pw --secret my-pw2
+[vagrant@swarm-manager wordpress]$ docker service create --name client --secret my-pw busybox sh -c "while true;do sleep 3600; done"
+[vagrant@swarm-manager wordpress]$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+fxhh0c9onw2i        client              replicated          1/1                 busybox:latest
+[vagrant@swarm-manager wordpress]$ docker service ps client
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE                ERROR               PORTS
+t7n08iczw9cz        client.1            busybox:latest      swarm-manager       Running             Running about a minute ago
+[vagrant@swarm-manager wordpress]$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
+7d8245e2a1ed        busybox:latest      "sh -c 'while true;d…"   About a minute ago   Up About a minute                       client.1.t7n08iczw9czjb3y0tpuxvox4
+[vagrant@swarm-manager wordpress]$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
+7d8245e2a1ed        busybox:latest      "sh -c 'while true;d…"   About a minute ago   Up About a minute                       client.1.t7n08iczw9czjb3y0tpuxvox4
+#进入容器 查看secret
+[vagrant@swarm-manager wordpress]$ docker exec -it 7d82 sh
+/ # cd /run/secrets/
+/run/secrets # ls
+my-pw
+/run/secrets # cat my-pw
+admin123<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>实例: mysql</li>
+</ul>
+<p>创建 db 容器（swarm-manager node）</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ docker service create --name db --secret my-pw -e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/my-pw mysql:5.7
+nsk6nxis00y2iwqbmhkv99voz
+overall progress: 1 out of 1 tasks
+1/1: running   [==================================================&gt;]
+verify: Service converged
+[vagrant@swarm-manager wordpress]$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+fxhh0c9onw2i        client              replicated          1/1                 busybox:latest
+nsk6nxis00y2        db                  replicated          1/1                 mysql:5.7
+[vagrant@swarm-manager wordpress]$ docker service ps db
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR               PORTS
+fn83ntbf4587        db.1                mysql:5.7           swarm-worker1       Running             Running 59 seconds ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>验证 db 容器（swarm-worker1 &nbsp;db 容器创建在了 swarm-worker1 node）</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-worker1 ~]$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                 NAMES
+03e7d7bca776        mysql:5.7           "docker-entrypoint.s…"   2 minutes ago       Up 2 minutes        3306/tcp, 33060/tcp   db.1.fn83ntbf45873q7vwr4bzov7h
+[vagrant@swarm-worker1 ~]$ docker exex -it 03e7 sh
+# cat /run/secrets/my-pw
+admin123
+# mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.28 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>docker stack 使用 secret</li>
+</ul>
+<p>更改之前的 dockerfile</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">web</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wordpress
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 8080<span class="token punctuation">:</span><span class="token number">80</span>
+    <span class="token key atrule">secrets</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> my<span class="token punctuation">-</span>pw <span class="token comment">#指定secret</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">WORDPRESS_DB_HOST</span><span class="token punctuation">:</span> mysql
+      <span class="token key atrule">WORDPRESS_DB_PASSWORD_FILE</span><span class="token punctuation">:</span> /run/secrets/my<span class="token punctuation">-</span>pw
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> my<span class="token punctuation">-</span>network
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">mode</span><span class="token punctuation">:</span> replicated
+      <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+      <span class="token key atrule">restart_policy</span><span class="token punctuation">:</span>
+        <span class="token key atrule">condition</span><span class="token punctuation">:</span> on<span class="token punctuation">-</span>failure
+        <span class="token key atrule">delay</span><span class="token punctuation">:</span> 5s
+        <span class="token key atrule">max_attempts</span><span class="token punctuation">:</span> <span class="token number">3</span>
+      <span class="token key atrule">update_config</span><span class="token punctuation">:</span>
+        <span class="token key atrule">parallelism</span><span class="token punctuation">:</span> <span class="token number">1</span>
+        <span class="token key atrule">delay</span><span class="token punctuation">:</span> 10s
+
+  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql
+    <span class="token key atrule">secrets</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> my<span class="token punctuation">-</span>pw
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">MYSQL_ROOT_PASSWORD_FILE</span><span class="token punctuation">:</span> /run/secrets/my<span class="token punctuation">-</span>pw
+      <span class="token key atrule">MYSQL_DATABASE</span><span class="token punctuation">:</span> wordpress
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql<span class="token punctuation">-</span>data<span class="token punctuation">:</span>/var/lib/mysql
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> my<span class="token punctuation">-</span>network
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">mode</span><span class="token punctuation">:</span> global
+      <span class="token key atrule">placement</span><span class="token punctuation">:</span>
+        <span class="token key atrule">constraints</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> node.role == manager
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mysql-data</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">my-network</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> overlay
+<span class="token comment"># secrets:</span>
+<span class="token comment">#   my-pw:</span>
+<span class="token comment">#    file: ./password 创建secret不推荐，推荐事先创建好</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>其余操作相同</p>
+</blockquote>
+<h3 id="9-Service-更新"><a href="#9-Service-更新" class="headerlink" title="9. Service 更新"></a>9. Service 更新</h3><h4 id="创建-overlay-网络（swarm-manager-node）"><a href="#创建-overlay-网络（swarm-manager-node）" class="headerlink" title="创建 overlay 网络（swarm-manager node）"></a>创建 overlay 网络（swarm-manager node）</h4><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ dcoker network create -d voerlay demo
+[vagrant@swarm-manager wordpress]$ docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+fbbe012e1221        bridge              bridge              local
+jd53h59af2rj        demo                overlay             swarm
+594d137fcf21        docker_gwbridge     bridge              local
+1df5f5c0357a        host                host                local
+m0nxe0fd0k7p        ingress             overlay             swarm
+8b8926c5e805        none                null                local<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="创建容器（swarm-manager-node）"><a href="#创建容器（swarm-manager-node）" class="headerlink" title="创建容器（swarm-manager node）"></a>创建容器（swarm-manager node）</h4><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ docker service create --name web --publish 8080:5000 --network demo xiaopeng163/python-flask-demo:1.0
+[vagrant@swarm-manager wordpress]$ docker service ps web
+ID                  NAME                IMAGE                               NODE                DESIRED STATE       CURRENT STATE                ERROR               PORTS
+c47a9kwyh9gs        web.1               xiaopeng163/python-flask-demo:1.0   swarm-worker2       Running             Running about a minute ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="更新容器"><a href="#更新容器" class="headerlink" title="更新容器"></a>更新容器</h4><ul>
+<li>首先横向扩展容器（swarm-manager node）</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ docker service scale web=2
+[vagrant@swarm-manager wordpress]$ docker service ps web
+ID                  NAME                IMAGE                               NODE                DESIRED STATE       CURRENT STATE             ERROR               PORTS
+c47a9kwyh9gs        web.1               xiaopeng163/python-flask-demo:1.0   swarm-worker2       Running             Running 7 minutes ago
+ryfpv427p97m        web.2               xiaopeng163/python-flask-demo:1.0   swarm-manager       Running             Preparing 4 minutes ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>更新两个容器的镜像</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ docker service update --image xiaopeng163/python-flask-demo:2.0 web
+web
+overall progress: 2 out of 2 tasks
+1/2: running   [==================================================&gt;]
+2/2: running   [==================================================&gt;]
+verify: Service converged
+[vagrant@swarm-manager wordpress]$ docker service ps web
+ID                  NAME                IMAGE                               NODE                DESIRED STATE       CURRENT STATE            ERROR               PORTS
+88ifmz2u04kb        web.1               xiaopeng163/python-flask-demo:2.0   swarm-worker2       Running             Running 2 minutes ago
+c47a9kwyh9gs         \_ web.1           xiaopeng163/python-flask-demo:1.0   swarm-worker2       Shutdown            Shutdown 2 minutes ago
+y5476lu7hvgz        web.2               xiaopeng163/python-flask-demo:2.0   swarm-manager       Running             Running 2 minutes ago
+ryfpv427p97m         \_ web.2           xiaopeng163/python-flask-demo:1.0   swarm-manager       Shutdown            Shutdown 2 minutes ago<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>docker service update --help</code> 查看更新命令<br>更新两个容器时会一个一个更新不会让服务中断。</p>
+</blockquote>
+<ul>
+<li>更新容器的端口</li>
+</ul>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[vagrant@swarm-manager wordpress]$ docker service update --publish-rm 8080:5000 --publish-add 8088:5000 web
+web
+overall progress: 2 out of 2 tasks
+1/2: running   [==================================================&gt;]
+2/2: running   [==================================================&gt;]
+verify: Service converged
+[vagrant@swarm-manager wordpress]$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                               PORTS
+kmziylwlje61        web                 replicated          2/2                 xiaopeng163/python-flask-demo:2.0   *:8088-&gt;5000/tcp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>Docker Stack</code>的更新 修改 yml 文件再次执行<br><code>docker stack deploy wordpress -c=docker-compose.yml</code> 即可</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/blog/about" rel="external nofollow noreferrer">阿松</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://asong123.github.io/blog/2021/07/12/gk11et/">https://asong123.github.io/blog/2021/07/12/gk11et/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/blog/about" target="_blank">阿松</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/blog/tags/docker/">
+                                    <span class="chip bg-color">docker</span>
+                                </a>
+                            
+                                <a href="/blog/tags/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92Docker/">
+                                    <span class="chip bg-color">容器编排Docker</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/blog/2021/07/12/fob9fm/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/14.jpg" class="responsive-img" alt="SpringBoot日志">
+                        
+                        <span class="card-title">SpringBoot日志</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            SpringBoot日志
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/blog/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/blog/tags/SpringBoot%E6%97%A5%E5%BF%97/">
+                        <span class="chip bg-color">SpringBoot日志</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/2021/07/12/bd5wx6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/0.jpg" class="responsive-img" alt="Docker Compose多容器部署">
+                        
+                        <span class="card-title">Docker Compose多容器部署</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Docker Compose多容器部署
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/docker/" class="post-category">
+                                    docker
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/%E5%AE%B9%E5%99%A8/">
+                        <span class="chip bg-color">容器</span>
+                    </a>
+                    
+                    <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/blog/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/blog/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/blog/about" target="_blank">阿松</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">216.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:835549978@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=835549978" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 835549978" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/blog/libs/materialize/materialize.min.js"></script>
+    <script src="/blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/blog/libs/aos/aos.js"></script>
+    <script src="/blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+
+</html>

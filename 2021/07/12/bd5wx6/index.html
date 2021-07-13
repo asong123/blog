@@ -1,0 +1,1510 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Docker Compose多容器部署, 阿松小站">
+    <meta name="description" content="阿松自己的小博客网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Docker Compose多容器部署 | 阿松小站</title>
+    <link rel="icon" type="image/png" href="/blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/my.css">
+
+    <script src="/blog/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/blog/atom.xml" title="阿松小站" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/blog/" class="waves-effect waves-light">
+                    
+                    <img src="/blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">阿松小站</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>媒体</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/blog/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>电影</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>书籍</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/galleries">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>图表</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">阿松小站</div>
+        <div class="logo-desc">
+            
+            阿松自己的小博客网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			媒体
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/blog/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>电影</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>书籍</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/galleries " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>图表</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/blog/libs/cryptojs/crypto-js.min.js"></script>
+<meta name="referrer" content="no-referrer" />
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/blog/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Docker Compose多容器部署</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/blog/tags/%E5%AE%B9%E5%99%A8/">
+                                <span class="chip bg-color">容器</span>
+                            </a>
+                        
+                            <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/blog/tags/Docker/">
+                                <span class="chip bg-color">Docker</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/blog/categories/docker/" class="post-category">
+                                docker
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-13
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    9 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="1-部署-wordpress"><a href="#1-部署-wordpress" class="headerlink" title="1. 部署 wordpress"></a>1. 部署 wordpress</h3><h4 id="下载-Docker-镜像"><a href="#下载-Docker-镜像" class="headerlink" title="下载 Docker 镜像"></a>下载 Docker 镜像</h4><h5 id="下载-mysql-和-wordpress-镜像"><a href="#下载-mysql-和-wordpress-镜像" class="headerlink" title="下载 mysql 和 wordpress 镜像"></a>下载 mysql 和 wordpress 镜像</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@VM_0_6_centos ~]# docker pull mysql:5.7
+[root@VM_0_6_centos ~]# docker pull wordpress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h5 id="创建-mysql-容器与-wordpress-容器"><a href="#创建-mysql-容器与-wordpress-容器" class="headerlink" title="创建 mysql 容器与 wordpress 容器"></a>创建 mysql 容器与 wordpress 容器</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@VM_0_6_centos ~]# mkdir /var/lib/mysql
+[root@VM_0_6_centos ~]# docker run -d --name mysql -v /var/lib/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wordpress -p 3306:3306 mysql:5.7
+35da130a0a86fc4f0d42a68bad61036aac037a1f31800f534679471d9a10ca89
+[root@VM_0_6_centos ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                 NAMES
+3aeddd835ed3        mysql               "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp, 33060/tcp   mysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>-v /var/lib/mysql:/var/lib/mysql</code>: 指定映射文件路径<br><code>-e MYSQL_ROOT_PASSWORD=root</code>: 数据库密码<br><code>e MYSQL_DATABASE=wordpress</code>: 创建数据库<br><code>-p 3306:3306</code>: 映射端口<br>更多 mysql 环境变量设置：<a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql">https://hub.docker.com/_/mysql</a></p>
+</blockquote>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@VM_0_6_centos ~]# docker run -d --name wordpress -e WORDPRESS_DB_HOST=mysql:3306 --link mysql -p 8080:80 wordpress
+8d988844ae1f608074add3512f049e890ecf5d88eb8041d63f4ba42df72c922b
+[root@VM_0_6_centos ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+8d988844ae1f        wordpress           "docker-entrypoint.s…"   10 seconds ago      Up 7 seconds        0.0.0.0:8080-&gt;80/tcp   eager_chatterjee
+3aeddd835ed3        mysql               "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        3306/tcp, 33060/tcp    mysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>-e WORDPRESS_DB_HOST=mysql:3306</code>: 指定数据库地址<br><code>--link mysql</code>: 与 mysql 容器创建连接<br><code>-p 8080:80</code>: 指定映射端口<br>更多 wordpress 环境变量设置：<a target="_blank" rel="noopener" href="https://hub.docker.com/_/wordpress">https://hub.docker.com/_/wordpress</a></p>
+</blockquote>
+<h5 id="安装-wordpress"><a href="#安装-wordpress" class="headerlink" title="安装 wordpress"></a>安装 wordpress</h5><blockquote>
+<p>输入对应 ip 地址即可开始安装</p>
+</blockquote>
+<p>例如：<a target="_blank" rel="noopener" href="http://111.231.102.35:8080/">http://111.231.102.35:8080/</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575967183162-450d66c9-6062-40c5-a75c-fcee3de0d3e5.png#height=840&amp;id=hPyHu&amp;name=image-20191116200418075.png&amp;originHeight=840&amp;originWidth=1735&amp;originalType=binary%E2%88%B6=1&amp;size=110218&amp;status=done&amp;style=none&amp;width=1735" alt="image-20191116200418075.png"></p>
+<h3 id="2-Docker-Compose-介绍"><a href="#2-Docker-Compose-介绍" class="headerlink" title="2. Docker Compose 介绍"></a>2. Docker Compose 介绍</h3><blockquote>
+<p>我们使用 Docker 的时候，定义 Dockerfile 文件，然后使用 docker build、docker run 等命令操作容器。然而微服务架构的应用系统一般包含若干个微服务，每个微服务一般都会部署多个实例，如果每个微服务都要手动启停，那么效率之低，维护量之大可想而知<br><code>使用 Docker Compose 可以轻松、高效的管理容器，它是一个用于定义和运行多容器 Docker 的应用程序工具</code><br>Docker Compose 版本介绍：<br>建议使用 version3 的版本，version3 版本可用于多机，version2 版本只能用于单机。<br><code>官方文档</code>：<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/">https://docs.docker.com/compose/compose-file/</a></p>
+<ul>
+<li>Docker Compose 是一个工具</li>
+<li>这个工具可以通过一个 yml 文件定义多容器的 docker 应用</li>
+<li>通过一条命令就可以根据 yml 的定义去创建或者管理这多个容器</li>
+</ul>
+</blockquote>
+<h4 id="docker-compose-yml-三大概念"><a href="#docker-compose-yml-三大概念" class="headerlink" title="docker-compose.yml 三大概念"></a>docker-compose.yml 三大概念</h4><ul>
+<li>Services</li>
+<li>Networks</li>
+<li>Volumes</li>
+</ul>
+<blockquote>
+<p>一个 Service 代表一个 container，这个 container 可以从 dockerhub 拉取的 image 创建，或者从本地的 Dockerfile build 出来的 image 创建<br>Service 的启动类似 docker run，我们可以给其指定 network 和 volume，所以可以给 service 指定 network 和 volume 的引用。<code>在创建container时所有的参数都可以在Service中使用</code></p>
+</blockquote>
+<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
+	<span class="token key atrule">db</span><span class="token punctuation">:</span> <span class="token comment">#service name</span>
+		<span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span><span class="token number">5.7</span>
+		<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+			<span class="token punctuation">-</span> <span class="token string">"db-data:/var/lib/mysql/data"</span>
+		<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+			<span class="token punctuation">-</span> back<span class="token punctuation">-</span>tier
+相当于 =====<span class="token punctuation">&gt;</span> docker run <span class="token punctuation">-</span>d <span class="token punctuation">-</span><span class="token punctuation">-</span>network back<span class="token punctuation">-</span>tier <span class="token punctuation">-</span>v db<span class="token punctuation">-</span>data<span class="token punctuation">:</span>/var/lib/mysql/data  mysql<span class="token punctuation">:</span><span class="token number">5.7</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+	<span class="token key atrule">worker</span><span class="token punctuation">:</span> <span class="token comment">#service name</span>
+		<span class="token key atrule">build</span><span class="token punctuation">:</span> ./worker	<span class="token comment">#build</span>
+		<span class="token key atrule">links</span><span class="token punctuation">:</span>
+			<span class="token punctuation">-</span> db
+			<span class="token punctuation">-</span> redis
+		<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+			<span class="token punctuation">-</span> back<span class="token punctuation">-</span>tier
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+	<span class="token key atrule">db-data</span><span class="token punctuation">:</span>
+相当于 =====<span class="token punctuation">&gt;</span> docker volume create db<span class="token punctuation">-</span>data
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+	<span class="token key atrule">back-tier</span><span class="token punctuation">:</span>
+		<span class="token key atrule">driver</span><span class="token punctuation">:</span> bridge
+相当于 =====<span class="token punctuation">&gt;</span> docker network create <span class="token punctuation">-</span>d bridge back<span class="token punctuation">-</span>tier<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="实例-1-dockerhub"><a href="#实例-1-dockerhub" class="headerlink" title="实例 1 &nbsp;dockerhub"></a>实例 1 &nbsp;dockerhub</h5><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">wordpress</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wordpress
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 8080<span class="token punctuation">:</span><span class="token number">80</span>
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span> <span class="token comment">#指定依赖</span>
+      <span class="token punctuation">-</span> mysql
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">WORDPRESS_DB_HOST</span><span class="token punctuation">:</span> mysql
+      <span class="token key atrule">WORDPRESS_DB_PASSWORD</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> my<span class="token punctuation">-</span>bridge
+
+  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span><span class="token number">5.7</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">MYSQL_ROOT_PASSWORD</span><span class="token punctuation">:</span> root
+      <span class="token key atrule">MYSQL_DATABASE</span><span class="token punctuation">:</span> wordpress
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql<span class="token punctuation">-</span>data<span class="token punctuation">:</span>/var/lib/mysql
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> my<span class="token punctuation">-</span>bridge
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mysql-data</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">my-bridge</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> bridge<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="实例-2-dockerfile"><a href="#实例-2-dockerfile" class="headerlink" title="实例 2 dockerfile"></a>实例 2 dockerfile</h5><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis
+
+  <span class="token key atrule">web</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> . <span class="token comment">#目录</span>
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> Dockerfile <span class="token comment">#文件</span>
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 8080<span class="token punctuation">:</span><span class="token number">5000</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">REDIS_HOST</span><span class="token punctuation">:</span> redis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-Docker-Compose-安装与基本使用"><a href="#3-Docker-Compose-安装与基本使用" class="headerlink" title="3. Docker Compose 安装与基本使用"></a>3. Docker Compose 安装与基本使用</h3><h4 id="Docker-Compose-安装"><a href="#Docker-Compose-安装" class="headerlink" title="Docker Compose 安装"></a>Docker Compose 安装</h4><p><code>官方文档</code>: <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a></p>
+<blockquote>
+<p>下载 Docker Compose 可执行文件，存储到/usr/local/bin/docker-compose 目录下</p>
+</blockquote>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   617    0   617    0     0    244      0 --:--:--  0:00:02 --:--:--   244
+100 15.4M  100 15.4M    0     0   287k      0  0:00:54  0:00:54 --:--:--  454k
+#配置权限
+[vagrant@docker-host ~]$ sudo chmod +x /usr/local/bin/docker-compose
+#查看版本
+[vagrant@docker-host ~]$ docker-compose --version
+docker-compose version 1.24.1, build 4667896b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Docker-Compose-命令"><a href="#Docker-Compose-命令" class="headerlink" title="Docker Compose 命令"></a>Docker Compose 命令</h4><ul>
+<li>输入<code>docker-compose</code> 回车可查看所有命令</li>
+</ul>
+<h5 id="创建-docker-compose"><a href="#创建-docker-compose" class="headerlink" title="创建 docker compose"></a>创建 docker compose</h5><blockquote>
+<p>准备：将上面实例 1 的内容写入到 docker-compose.yml 文件中</p>
+</blockquote>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ ls
+docker-compose.yml
+[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml up -d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>-f</code>：指定 yml 文件名称，如果不指定默认启动 docker-compose.yml 文件<br><code>-d</code>: 后台执行，不打印 log。如果启动希望 debug 建议去掉 -d 参数，但是要注意最后必须 Ctrl+C 退出，启动的 docker container 也会被停掉。</p>
+</blockquote>
+<h5 id="查看-docker-compose-中使用的-container-与-image"><a href="#查看-docker-compose-中使用的-container-与-image" class="headerlink" title="查看 docker compose 中使用的 container 与 image"></a>查看 docker compose 中使用的 container 与 image</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml ps
+       Name                      Command               State    Ports
+---------------------------------------------------------------------
+vagrant_mysql_1       docker-entrypoint.sh mysqld      Exit 0
+vagrant_wordpress_1   docker-entrypoint.sh apach ...   Exit 0
+[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml images
+     Container        Repository    Tag       Image Id      Size
+-----------------------------------------------------------------
+vagrant_mysql_1       mysql        5.7      cd3ed0dfff7e   416 MB
+vagrant_wordpress_1   wordpress    latest   e4bd752aeb0d   514 MB<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="停止-docker-compose-的-container"><a href="#停止-docker-compose-的-container" class="headerlink" title="停止 docker compose 的 container"></a>停止 docker compose 的 container</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml stop
+Stoping vagrant_wordpress_1 ... done
+Stoping vagrant_mysql_1     ... done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="启动-docker-compose-的-container"><a href="#启动-docker-compose-的-container" class="headerlink" title="启动 docker compose 的 container"></a>启动 docker compose 的 container</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml start<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="停止并删除-docker-compose-的-container-与-network"><a href="#停止并删除-docker-compose-的-container-与-network" class="headerlink" title="停止并删除 docker compose 的 container 与 network"></a>停止并删除 docker compose 的 container 与 network</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml down
+Removing vagrant_wordpress_1 ... done
+Removing vagrant_mysql_1     ... done
+Removing network vagrant_my-bridge<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="进入到-docker-compose-的-container-中"><a href="#进入到-docker-compose-的-container-中" class="headerlink" title="进入到 docker compose 的 container 中"></a>进入到 docker compose 的 container 中</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml exec mysql bash
+[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml exec wordpress bash<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h5 id="下载-docker-compose-中所使用的镜像"><a href="#下载-docker-compose-中所使用的镜像" class="headerlink" title="下载 docker compose 中所使用的镜像"></a>下载 docker compose 中所使用的镜像</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ docker-compose -f docker-compose.yml build<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="4-Docker-Compose-水平扩展和负载均衡"><a href="#4-Docker-Compose-水平扩展和负载均衡" class="headerlink" title="4. Docker Compose 水平扩展和负载均衡"></a>4. Docker Compose 水平扩展和负载均衡</h3><blockquote>
+<p>使用 Python 的一个 web 项目来实现水平扩展和负载均衡</p>
+</blockquote>
+<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><ul>
+<li>python 的 web 项目文件 app.py</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">from</span> redis <span class="token keyword">import</span> Redis
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> socket
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+redis <span class="token operator">=</span> Redis<span class="token punctuation">(</span>host<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'REDIS_HOST'</span><span class="token punctuation">,</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">6379</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    redis<span class="token punctuation">.</span>incr<span class="token punctuation">(</span><span class="token string">'hits'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">'Hello Container World! I have been seen %s times and my hostname is %s.\n'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>redis<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'hits'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>socket<span class="token punctuation">.</span>gethostname<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">"0.0.0.0"</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">80</span><span class="token punctuation">,</span> debug<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>Dockerfile 文件</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FROM python:2.7
+LABEL maintaner="Peng Xiao xiaoquwl@gmail.com"
+COPY . /app
+WORKDIR /app
+RUN pip install flask redis
+EXPOSE 80
+CMD [ "python", "app.py" ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>docker-compose.yml 文件</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis
+
+  <span class="token key atrule">web</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span>
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> .
+      <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> Dockerfile
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"8080"</span><span class="token punctuation">]</span> <span class="token comment">#必须使用中括号表示每一个容器都是开放8080端口</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">REDIS_HOST</span><span class="token punctuation">:</span> redis
+  <span class="token comment">#负载均衡container</span>
+  <span class="token key atrule">lb</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> dockercloud/haproxy
+    <span class="token key atrule">links</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> web
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token datetime number">80:80</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>查看准备的文件</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ ls
+app.py  docker-compose.yml  Dockerfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>通过 docker compose 创建一个 web container</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ docker-compose up -d
+[vagrant@docker-host ~]$ docker-compose ps
+     Name                    Command               State                   Ports
+------------------------------------------------------------------------------------------------
+vagrant_lb_1      /sbin/tini -- dockercloud- ...   Up      1936/tcp, 443/tcp, 0.0.0.0:80-&gt;80/tcp
+vagrant_redis_1   docker-entrypoint.sh redis ...   Up      6379/tcp
+vagrant_web_1     python app.py                    Up      80/tcp, 0.0.0.0:32768-&gt;8080/tcp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>访问测试</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># hostnam代表容器的hostname
+[vagrant@docker-host ~]$ curl 127.0.0.1
+Hello Container World! I have been seen 1 times and my hostname is fa2e925f21a2.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>通过 docker composes 水平扩展三个 web container</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ docker-compose up --scale web=3 -d
+Starting vagrant_web_1 ... done
+vagrant_redis_1 is up-to-date
+Creating vagrant_web_2 ... done
+Creating vagrant_web_3 ... done
+vagrant_lb_1 is up-to-date
+[vagrant@docker-host ~]$ docker-compose ps
+     Name                    Command               State                   Ports
+------------------------------------------------------------------------------------------------
+vagrant_lb_1      /sbin/tini -- dockercloud- ...   Up      1936/tcp, 443/tcp, 0.0.0.0:80-&gt;80/tcp
+vagrant_redis_1   docker-entrypoint.sh redis ...   Up      6379/tcp
+vagrant_web_1     python app.py                    Up      80/tcp, 0.0.0.0:32768-&gt;8080/tcp
+vagrant_web_2     python app.py                    Up      80/tcp, 0.0.0.0:32769-&gt;8080/tcp
+vagrant_web_3     python app.py                    Up      80/tcp, 0.0.0.0:32770-&gt;8080/tcp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>访问测试负载均衡</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[vagrant@docker-host ~]$ curl 127.0.0.1
+Hello Container World! I have been seen 2 times and my hostname is fa2e925f21a2.
+[vagrant@docker-host ~]$ curl 127.0.0.1
+Hello Container World! I have been seen 3 times and my hostname is 9303ec756121.
+[vagrant@docker-host ~]$ curl 127.0.0.1
+Hello Container World! I have been seen 4 times and my hostname is fc1cf73e69e0.
+[vagrant@docker-host ~]$ curl 127.0.0.1
+Hello Container World! I have been seen 5 times and my hostname is fa2e925f21a2.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>--scale web=3</code>: 表示水平扩展 web 容器，总数量为 3，sclae 可以设置大于当前 web 容器数，也可以设置小于当前 web 容器数<br>这样我们就可以在实际中，高访问量的时候多创建 web，低访问量时少创建 web 容器。</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/blog/about" rel="external nofollow noreferrer">阿松</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://asong123.github.io/blog/2021/07/12/bd5wx6/">https://asong123.github.io/blog/2021/07/12/bd5wx6/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/blog/about" target="_blank">阿松</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/blog/tags/%E5%AE%B9%E5%99%A8/">
+                                    <span class="chip bg-color">容器</span>
+                                </a>
+                            
+                                <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/blog/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/blog/2021/07/12/gk11et/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/29.jpg" class="responsive-img" alt="容器编排Docker Swarm">
+                        
+                        <span class="card-title">容器编排Docker Swarm</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            怎么去管理多个容器？如果容器 down 了，怎么能自动恢复？
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/docker/" class="post-category">
+                                    docker
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/blog/tags/docker/">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/blog/tags/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92Docker/">
+                        <span class="chip bg-color">容器编排Docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/2021/07/12/ap74vb/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/1.jpg" class="responsive-img" alt="Docker的持久化和数据共享">
+                        
+                        <span class="card-title">Docker的持久化和数据共享</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Docker 持久化数据的方案
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/docker/" class="post-category">
+                                    docker
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/%E5%AE%B9%E5%99%A8/">
+                        <span class="chip bg-color">容器</span>
+                    </a>
+                    
+                    <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/blog/tags/docker/">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/blog/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/blog/about" target="_blank">阿松</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">216.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:835549978@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=835549978" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 835549978" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/blog/libs/materialize/materialize.min.js"></script>
+    <script src="/blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/blog/libs/aos/aos.js"></script>
+    <script src="/blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+
+</html>

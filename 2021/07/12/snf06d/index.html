@@ -1,0 +1,1498 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="框架设计, 阿松小站">
+    <meta name="description" content="阿松自己的小博客网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>框架设计 | 阿松小站</title>
+    <link rel="icon" type="image/png" href="/blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/my.css">
+
+    <script src="/blog/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/blog/atom.xml" title="阿松小站" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/blog/" class="waves-effect waves-light">
+                    
+                    <img src="/blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">阿松小站</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>媒体</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/blog/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>电影</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>书籍</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/galleries">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>图表</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">阿松小站</div>
+        <div class="logo-desc">
+            
+            阿松自己的小博客网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			媒体
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/blog/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>电影</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>书籍</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/galleries " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>图表</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/blog/libs/cryptojs/crypto-js.min.js"></script>
+<meta name="referrer" content="no-referrer" />
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/blog/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/2.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">框架设计</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/blog/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-13
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    24 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一，细节"><a href="#一，细节" class="headerlink" title="一，细节"></a>一，细节</h2><h3 id="1-防止空指针和下标越界"><a href="#1-防止空指针和下标越界" class="headerlink" title="1.防止空指针和下标越界"></a>1.防止空指针和下标越界</h3><p>这是一个编写健壮程序的开发人员，在写每一行代码都应在潜意识中防止的异常。基本上要能确保每一次写完的代码，在不测试的情况下，都不会出现这两个异常才算合格。</p>
+<h3 id="2-保证线程安全性和可见性"><a href="#2-保证线程安全性和可见性" class="headerlink" title="2.保证线程安全性和可见性"></a>2.保证线程安全性和可见性</h3><p>对于开发人员，对线程安全性和可见性的深入理解是最基本的要求。需要开发人员，在写每一行代码时都应在潜意识中确保其正确性。因为这种代码，在小并发下做功能测试时，会显得很正常。但在高并发下就会出现莫明其妙的问题，而且场景很难重现，极难排查。</p>
+<h3 id="3-尽早失败和前置断言"><a href="#3-尽早失败和前置断言" class="headerlink" title="3.尽早失败和前置断言"></a>3.尽早失败和前置断言</h3><p>尽早失败也应该成为潜意识，在有传入参数和状态变化时，均在入口处全部断言。一个不合法的值和状态，在第一时间就应报错，而不是等到要用时才报错。因为等到要用时，可能前面已经修改其它相关状态，而在程序中很少有人去处理回滚逻辑。这样报错后，其实内部状态可能已经混乱，极易在一个隐蔽分支上引发程序不可恢复。</p>
+<h3 id="4-分离可靠操作和不可靠操作"><a href="#4-分离可靠操作和不可靠操作" class="headerlink" title="4.分离可靠操作和不可靠操作"></a>4.分离可靠操作和不可靠操作</h3><p>这里的可靠是狭义的指是否会抛出异常或引起状态不一致，比如，写入一个线程安全的 Map，可以认为是可靠的，而写入数据库等，可以认为是不可靠的。开发人员必须在写每一行代码时，都注意它的可靠性与否，在代码中尽量划分开，并对失败做异常处理，并为容错，自我保护，自动恢复或切换等补偿逻辑提供清晰的切入点，保证后续增加的代码不至于放错位置，而导致原先的容错处理陷入混乱。</p>
+<h3 id="5-异常防御，但不忽略异常"><a href="#5-异常防御，但不忽略异常" class="headerlink" title="5.异常防御，但不忽略异常"></a>5.异常防御，但不忽略异常</h3><p>这里讲的异常防御，指的是对非必须途径上的代码进行最大限度的容忍，包括程序上的 BUG，比如：获取程序的版本号，会通过扫描 Manifest 和 jar 包名称抓取版本号，这个逻辑是辅助性的，但代码却不少，初步测试也没啥问题，但应该在整个 getVersion() 中加上一个全函数的 try-catch 打印错误日志，并返回基本版本，因为 getVersion() 可能存在未知特定场景异常，或被其他的开发人员误修改逻辑(但一般人员不会去掉 try-catch)，而如果它抛出异常会导致主流程异常，这是我们不希望看到的。但这里要控制个度，不要随意 try-catch，更不要无声无息的吃掉异常。</p>
+<h3 id="6-缩小可变域和尽量-final"><a href="#6-缩小可变域和尽量-final" class="headerlink" title="6.缩小可变域和尽量 final"></a>6.缩小可变域和尽量 final</h3><p>如果一个类可以成为不变类(Immutable Class)，就优先将它设计成不变类。不变类有天然的并发共享优势，减少同步或复制，而且可以有效帮忙分析线程安全的范围。就算是可变类，对于从构造函数传入的引用，在类中持有时，最好将字段 final，以免被中途误修改引用。不要以为这个字段是私有的，这个类的代码都是我自己写的，不会出现对这个字段的重新赋值。要考虑的一个因素是，这个代码可能被其他人修改，他不知道你的这个弱约定，final 就是一个不变契约。</p>
+<h3 id="7-降低修改时的误解性，不埋雷"><a href="#7-降低修改时的误解性，不埋雷" class="headerlink" title="7.降低修改时的误解性，不埋雷"></a>7.降低修改时的误解性，不埋雷</h3><p>前面不停的提到代码被其他人修改，这也开发人员要随时紧记的。这个其他人包括未来的自己，你要总想着这个代码可能会有人去改它。我应该给修改的人一点什么提示，让他知道我现在的设计意图，而不要在程序里面加潜规则，或埋一些容易忽视的雷，比如：你用 null 表示不可用，size 等于 0 表示黑名单，这就是一个雷，下一个修改者，包括你自己，都不会记得有这样的约定，可能后面为了改某个其它 BUG，不小心改到了这里，直接引爆故障。对于这个例子，一个原则就是永远不要区分 null 引用和 empty 值。</p>
+<h3 id="8-提高代码的可测性"><a href="#8-提高代码的可测性" class="headerlink" title="8.提高代码的可测性"></a>8.提高代码的可测性</h3><p>这里的可测性主要指 Mock 的容易程度，和测试的隔离性。至于测试的自动性，可重复性，非偶然性，无序性，完备性(全覆盖)，轻量性(可快速执行)，一般开发人员，加上 JUnit 等工具的辅助基本都能做到，也能理解它的好处，只是工作量问题。这里要特别强调的是测试用例的单一性(只测目标类本身)和隔离性(不传染失败)。现在的测试代码，过于强调完备性，大量重复交叉测试，看起来没啥坏处，但测试代码越多，维护代价越高。经常出现的问题是，修改一行代码或加一个判断条件，引起 100 多个测试用例不通过。时间一紧，谁有这个闲功夫去改这么多形态各异的测试用例？久而久之，这个测试代码就已经不能真实反应代码现在的状况，很多时候会被迫绕过。最好的情况是，修改一行代码，有且只有一行测试代码不通过。如果修改了代码而测试用例还能通过，那也不行，表示测试没有覆盖到。另外，可 Mock 性是隔离的基础，把间接依赖的逻辑屏蔽掉。可 Mock 性的一个最大的杀手就是静态方法，尽量少用。</p>
+<h2 id="二，框架设计常识"><a href="#二，框架设计常识" class="headerlink" title="二，框架设计常识"></a>二，框架设计常识</h2><h3 id="1-API-与-SPI-分离"><a href="#1-API-与-SPI-分离" class="headerlink" title="1.API 与 SPI 分离"></a>1.API 与 SPI 分离</h3><p>框架或组件通常有两类客户，一个是使用者，一个是扩展者。API (Application Programming Interface) 是给使用者用的，而 SPI (Service Provide Interface) 是给扩展者用的。在设计时，尽量把它们隔离开，而不要混在一起。也就是说，使用者是看不到扩展者写的实现的。</p>
+<p>比如：一个 Web 框架，它有一个 API 接口叫 Action，里面有个 execute() 方法，是给使用者用来写业务逻辑的。然后，Web 框架有一个 SPI 接口给扩展者控制输出方式，比如用 velocity 模板输出还是用 json 输出等。如果这个 Web 框架使用一个都继承 Action 的 VelocityAction 和一个 JsonAction 做为扩展方式，要用 velocity 模板输出的就继承 VelocityAction，要用 json 输出的就继承 JsonAction，这就是 API 和 SPI 没有分离的反面例子，SPI 接口混在了 API 接口中。</p>
+<h3 id="2-服务域-实体域-会话域分离"><a href="#2-服务域-实体域-会话域分离" class="headerlink" title="2.服务域/实体域/会话域分离"></a>2.服务域/实体域/会话域分离</h3><p>任何框架或组件，总会有核心领域模型，比如：Spring 的 Bean，Struts 的 Action，Dubbo 的 Service，Napoli 的 Queue 等等。这个核心领域模型及其组成部分称为实体域，它代表着我们要操作的目标本身。实体域通常是线程安全的，不管是通过不变类，同步状态，或复制的方式。</p>
+<p>服务域也就是行为域，它是组件的功能集，同时也负责实体域和会话域的生命周期管理， 比如 Spring 的 ApplicationContext，Dubbo 的 ServiceManager 等。服务域的对象通常会比较重，而且是线程安全的，并以单一实例服务于所有调用。</p>
+<p>什么是会话？就是一次交互过程。会话中重要的概念是上下文，什么是上下文？比如我们说：“老地方见”，这里的“老地方”就是上下文信息。为什么说“老地方”对方会知道，因为我们前面定义了“老地方”的具体内容。所以说，上下文通常持有交互过程中的状态变量等。会话对象通常较轻，每次请求都重新创建实例，请求结束后销毁。简而言之：把元信息交由实体域持有，把一次请求中的临时状态由会话域持有，由服务域贯穿整个过程。</p>
+<h3 id="3-在重要的过程上设置拦截接口"><a href="#3-在重要的过程上设置拦截接口" class="headerlink" title="3.在重要的过程上设置拦截接口"></a>3.在重要的过程上设置拦截接口</h3><p>如果你要写个远程调用框架，那远程调用的过程应该有一个统一的拦截接口。如果你要写一个 ORM 框架，那至少 SQL 的执行过程，Mapping 过程要有拦截接口；如果你要写一个 Web 框架，那请求的执行过程应该要有拦截接口，等等。没有哪个公用的框架可以 Cover 住所有需求，允许外置行为，是框架的基本扩展方式。这样，如果有人想在远程调用前，验证下令牌，验证下黑白名单，统计下日志；如果有人想在 SQL 执行前加下分页包装，做下数据权限控制，统计下 SQL 执行时间；如果有人想在请求执行前检查下角色，包装下输入输出流，统计下请求量，等等，就可以自行完成，而不用侵入框架内部。拦截接口，通常是把过程本身用一个对象封装起来，传给拦截器链，比如：远程调用主过程为 invoke()，那拦截器接口通常为 invoke(Invocation)，Invocation 对象封装了本来要执行过程的上下文，并且 Invocation 里有一个 invoke() 方法，由拦截器决定什么时候执行，同时，Invocation 也代表拦截器行为本身，这样上一拦截器的 Invocation 其实是包装的下一拦截器的过程，直到最后一个拦截器的 Invocation 是包装的最终的 invoke() 过程；同理，SQL 主过程为 execute()，那拦截器接口通常为 execute(Execution)，原理一样。当然，实现方式可以任意，上面只是举例。</p>
+<h3 id="4-重要的状态的变更发送事件并留出监听接口"><a href="#4-重要的状态的变更发送事件并留出监听接口" class="headerlink" title="4.重要的状态的变更发送事件并留出监听接口"></a>4.重要的状态的变更发送事件并留出监听接口</h3><p>这里先要讲一个事件和上面拦截器的区别，拦截器是干预过程的，它是过程的一部分，是基于过程行为的，而事件是基于状态数据的，任何行为改变的相同状态，对事件应该是一致的。事件通常是事后通知，是一个 Callback 接口，方法名通常是过去式的，比如 onChanged()。比如远程调用框架，当网络断开或连上应该发出一个事件，当出现错误也可以考虑发出一个事件，这样外围应用就有可能观察到框架内部的变化，做相应适应。</p>
+<h3 id="5-扩展接口职责尽可能单一，具有可组合性"><a href="#5-扩展接口职责尽可能单一，具有可组合性" class="headerlink" title="5.扩展接口职责尽可能单一，具有可组合性"></a>5.扩展接口职责尽可能单一，具有可组合性</h3><p>比如，远程调用框架它的协议是可以替换的。如果只提供一个总的扩展接口，当然可以做到切换协议，但协议支持是可以细分为底层通讯，序列化，动态代理方式等等。如果将接口拆细，正交分解，会更便于扩展者复用已有逻辑，而只是替换某部分实现策略。当然这个分解的粒度需要把握好。</p>
+<h3 id="6-微核插件式，平等对待第三方"><a href="#6-微核插件式，平等对待第三方" class="headerlink" title="6.微核插件式，平等对待第三方"></a>6.微核插件式，平等对待第三方</h3><p>大凡发展的比较好的框架，都遵守微核的理念。Eclipse 的微核是 OSGi， Spring 的微核是 BeanFactory，Maven 的微核是 Plexus。通常核心是不应该带有功能性的，而是一个生命周期和集成容器，这样各功能可以通过相同的方式交互及扩展，并且任何功能都可以被替换。如果做不到微核，至少要平等对待第三方，即原作者能实现的功能，扩展者应该可以通过扩展的方式全部做到。原作者要把自己也当作扩展者，这样才能保证框架的可持续性及由内向外的稳定性。</p>
+<h3 id="7-不要控制外部对象的生命周期"><a href="#7-不要控制外部对象的生命周期" class="headerlink" title="7.不要控制外部对象的生命周期"></a>7.不要控制外部对象的生命周期</h3><p>比如上面说的 Action 使用接口和 Renderer 扩展接口。框架如果让使用者或扩展者把 Action 或 Renderer 实现类的类名或类元信息报上来，然后在内部通过反射 newInstance() 创建一个实例，这样框架就控制了 Action 或 Renderer 实现类的生命周期，Action 或 Renderer 的生老病死，框架都自己做了，外部扩展或集成都无能为力。好的办法是让使用者或扩展者把 Action 或 Renderer 实现类的实例报上来，框架只是使用这些实例，这些对象是怎么创建的，怎么销毁的，都和框架无关，框架最多提供工具类辅助管理，而不是绝对控制。</p>
+<h3 id="8-可配置一定可编程，并保持友好的-CoC-约定"><a href="#8-可配置一定可编程，并保持友好的-CoC-约定" class="headerlink" title="8.可配置一定可编程，并保持友好的 CoC 约定"></a>8.可配置一定可编程，并保持友好的 CoC 约定</h3><p>因为使用环境的不确定因素很多，框架总会有一些配置，一般都会到 classpath 直扫某个指定名称的配置，或者启动时允许指定配置路径。做为一个通用框架，应该做到凡是能配置文件做的一定要能通过编程方式进行，否则当使用者需要将你的框架与另一个框架集成时就会带来很多不必要的麻烦。</p>
+<p>另外，尽可能做一个标准约定，如果用户按某种约定做事时，就不需要该配置项。比如：配置模板位置，你可以约定，如果放在 templates 目录下就不用配了，如果你想换个目录，就配置下。</p>
+<h3 id="9-区分命令与查询，明确前置条件与后置条件"><a href="#9-区分命令与查询，明确前置条件与后置条件" class="headerlink" title="9.区分命令与查询，明确前置条件与后置条件"></a>9.区分命令与查询，明确前置条件与后置条件</h3><p>这个是契约式设计的一部分，尽量遵守有返回值的方法是查询方法，void 返回的方法是命令。查询方法通常是幂等性的，无副作用的，也就是不改变任何状态，调 n 次结果都是一样的，比如 get 某个属性值，或查询一条数据库记录。命令是指有副作用的，也就是会修改状态，比如 set 某个值，或 update 某条数据库记录。如果你的方法即做了修改状态的操作，又做了查询返回，如果可能，将其拆成写读分离的两个方法，比如：User deleteUser(id)，删除用户并返回被删除的用户，考虑改为 getUser() 和 void 的 deleteUser()。 另外，每个方法都尽量前置断言传入参数的合法性，后置断言返回结果的合法性，并文档化。</p>
+<h3 id="10-增量式扩展，而不要扩充原始核心概念"><a href="#10-增量式扩展，而不要扩充原始核心概念" class="headerlink" title="10.增量式扩展，而不要扩充原始核心概念"></a>10.增量式扩展，而不要扩充原始核心概念</h3><p>我们平台的产品越来越多，产品的功能也越来越多。平台的产品为了适应各 BU 和部门以及产品线的需求，势必会将很多不相干的功能凑在一起，客户可以选择性的使用。为了兼容更多的需求，每个产品，每个框架，都在不停的扩展，而我们经常会选择一些扩展的扩展方式，也就是将新旧功能扩展成一个通用实现。我想讨论是，有些情况下也可以考虑增量式的扩展方式，也就是保留原功能的简单性，新功能独立实现。我最近一直做分布式服务框架的开发，就拿我们项目中的问题开涮吧。</p>
+<p>比如：远程调用框架，肯定少不了序列化功能，功能很简单，就是把流转成对象，对象转成流。但因有些地方可能会使用 osgi，这样序列化时，IO 所在的 ClassLoader 可能和业务方的 ClassLoader 是隔离的。需要将流转换成 byte[] 数组，然后传给业务方的 ClassLoader 进行序列化。为了适应 osgi 需求，把原来非 osgi 与 osgi 的场景扩展了一下，这样，不管是不是 osgi 环境，都先将流转成 byte[] 数组，拷贝一次。然而，大部分场景都用不上 osgi，却为 osgi 付出了代价。而如果采用增量式扩展方式，非 osgi 的代码原封不动，再加一个 osgi 的实现，要用 osgi 的时候，直接依赖 osgi 实现即可。</p>
+<p>再比如：最开始，远程服务都是基于接口方法，进行透明化调用的。这样，扩展接口就是， invoke(Method method, Object[] args)，后来，有了无接口调用的需求，就是没有接口方法也能调用，并将 POJO 对象都转换成 Map 表示。因为 Method 对象是不能直接 new 出来的，我们不自觉选了一个扩展式扩展，把扩展接口改成了 invoke(String methodName, String[] parameterTypes, String returnTypes, Object[] args)，导致不管是不是无接口调用，都得把 parameterTypes 从 Class[] 转成 String[]。如果选用增量式扩展，应该是保持原有接口不变，增加一个 GeneralService 接口，里面有一个通用的 invoke() 方法，和其它正常业务上的接口一样的调用方式，扩展接口也不用变，只是 GeneralServiceImpl 的 invoke() 实现会将收到的调用转给目标接口，这样就能将新功能增量到旧功能上，并保持原来结构的简单性。</p>
+<p>再再比如：无状态消息发送，很简单，序列化一个对象发过去就行。后来有了同步消息发送需求，需要一个 Request/Response 进行配对，采用扩展式扩展，自然想到，无状态消息其实是一个没有 Response 的 Request，所以在 Request 里加一个 boolean 状态，表示要不要返回 Response。如果再来一个会话消息发送需求，那就再加一个 Session 交互，然后发现，原来同步消息发送是会话消息的一种特殊情况，所有场景都传 Session，不需要 Session 的地方无视即可。</p>
+<p>如果采用增量式扩展，无状态消息发送原封不动，同步消息发送，在无状态消息基础上加一个 Request/Response 处理，会话消息发送，再加一个 SessionRequest/SessionResponse 处理。</p>
+<h2 id="三，稳定性"><a href="#三，稳定性" class="headerlink" title="三，稳定性"></a>三，稳定性</h2><h3 id="1-日志"><a href="#1-日志" class="headerlink" title="1.日志"></a>1.日志</h3><p>日志是发现问题、查看问题一个最常用的手段。日志质量往往被忽视，没有日志使用上的明确约定。重视 Log 的使用，提高 Log 的信息浓度。日志过多、过于混乱，会导致有用的信息被淹没。</p>
+<p>要有效利用这个工具要注意：</p>
+<h4 id="1-严格约定-WARN、ERROR-级别记录的内容"><a href="#1-严格约定-WARN、ERROR-级别记录的内容" class="headerlink" title="1)严格约定 WARN、ERROR 级别记录的内容"></a>1)严格约定 WARN、ERROR 级别记录的内容</h4><p>WARN 表示可以恢复的问题，无需人工介入。</p>
+<p>ERROR 表示需要人工介入问题。</p>
+<p>有了这样的约定，监管系统发现日志文件的中出现 ERROR 字串就报警，又尽量减少了发生。过多的报警会让人疲倦，使人对报警失去警惕性，使 ERROR 日志失去意义。再辅以人工定期查看 WARN 级别信息，以评估系统的“亚健康”程度。</p>
+<h4 id="2-日志中，尽量多的收集关键信息"><a href="#2-日志中，尽量多的收集关键信息" class="headerlink" title="2)日志中，尽量多的收集关键信息"></a>2)日志中，尽量多的收集关键信息</h4><p>哪些是关键信息呢？</p>
+<p>出问题时的现场信息，即排查问题要用到的信息。如服务调用失败时，要给出使用 Dubbo 的版本、服务提供者的 IP、使用的是哪个注册中心；调用的是哪个服务、哪个方法等等。这些信息如果不给出，那么事后人工收集的，问题过后现场可能已经不能复原，加大排查问题的难度。<br>如果可能，给出问题的原因和解决方法。这让维护和问题解决变得简单，而不是寻求精通者（往往是实现者）的帮助。</p>
+<h4 id="3-同一个或是一类问题不要重复记录多次"><a href="#3-同一个或是一类问题不要重复记录多次" class="headerlink" title="3)同一个或是一类问题不要重复记录多次"></a>3)同一个或是一类问题不要重复记录多次</h4><p>同一个或是一类异常日志连续出现几十遍的情况，还是常常能看到的。人眼很容易漏掉淹没在其中不一样的重要日志信息。要尽量避免这种情况。在可以预见会出现的情况，有必要加一些逻辑来避免。</p>
+<p>如为一个问题准备一个标志，出问题后打日志后设置标志，避免重复打日志。问题恢复后清除标志。</p>
+<p>虽然有点麻烦，但是这样做保证日志信息浓度，让监控更有效。</p>
+<h3 id="2-界限设置"><a href="#2-界限设置" class="headerlink" title="2.界限设置"></a>2.界限设置</h3><p>资源是有限的，CPU、内存、IO 等等。不要因为外部的请求、数据不受限的而崩溃。</p>
+<h4 id="1-线程池-ExectorService-的大小和饱和策略"><a href="#1-线程池-ExectorService-的大小和饱和策略" class="headerlink" title="1)线程池(ExectorService)的大小和饱和策略"></a>1)线程池(ExectorService)的大小和饱和策略</h4><p>Server 端用于处理请求的 ExectorService 设置上限。ExecutorService 的任务等待队列使用有限队列，避免资源耗尽。当任务等待队列饱和时，选择一个合适的饱和策略。这样保证平滑劣化。</p>
+<p>在 Dubbo 中，饱和策略是丢弃数据，等待结果也只是请求的超时。</p>
+<p>达到饱和时，说明已经达到服务提供方的负荷上限，要在饱和策略的操作中日志记录这个问题，以发出监控警报。记得注意不要重复多次记录哦。（注意，缺省的饱和策略不会有这些附加的操作。）根据警报的频率，已经决定扩容调整等等，避免系统问题被忽略。</p>
+<h4 id="2-集合容量"><a href="#2-集合容量" class="headerlink" title="2)集合容量"></a>2)集合容量</h4><p>如果确保进入集合的元素是可控的且是足够少，则可以放心使用。这是大部分的情况。如果不能保证，则使用有有界的集合。当到达界限时，选择一个合适的丢弃策略。</p>
+<h3 id="3-容错-重试-恢复"><a href="#3-容错-重试-恢复" class="headerlink" title="3.容错-重试-恢复"></a>3.容错-重试-恢复</h3><p>高可用组件要容忍其依赖组件的失败。</p>
+<h2 id="四，框架拍错"><a href="#四，框架拍错" class="headerlink" title="四，框架拍错"></a>四，框架拍错</h2><h3 id="1-检查重复的-jar-包"><a href="#1-检查重复的-jar-包" class="headerlink" title="1.检查重复的 jar 包"></a>1.检查重复的 jar 包</h3><p>多个版本的相同 jar 包，会出现新版本的 A 类，调用了旧版本的 B 类，而且和 JVM 加载顺序有关，问题带有偶然性，误导性，遇到这种莫名其妙的问题，最头疼，所以，第一条，先把它防住</p>
+<h3 id="2-检查重复的配置文件"><a href="#2-检查重复的配置文件" class="headerlink" title="2.检查重复的配置文件"></a>2.检查重复的配置文件</h3><p>配置文件加载错，也是经常碰到的问题。很多产品都会在 classpath 下放一个约定的配置，如果项目中有多个，通常会取 JVM 加载的第一个</p>
+<h3 id="3-检查所有可选配置"><a href="#3-检查所有可选配置" class="headerlink" title="3.检查所有可选配置"></a>3.检查所有可选配置</h3><p>必填配置估计大家都会检查，因为没有的话，根本没法运行。但对一些可选参数，也应该做一些检查，比如：服务框架允许通过注册中心关联服务消费者和服务提供者，也允许直接配置服务提供者地址点对点直连，这时候，注册中心地址是可选的，但如果没有配点对点直连配置，注册中心地址就一定要配，这时候也要做相应检查。</p>
+<h3 id="4-异常信息给出解决方案"><a href="#4-异常信息给出解决方案" class="headerlink" title="4.异常信息给出解决方案"></a>4.异常信息给出解决方案</h3><p>异常最基本要带有上下文信息，包括操作者，操作目标，原因等，最好的异常信息，应给出解决方案</p>
+<h3 id="5-日志信息包含环境信息"><a href="#5-日志信息包含环境信息" class="headerlink" title="5.日志信息包含环境信息"></a>5.日志信息包含环境信息</h3><p>日志中最好把需要的环境信息一并打进去，最好给日志输出做个包装，统一处理掉，免得忘了。</p>
+<p><strong>获取版本号工具类</strong></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Version</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">Version</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Logger</span> logger <span class="token operator">=</span> <span class="token class-name">LoggerFactory</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token class-name">Version</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Pattern</span> VERSION_PATTERN <span class="token operator">=</span> <span class="token class-name">Pattern</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token string">"([0-9][0-9\\.\\-]*)\\.jar"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> VERSION <span class="token operator">=</span> <span class="token function">getVersion</span><span class="token punctuation">(</span><span class="token class-name">Version</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"2.0.0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> VERSION<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getVersion</span><span class="token punctuation">(</span><span class="token class-name">Class</span> cls<span class="token punctuation">,</span> <span class="token class-name">String</span> defaultVersion<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 首先查找MANIFEST.MF规范中的版本号</span>
+            <span class="token class-name">String</span> version <span class="token operator">=</span> cls<span class="token punctuation">.</span><span class="token function">getPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getImplementationVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>version <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> version<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                version <span class="token operator">=</span> cls<span class="token punctuation">.</span><span class="token function">getPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getSpecificationVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>version <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> version<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 如果MANIFEST.MF规范中没有版本号，基于jar包名获取版本号</span>
+                <span class="token class-name">String</span> file <span class="token operator">=</span> cls<span class="token punctuation">.</span><span class="token function">getProtectionDomain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCodeSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getLocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>file <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> file<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> file<span class="token punctuation">.</span><span class="token function">endsWith</span><span class="token punctuation">(</span><span class="token string">".jar"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">Matcher</span> matcher <span class="token operator">=</span> VERSION_PATTERN<span class="token punctuation">.</span><span class="token function">matcher</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>matcher<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> matcher<span class="token punctuation">.</span><span class="token function">groupCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        version <span class="token operator">=</span> matcher<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// 返回版本号，如果为空返回缺省版本号</span>
+            <span class="token keyword">return</span> version <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> version<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> defaultVersion <span class="token operator">:</span> version<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 防御性容错</span>
+            <span class="token comment">// 忽略异常，返回缺省版本号</span>
+            logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> defaultVersion<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="6-kill-之前先-dump"><a href="#6-kill-之前先-dump" class="headerlink" title="6.kill 之前先 dump"></a>6.kill 之前先 dump</h3><p>每次线上环境一出问题，大家就慌了，通常最直接的办法回滚重启，以减少故障时间，这样现场就被破坏了，要想事后查问题就麻烦了，有些问题必须在线上的大压力下才会发生，线下测试环境很难重现，不太可能让开发或 Appops 在重启前，先手工将出错现场所有数据备份一下，所以最好在 kill 脚本之前调用 dump，进行自动备份，这样就不会有人为疏忽。</p>
+<p><strong>dump 脚本</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span>/usr/java
+<span class="token assign-left variable">OUTPUT_HOME</span><span class="token operator">=~</span>/output
+<span class="token assign-left variable">DEPLOY_HOME</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">dirname</span> $0<span class="token variable">`</span></span>
+<span class="token assign-left variable">HOST_NAME</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">hostname</span><span class="token variable">`</span></span>
+
+<span class="token assign-left variable">DUMP_PIDS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">ps</span>  --no-heading -C java -f --width <span class="token number">1000</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"<span class="token variable">$DEPLOY_HOME</span>"</span> <span class="token operator">|</span><span class="token function">awk</span> <span class="token string">'{print $2}'</span><span class="token variable">`</span></span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$DUMP_PIDS</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"The server <span class="token variable">$HOST_NAME</span> is not started!"</span>
+    <span class="token builtin class-name">exit</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">fi</span>
+
+<span class="token assign-left variable">DUMP_ROOT</span><span class="token operator">=</span><span class="token variable">$OUTPUT_HOME</span>/dump
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -d <span class="token variable">$DUMP_ROOT</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">mkdir</span> <span class="token variable">$DUMP_ROOT</span>
+<span class="token keyword">fi</span>
+
+<span class="token assign-left variable">DUMP_DATE</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%Y%m%d%H%M%S<span class="token variable">`</span></span>
+<span class="token assign-left variable">DUMP_DIR</span><span class="token operator">=</span><span class="token variable">$DUMP_ROOT</span>/dump-<span class="token variable">$DUMP_DATE</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -d <span class="token variable">$DUMP_DIR</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">mkdir</span> <span class="token variable">$DUMP_DIR</span>
+<span class="token keyword">fi</span>
+
+<span class="token builtin class-name">echo</span> -e <span class="token string">"Dumping the server <span class="token variable">$HOST_NAME</span> ...<span class="token entity" title="\c">\c</span>"</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">PID</span> <span class="token keyword">in</span> <span class="token variable">$DUMP_PIDS</span> <span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token variable">$JAVA_HOME</span>/bin/jstack <span class="token variable">$PID</span> <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/jstack-<span class="token variable">$PID</span>.dump <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+    <span class="token variable">$JAVA_HOME</span>/bin/jinfo <span class="token variable">$PID</span> <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/jinfo-<span class="token variable">$PID</span>.dump <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+    <span class="token variable">$JAVA_HOME</span>/bin/jstat -gcutil <span class="token variable">$PID</span> <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/jstat-gcutil-<span class="token variable">$PID</span>.dump <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+    <span class="token variable">$JAVA_HOME</span>/bin/jstat -gccapacity <span class="token variable">$PID</span> <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/jstat-gccapacity-<span class="token variable">$PID</span>.dump <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+    <span class="token variable">$JAVA_HOME</span>/bin/jmap <span class="token variable">$PID</span> <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/jmap-<span class="token variable">$PID</span>.dump <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+    <span class="token variable">$JAVA_HOME</span>/bin/jmap -heap <span class="token variable">$PID</span> <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/jmap-heap-<span class="token variable">$PID</span>.dump <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+    <span class="token variable">$JAVA_HOME</span>/bin/jmap -histo <span class="token variable">$PID</span> <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/jmap-histo-<span class="token variable">$PID</span>.dump <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -r /usr/sbin/lsof <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    /usr/sbin/lsof -p <span class="token variable">$PID</span> <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/lsof-<span class="token variable">$PID</span>.dump
+    <span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+    <span class="token keyword">fi</span>
+<span class="token keyword">done</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -r /usr/bin/sar <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+/usr/bin/sar <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/sar.dump
+<span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -r /usr/bin/uptime <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+/usr/bin/uptime <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/uptime.dump
+<span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -r /usr/bin/free <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+/usr/bin/free -t <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/free.dump
+<span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -r /usr/bin/vmstat <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+/usr/bin/vmstat <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/vmstat.dump
+<span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -r /usr/bin/mpstat <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+/usr/bin/mpstat <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/mpstat.dump
+<span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -r /usr/bin/iostat <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+/usr/bin/iostat <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/iostat.dump
+<span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -r /bin/netstat <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+/bin/netstat <span class="token operator">&gt;</span> <span class="token variable">$DUMP_DIR</span>/netstat.dump
+<span class="token builtin class-name">echo</span> -e <span class="token string">".<span class="token entity" title="\c">\c</span>"</span>
+<span class="token keyword">fi</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"OK!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/blog/about" rel="external nofollow noreferrer">阿松</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://asong123.github.io/blog/2021/07/12/snf06d/">https://asong123.github.io/blog/2021/07/12/snf06d/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/blog/about" target="_blank">阿松</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/blog/2021/07/12/vvp1vn/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/0.jpg" class="responsive-img" alt="Gateway核心源码分析">
+                        
+                        <span class="card-title">Gateway核心源码分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            阿松
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/2021/07/12/qylx1c/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/21.jpg" class="responsive-img" alt="幂等性总结">
+                        
+                        <span class="card-title">幂等性总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            阿松
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/blog/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/blog/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/blog/about" target="_blank">阿松</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">216.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:835549978@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=835549978" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 835549978" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/blog/libs/materialize/materialize.min.js"></script>
+    <script src="/blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/blog/libs/aos/aos.js"></script>
+    <script src="/blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+
+</html>

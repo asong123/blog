@@ -1,0 +1,1244 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="消息队列总结, 阿松小站">
+    <meta name="description" content="阿松自己的小博客网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>消息队列总结 | 阿松小站</title>
+    <link rel="icon" type="image/png" href="/blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/my.css">
+
+    <script src="/blog/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/blog/atom.xml" title="阿松小站" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/blog/" class="waves-effect waves-light">
+                    
+                    <img src="/blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">阿松小站</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>媒体</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/blog/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>电影</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>书籍</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/galleries">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>图表</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">阿松小站</div>
+        <div class="logo-desc">
+            
+            阿松自己的小博客网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			媒体
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/blog/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>电影</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>书籍</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/galleries " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>图表</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/blog/libs/cryptojs/crypto-js.min.js"></script>
+<meta name="referrer" content="no-referrer" />
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/blog/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">消息队列总结</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/blog/tags/java/">
+                                <span class="chip bg-color">java</span>
+                            </a>
+                        
+                            <a href="/blog/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+                                <span class="chip bg-color">消息队列</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/blog/categories/java/" class="post-category">
+                                java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-13
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    19 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="一、rocketmq"><a href="#一、rocketmq" class="headerlink" title="一、rocketmq"></a>一、rocketmq</h1><h2 id="1-1-RocketMQ-特点"><a href="#1-1-RocketMQ-特点" class="headerlink" title="1.1 RocketMQ 特点"></a>1.1 RocketMQ 特点</h2><blockquote>
+<p>灵活可扩展性</p>
+</blockquote>
+<p>RocketMQ 天然支持集群，其核心四组件（Name Server、Broker、Producer、Consumer）每一个都可以在没有单点故障的情况下进行水平扩展。</p>
+<blockquote>
+<p>海量消息堆积能力</p>
+</blockquote>
+<p>RocketMQ 采用零拷贝原理实现超大的消息的堆积能力，据说单机已可以支持亿级消息堆积，而且在堆积了这么多消息后依然保持写入低延迟。</p>
+<blockquote>
+<p>支持顺序消息</p>
+</blockquote>
+<p>可以保证消息消费者按照消息发送的顺序对消息进行消费。顺序消息分为全局有序和局部有序，一般推荐使用局部有序，即生产者通过将某一类消息按顺序发送至同一个队列来实现。</p>
+<blockquote>
+<p>多种消息过滤方式</p>
+</blockquote>
+<p>消息过滤分为在服务器端过滤和在消费端过滤。服务器端过滤时可以按照消息消费者的要求做过滤，优点是减少不必要消息传输，缺点是增加了消息服务器的负担，实现相对复杂。消费端过滤则完全由具体应用自定义实现，这种方式更加灵活，缺点是很多无用的消息会传输给消息消费者。</p>
+<blockquote>
+<p>支持事务消息</p>
+</blockquote>
+<p>RocketMQ 除了支持普通消息，顺序消息之外还支持事务消息，这个特性对于分布式事务来说提供了又一种解决思路。</p>
+<blockquote>
+<p>回溯消费</p>
+</blockquote>
+<p>回溯消费是指消费者已经消费成功的消息，由于业务上需求需要重新消费，RocketMQ 支持按照时间回溯消费，时间维度精确到毫秒，可以向前回溯，也可以向后回溯。</p>
+<h2 id="1-2-RocketMQ-的架构"><a href="#1-2-RocketMQ-的架构" class="headerlink" title="1.2 RocketMQ 的架构"></a>1.2 RocketMQ 的架构</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1598606502022-6611f0f1-b252-461d-afeb-bb71a526d48e.png#height=336&amp;id=xwFqu&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=431&amp;originWidth=957&amp;originalType=binary%E2%88%B6=1&amp;size=68931&amp;status=done&amp;style=none&amp;width=746" alt="image.png"></p>
+<p>RocketMQ 核心的四大组件：Name Server、Broker、Producer、Consumer ，每个组件都可以部署成集群模式进行水平扩展。</p>
+<h2 id="1-3-RocketMQ-基本概念"><a href="#1-3-RocketMQ-基本概念" class="headerlink" title="1.3 RocketMQ 基本概念"></a>1.3 RocketMQ 基本概念</h2><h3 id="1-3-1-生产者"><a href="#1-3-1-生产者" class="headerlink" title="1.3.1 生产者"></a>1.3.1 生产者</h3><p>生产者（Producer）负责产生消息，生产者向消息服务器发送由业务应用程序系统生成的消息。 RocketMQ 提供了三种方式发送消息：同步、异步和单向。</p>
+<h4 id="1-3-1-1-同步发送"><a href="#1-3-1-1-同步发送" class="headerlink" title="1.3.1.1 同步发送"></a>1.3.1.1 同步发送</h4><p>同步发送指消息发送方发出数据后会在收到接收方发回响应之后才发下一个数据包。一般用于重要通知消息，例如重要通知邮件、营销短信。</p>
+<h4 id="1-3-1-2-异步发送"><a href="#1-3-1-2-异步发送" class="headerlink" title="1.3.1.2 异步发送"></a>1.3.1.2 异步发送</h4><p>异步发送指发送方发出数据后，不等接收方发回响应，接着发送下个数据包，一般用于可能链路耗时较长而对响应时间敏感的业务场景，例如用户视频上传后通知启动转码服务。</p>
+<h4 id="1-3-1-3-单向发送"><a href="#1-3-1-3-单向发送" class="headerlink" title="1.3.1.3 单向发送"></a>1.3.1.3 单向发送</h4><p>单向发送是指只负责发送消息而不等待服务器回应且没有回调函数触发，适用于某些耗时非常短但对可靠性要求并不高的场景，例如日志收集。<br>​</p>
+<h4 id="1-3-1-4-生产者组"><a href="#1-3-1-4-生产者组" class="headerlink" title="1.3.1.4 生产者组"></a>1.3.1.4 生产者组</h4><p>生产者组（Producer Group）是一类 Producer 的集合，这类 Producer 通常发送一类消息并且发送逻辑一致，所以将这些 Producer 分组在一起。从部署结构上看生产者通过 Producer Group 的名字来标记自己是一个集群。<br>​</p>
+<h3 id="1-3-2-消费者"><a href="#1-3-2-消费者" class="headerlink" title="1.3.2 消费者"></a>1.3.2 消费者</h3><p>消费者（Consumer）负责消费消息，消费者从消息服务器拉取信息并将其输入用户应用程序。站在用户应用的角度消费者有两种类型：拉取型消费者、推送型消费者。</p>
+<h4 id="1-3-2-1-拉取型消费者"><a href="#1-3-2-1-拉取型消费者" class="headerlink" title="1.3.2.1 拉取型消费者"></a>1.3.2.1 拉取型消费者</h4><p>拉取型消费者（Pull Consumer）主动从消息服务器拉取信息，只要批量拉取到消息，用户应用就会启动消费过程，所以 Pull 称为主动消费型。</p>
+<h4 id="1-3-2-2-推送型消费者"><a href="#1-3-2-2-推送型消费者" class="headerlink" title="1.3.2.2 推送型消费者"></a>1.3.2.2 推送型消费者</h4><p>推送型消费者（Push Consumer）封装了消息的拉取、消费进度和其他的内部维护工作，将消息到达时执行的回调接口留给用户应用程序来实现。所以 Push 称为被动消费类型，但从实现上看还是从消息服务器中拉取消息，不同于 Pull 的是 Push 首先要注册消费监听器，当监听器处触发后才开始消费消息。</p>
+<h4 id="1-3-2-3-消费者组"><a href="#1-3-2-3-消费者组" class="headerlink" title="1.3.2.3 消费者组"></a>1.3.2.3 消费者组</h4><p>消费者组（Consumer Group）一类 Consumer 的集合名称，这类 Consumer 通常消费同一类消息并且消费逻辑一致，所以将这些 Consumer 分组在一起。消费者组与生产者组类似，都是将相同角色的分组在一起并命名，分组是个很精妙的概念设计，RocketMQ 正是通过这种分组机制，实现了天然的消息负载均衡。消费消息时通过 Consumer Group 实现了将消息分发到多个消费者服务器实例，比如某个 Topic 有 9 条消息，其中一个 Consumer Group 有 3 个实例（3 个进程或 3 台机器），那么每个实例将均摊 3 条消息，这也意味着我们可以很方便的通过加机器来实现水平扩展。<br>​</p>
+<h3 id="1-3-3-消息服务器（broker）"><a href="#1-3-3-消息服务器（broker）" class="headerlink" title="1.3.3 消息服务器（broker）"></a>1.3.3 消息服务器（broker）</h3><p>消息服务器（Broker）是消息存储中心，主要作用是接收来自 Producer 的消息并存储， Consumer 从这里取得消息。它还存储与消息相关的元数据，包括用户组、消费进度偏移量、队列信息等。从部署结构图中可以看出 Broker 有 Master 和 Slave 两种类型，Master 既可以写又可以读，Slave 不可以写只可以读。从物理结构上看 Broker 的集群部署方式有四种：单 Master 、多 Master 、多 Master 多 Slave（同步刷盘）、多 Master 多 Slave（异步刷盘）。</p>
+<h4 id="1-3-3-1-单-Master"><a href="#1-3-3-1-单-Master" class="headerlink" title="1.3.3.1 单 Master"></a>1.3.3.1 单 Master</h4><p>这种方式一旦 Broker 重启或宕机会导致整个服务不可用，这种方式风险较大，所以显然不建议线上环境使用。</p>
+<h4 id="1-3-3-2-多-Master"><a href="#1-3-3-2-多-Master" class="headerlink" title="1.3.3.2 多 Master"></a>1.3.3.2 多 Master</h4><p>所有消息服务器都是 Master ，没有 Slave 。这种方式优点是配置简单，单个 Master 宕机或重启维护对应用无影响。缺点是单台机器宕机期间，该机器上未被消费的消息在机器恢复之前不可订阅，消息实时性会受影响。</p>
+<h4 id="1-3-3-3-多-Master-多-Slave（异步复制）"><a href="#1-3-3-3-多-Master-多-Slave（异步复制）" class="headerlink" title="1.3.3.3 多 Master 多 Slave（异步复制）"></a>1.3.3.3 多 Master 多 Slave（异步复制）</h4><p>每个 Master 配置一个 Slave，所以有多对 Master-Slave，消息采用异步复制方式，主备之间有毫秒级消息延迟。这种方式优点是消息丢失的非常少，且消息实时性不会受影响，Master 宕机后消费者可以继续从 Slave 消费，中间的过程对用户应用程序透明，不需要人工干预，性能同多 Master 方式几乎一样。缺点是 Master 宕机时在磁盘损坏情况下会丢失极少量消息。</p>
+<h4 id="1-3-3-4-多-Master-多-Slave（同步双写）"><a href="#1-3-3-4-多-Master-多-Slave（同步双写）" class="headerlink" title="1.3.3.4 多 Master 多 Slave（同步双写）"></a>1.3.3.4 多 Master 多 Slave（同步双写）</h4><p>每个 Master 配置一个 Slave，所以有多对 Master-Slave ，消息采用同步双写方式，主备都写成功才返回成功。这种方式优点是数据与服务都没有单点问题，Master 宕机时消息无延迟，服务与数据的可用性非常高。缺点是性能相对异步复制方式略低，发送消息的延迟会略高。</p>
+<h3 id="1-3-4-名称服务器-NameServer"><a href="#1-3-4-名称服务器-NameServer" class="headerlink" title="1.3.4 名称服务器(NameServer)"></a>1.3.4 名称服务器(NameServer)</h3><p>名称服务器（NameServer）用来保存 Broker 相关元信息并给 Producer 和 Consumer 查找 Broker 信息。NameServer 被设计成几乎无状态的，可以横向扩展，节点之间相互之间无通信，通过部署多台机器来标记自己是一个伪集群。每个 Broker 在启动的时候会到 NameServer 注册，Producer 在发送消息前会根据 Topic 到 NameServer 获取到 Broker 的路由信息，Consumer 也会定时获取 Topic 的路由信息。所以从功能上看应该是和 ZooKeeper 差不多，据说 RocketMQ 的早期版本确实是使用的 ZooKeeper ，后来改为了自己实现的 NameServer</p>
+<h3 id="1-3-5-消息"><a href="#1-3-5-消息" class="headerlink" title="1.3.5 消息"></a>1.3.5 消息</h3><p>消息（Message）就是要传输的信息。一条消息必须有一个主题（Topic），主题可以看做是你的信件要邮寄的地址。一条消息也可以拥有一个可选的标签（Tag）和额处的键值对，它们可以用于设置一个业务 key 并在 Broker 上查找此消息以便在开发期间查找问题。</p>
+<h4 id="1-3-5-1-主题"><a href="#1-3-5-1-主题" class="headerlink" title="1.3.5.1 主题"></a>1.3.5.1 主题</h4><p>主题（Topic）可以看做消息的规类，它是消息的第一级类型。比如一个电商系统可以分为：交易消息、物流消息等，一条消息必须有一个 Topic 。Topic 与生产者和消费者的关系非常松散，一个 Topic 可以有 0 个、1 个、多个生产者向其发送消息，一个生产者也可以同时向不同的 Topic 发送消息。一个 Topic 也可以被 0 个、1 个、多个消费者订阅。</p>
+<h4 id="1-3-5-1-标签"><a href="#1-3-5-1-标签" class="headerlink" title="1.3.5.1 标签"></a>1.3.5.1 标签</h4><p>标签（Tag）可以看作子主题，它是消息的第二级类型，用于为用户提供额外的灵活性。使用标签，同一业务模块不同目的的消息就可以用相同 Topic 而不同的 Tag 来标识。比如交易消息又可以分为：交易创建消息、交易完成消息等，一条消息可以没有 Tag 。标签有助于保持您的代码干净和连贯，并且还可以为 RocketMQ 提供的查询系统提供帮助。</p>
+<h4 id="1-3-5-1-消息队列"><a href="#1-3-5-1-消息队列" class="headerlink" title="1.3.5.1 消息队列"></a>1.3.5.1 消息队列</h4><p>消息队列（Message Queue），主题被划分为一个或多个子主题，即消息队列。一个 Topic 下可以设置多个消息队列，发送消息时执行该消息的 Topic ，RocketMQ 会轮询该 Topic 下的所有队列将消息发出去。下图 Broker 内部消息情况：<br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/635741/1597734128477-83e3b220-0dae-4916-946f-5c0914499f59.jpeg#height=325&amp;id=mP1GO&amp;name=image.jpeg&amp;originHeight=325&amp;originWidth=580&amp;originalType=binary%E2%88%B6=1&amp;size=80818&amp;status=done&amp;style=none&amp;width=580" alt="image.jpeg"></p>
+<h4 id="1-3-5-1-消息消费模式"><a href="#1-3-5-1-消息消费模式" class="headerlink" title="1.3.5.1 消息消费模式"></a>1.3.5.1 消息消费模式</h4><p>消息消费模式有两种：集群消费（Clustering）和广播消费（Broadcasting）。默认情况下就是集群消费，该模式下一个消费者集群共同消费一个主题的多个队列，一个队列只会被一个消费者消费，如果某个消费者挂掉，分组内其它消费者会接替挂掉的消费者继续消费。而广播消费消息会发给消费者组中的每一个消费者进行消费。</p>
+<h4 id="1-3-5-1-消息顺序"><a href="#1-3-5-1-消息顺序" class="headerlink" title="1.3.5.1 消息顺序"></a>1.3.5.1 消息顺序</h4><p>消息顺序（Message Order）有两种：顺序消费（Orderly）和并行消费（Concurrently）。顺序消费表示消息消费的顺序同生产者为每个消息队列发送的顺序一致，所以如果正在处理全局顺序是强制性的场景，需要确保使用的主题只有一个消息队列。并行消费不再保证消息顺序，消费的最大并行数量受每个消费者客户端指定的线程池限制。</p>
+<h1 id="二、kafka"><a href="#二、kafka" class="headerlink" title="二、kafka"></a>二、kafka</h1><h2 id="2-1-kafka-的体系架构"><a href="#2-1-kafka-的体系架构" class="headerlink" title="2.1 kafka 的体系架构"></a>2.1 kafka 的体系架构</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597736842152-ed127301-0f47-462d-9f98-7ebf19df6e06.png#height=424&amp;id=hXEaR&amp;margin=%5Bobject%20Object%5D&amp;name=clipboard.png&amp;originHeight=424&amp;originWidth=866&amp;originalType=binary%E2%88%B6=1&amp;size=54523&amp;status=done&amp;style=none&amp;width=866" alt="clipboard.png"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597736868217-b4e63174-ffae-4fbb-9363-c8e9f8c2d3b2.png#height=325&amp;id=FqnsG&amp;margin=%5Bobject%20Object%5D&amp;name=clipboard.png&amp;originHeight=325&amp;originWidth=587&amp;originalType=binary%E2%88%B6=1&amp;size=82825&amp;status=done&amp;style=none&amp;width=587" alt="clipboard.png"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597736881365-c68db380-a43f-4637-a11e-132154a676be.png#height=236&amp;id=kUryv&amp;margin=%5Bobject%20Object%5D&amp;name=clipboard.png&amp;originHeight=236&amp;originWidth=459&amp;originalType=binary%E2%88%B6=1&amp;size=20061&amp;status=done&amp;style=none&amp;width=459" alt="clipboard.png"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597736900364-e1aaf4f6-8edb-424a-85f5-7a0e4caa560f.png#height=159&amp;id=bG62H&amp;margin=%5Bobject%20Object%5D&amp;name=121221343268.png&amp;originHeight=159&amp;originWidth=477&amp;originalType=binary%E2%88%B6=1&amp;size=35652&amp;status=done&amp;style=none&amp;width=477" alt="121221343268.png"></p>
+<h2 id="2-2-kafka-在-zk-中的存储结构"><a href="#2-2-kafka-在-zk-中的存储结构" class="headerlink" title="2.2 kafka 在 zk 中的存储结构"></a>2.2 <strong>kafka 在 zk 中的存储结构</strong></h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597736948896-d596fb18-2f7e-4248-bdcd-d55eb129a31c.png#height=745&amp;id=Bv5a0&amp;margin=%5Bobject%20Object%5D&amp;name=clipboard.png&amp;originHeight=745&amp;originWidth=1322&amp;originalType=binary%E2%88%B6=1&amp;size=77702&amp;status=done&amp;style=none&amp;width=1322" alt="clipboard.png"></p>
+<h2 id="2-3-名词解释-amp-amp-基本概念"><a href="#2-3-名词解释-amp-amp-基本概念" class="headerlink" title="2.3 名词解释 &amp;&amp; 基本概念"></a>2.3 名词解释 &amp;&amp; 基本概念</h2><p><strong>Broker：</strong>kafka 实例节点，一般一台主机一个 broker<br><strong>Topic：</strong>主题（逻辑存储），一个主题包含一个或者多个分区，如果想全局消息有序，那么最多只能有一个分区。<br><strong>Partition：</strong>分区（实际存储），包含.index 索引文件和.log 实际数据存储文件，分区上按照游标有序消费。<br><strong>消费组：</strong>一个消费组有多个消费者，一个消息只能被一个消费组中的一个消费者消费，所以消费组的消费者的数量应该小于主题分区的数量（最好成整数倍关系，比如分区是 4,消费组中的消费者是 2），因为同一分区下的数据在同一时刻不能被同一个消费组中的不同消费者消费，否则会造成不同消费者抢占同一分区消息，这样子就会涉及到加锁的问题，得不偿失。<br><strong>re-blance（重平衡）：</strong>每个 consumer 只负责调整自己所消费的 partition，任何 broker 或者 consumer 的增减都会触发所有的 consumer 的 rebalance，也就是重新为消费组中的 consumer 分配负责的分区。<br><strong>AR：</strong>所有的副本（replicas）统称为 Assigned Replicas，即 AR。AR=ISR+OSR<br><strong>ISR：</strong>ISR (In-Sync Replicas)，这个是指副本同步队列，它是 AR 的一个子集。follower 从 leader 同步数据有一些延迟 replica.lag.time.max.ms，如果副本的延迟超过了这个参数，那么就会移出 ISR 队列，放进 OSR 队列。同时在 ISR 中还有一个 HW 的概念，HW 俗称高水位，HighWatermark 的缩写，取一个 partition 对应的 ISR 中最小的 LEO 作为 HW。类似于木桶短板效应，consumer 只能消费到 HW。leader 宕机的时候是从 ISR 从选取出来一个作为 leader 的。这样子就保证了数据的高可用。<br><strong>OSR：</strong>OSR（Outof-Sync Replicas），新加入的 follower 和数据复制延迟超时的会先存放在 OSR 中,等数据同步到一定程度可以移进 ISR.<br><strong>HW：</strong>HW 俗称高水位，HighWatermark 的缩写，取一个 partition 对应的 ISR 中最小的 LEO 作为 HW，consumer 最多只能消费到 HW 所在的位置。<br><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597737274415-0ba117da-ca25-40e5-8fe4-880a0cc053b4.png#height=547&amp;id=M9N12&amp;margin=%5Bobject%20Object%5D&amp;name=clipboard.png&amp;originHeight=547&amp;originWidth=1000&amp;originalType=binary%E2%88%B6=1&amp;size=320817&amp;status=done&amp;style=none&amp;width=1000" alt="clipboard.png"></p>
+<h2 id="2-4-核心参数配置"><a href="#2-4-核心参数配置" class="headerlink" title="2.4 核心参数配置"></a>2.4 核心参数配置</h2><p>acks 确认参数（数的值可以看成是需要多少个分区（leader+副本）写入）：<br>1）acks=0： 设置为 0 表示 producer 不需要等待任何确认收到的信息。副本将立即加到 socket &nbsp;buffer 并认为已经发送。没有任何保障可以保证此种情况下 server 已经成功接收数据，同时重试配置不会发生作用（因为客户端不知道是否失败）回馈的 offset 会总是设置为-1；<br>2）acks=1： 这意味着至少要等待 leader 已经成功将数据写入本地 log，但是并没有等待所有 follower 是否成功写入。这种情况下，如果 follower 没有成功备份数据，而此时 leader 又挂掉，则消息会丢失。<br>3）acks=all： 这意味着 leader 需要等待所有备份都成功写入日志，这种策略会保证只要有一个备份存活就不会丢失数据。这是最强的保证。<br>4）其他的设置，例如 acks=2 也是可以的，这将需要给定的 acks 数量，但是这种策略一般很少用。</p>
+<p>retries 重试次数<br>默认是 0，设置重试次数大于 0 可以让客户端发送数据失败的时候重新发送任何数据。</p>
+<p>auto.commit.enable 自动确认<br>默认为 true，可以改为 false 进行手动提交，防止重复消费（提交丢失，也就是提交的时候 broker 挂掉了，但此时业务系统已经消费了消息）</p>
+<h2 id="2-5-如何保证消息不丢失不重复？"><a href="#2-5-如何保证消息不丢失不重复？" class="headerlink" title="2.5 如何保证消息不丢失不重复？"></a>2.5 如何保证消息不丢失不重复？</h2><p><strong>消息丢失：</strong><br>1）生产者阶段丢失：往 Broker 写入消息时，发生网络错误，消息不可达。<br><strong>问题出现原因：</strong>若设置了 ack=0 或者 retries=0<br><strong>解决办法：</strong>设置 ack=1 或者设置 ack=all<strong>，</strong>设置 retries &gt; 1 进行消息不断的重新发送，这可能导致消息重发发送，解决办法参考消息重复-解决办法 1</p>
+<p>2）Broker 阶段丢失：<br>2.1）分区 leader 收到消息，同步分区复制到新消息之前，分区 leader 崩溃。<br><strong>问题出现原因：</strong>若设置了 ack=1 或者 unclean.leader.election.enable=true<br><strong>解决办法：</strong>1）设置 ack=all,并且设置 min.insync.replicas &gt; 1<br>2）设置 unclean.leader.election.enable = false<br>注：1）unclean.leader.election.enable 代表是否允许 ISR 以外的副本作为 leader,会导致数据 丢失，默认为 false。<br>2）min.insync.replicas 为最小成功副本数</p>
+<p>3）消费者：读取到一批消息，消费者提交了偏移量却未能处理读到的消息（如数据需要的算力很大，处理时间会很长），这是消费者丢消息的主要原因。<br><strong>解决办法：</strong>关闭 kafka 自动提交，auto.commit.enable=false，进行手动的提交消息，待业务处理完成后再进行手动的提交 offset,但是这样子也可能会带来消息重复的问题，手动提交时 kafka 节点挂了，offset 提交失败，但是此时消息已经进行消费。</p>
+<p><strong>消息重复：</strong><br>1）生产者：往 Broker 写入消息时超时了，进行了重复消息发送。<br><strong>解决办法 1：</strong>启动 kafka 的幂等性，无需修改代码，默认为关闭，需要修改配置文件:enable.idempotence=true 同时要求 ack=all 且 retries&gt;1<br>幂等原理：<br>　　每个 producer 有一个 producer id，服务端会通过这个 id 关联记录每个 producer 的状态，每个 producer 的每条消息会带上一个递增的 sequence，服务端会记录每个 producer 对应的当前最大 sequence，producerId + sequence ，如果新的消息带上的 sequence 不大于当前的最大 sequence 就拒绝这条消息，如果消息落盘会同时更新最大 sequence，这个时候重发的消息会被服务端拒掉从而避免消息重复。该配置同样应用于 kafka 事务中。</p>
+<p><strong>解决办法 2：</strong>ack=0，不重试（看场景，需要高可靠性的不建议）<br>可能会丢消息，适用于吞吐量指标重要性高于数据丢失，例如：日志收集。</p>
+<p>2）消费者：<br>问题一：offset 未提交。<br><strong>原因 1：</strong>强行 kill 线程，导致消费后的数据，offset 没有提交（消费系统宕机、重启等）<br><strong>原因 2：</strong>出现 re-blance 重平衡时，此时有一定几率 offset 没提交，会导致重平衡后重复消费。&nbsp;<br><strong>解决办法 1：</strong>如果消息消费是写在事务型方法里面，进行事物回滚消费消息失败即可。<br><strong>解决办法 2：</strong>允许重复消费，对重复消费做等幂的处理。具体怎么处理可以看业务，例如对于存储到 redis 上的数据可以进行直接的覆盖，对于存储到数据库的数据可以考虑数据库的唯一索引，给每一条消息设置一个消息 ID，相同的消息 ID 一样。</p>
+<p>问题二：消费者重新分配 partition 的时候，可能出现从头开始消费的情况，导致重复问题。<br>解决办法：kafka.consumer.auto.offset.reset=latest</p>
+<p>总结：<br>对于消息丢失处理：设置 ack=all，retries 进行无限次重试，并设置最小同步副本数 min.insync.replicas &gt; 1，设置 unclean.leader.election.enable = false，设置手动的消息提交 auto.commit.enable=false。<br>对于消息重复的处理：设置 enable.idempotence=true 让 kafka 处理生产端的消息重复，设置 kafka.consumer.auto.offset.reset=latest 防止重新分配 partition 的时候出现从头消费，同时业务层对消费的重复消息进行处理。</p>
+<h2 id="2-6-Kafka-如何进行选举？"><a href="#2-6-Kafka-如何进行选举？" class="headerlink" title="2.6 Kafka 如何进行选举？"></a>2.6 Kafka 如何进行选举？</h2><p>leader 在 zk 上创建一个临时节点，所有 Follower 对此节点注册监听，当 leader 宕机时，此时 ISR 里的所有 Follower 都尝试创建该节点，而创建成功者（Zookeeper 保证只有一个能创建成功）即是新的 Leader，其它 Replica 即为 Follower。<br>实际上的实现思路也是这样，只是优化了下，多了个代理控制管理类（controller）。<strong>引入的原因是，当 kafka 集群业务很多，partition 达到成千上万时，当 broker 宕机时，造成集群内大量的调整，会造成大量 Watch 事件被触发，Zookeeper 负载会过重</strong>。zk 是不适合大量写操作的。<br><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597737682294-4726e2ec-5a41-4179-adad-35897e73f392.png#height=506&amp;id=iLQFU&amp;margin=%5Bobject%20Object%5D&amp;name=clipboard.png&amp;originHeight=506&amp;originWidth=1148&amp;originalType=binary%E2%88%B6=1&amp;size=120809&amp;status=done&amp;style=none&amp;width=1148" alt="clipboard.png"><br>Kafaka 动态维护了一个同步状态的副本的集合（a set of in-sync replicas），简称 ISR，在这个集合中的节点都是和 leader 保持高度一致的，任何一条消息必须被这个集合中的每个节点读取并追加到日志中了，才回通知外部这个消息已经被提交了。因此这个集合中的任何一个节点随时都可以被选为 leader。ISR 在 ZooKeeper 中维护。ISR 中有 f+1 个节点，就可以允许在 f 个节点 down 掉的情况下不会丢失消息并正常提供服。ISR 的成员是动态的，如果一个节点被淘汰了，当它重新达到“同步中”的状态时，他可以重新加入 ISR。因此如果 leader 宕了，直接从 ISR 中选择一个 follower 就行。<br>那么如果所有节点都 down 掉了怎么办？Kafka 对于数据不会丢失的保证，是基于至少一个节点是存活的，一旦所有节点都 down 了，这个就不能保证了。<br>实际应用中，当所有的副本都 down 掉时，必须及时作出反应。可以有以下两种选择:<br>1）等待 ISR 中的任何一个节点恢复并担任 leader。<br>2）选择所有节点中（不只是 ISR）第一个恢复的节点作为 leader。（可能导致消息丢失）<br>​</p>
+<p>​</p>
+<h1 id="三、消息队列的选型"><a href="#三、消息队列的选型" class="headerlink" title="三、消息队列的选型"></a>三、消息队列的选型</h1><h2 id="3-1-消息队列方案对比图"><a href="#3-1-消息队列方案对比图" class="headerlink" title="3.1 消息队列方案对比图"></a>3.1 消息队列方案对比图</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597737836122-88161f22-c2b0-422b-83f3-69891ead113a.png#height=854&amp;id=d3Jbt&amp;margin=%5Bobject%20Object%5D&amp;name=clipboard.png&amp;originHeight=854&amp;originWidth=934&amp;originalType=binary%E2%88%B6=1&amp;size=337300&amp;status=done&amp;style=none&amp;width=934" alt="clipboard.png"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1597737849661-b0f85b48-4f68-477a-a2a4-999bf6aa2106.png#height=833&amp;id=gHcIc&amp;margin=%5Bobject%20Object%5D&amp;name=clipboard.png&amp;originHeight=833&amp;originWidth=835&amp;originalType=binary%E2%88%B6=1&amp;size=417124&amp;status=done&amp;style=none&amp;width=835" alt="clipboard.png"></p>
+<h2 id="3-2-为什么要使用-kafka-做消息通信？"><a href="#3-2-为什么要使用-kafka-做消息通信？" class="headerlink" title="3.2 为什么要使用 kafka 做消息通信？"></a>3.2 为什么要使用 kafka 做消息通信？</h2><p>主要是从吞吐量和可靠性，易用性三个方面考虑。对于单机的吞吐量 kafka 可以达到十万的级别而 activemq 是万级，可靠性方面 activemq 是主从架构，而 kafka 是分布式架构，可靠性方面更加好，kafka 理论上不会有数据丢失，会有数据重复，对于像 kafka 这种社区活跃度也比较高，所以最终会选择它做消息系统。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/blog/about" rel="external nofollow noreferrer">阿松</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://asong123.github.io/blog/2021/07/12/iuzxzt/">https://asong123.github.io/blog/2021/07/12/iuzxzt/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/blog/about" target="_blank">阿松</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/blog/tags/java/">
+                                    <span class="chip bg-color">java</span>
+                                </a>
+                            
+                                <a href="/blog/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+                                    <span class="chip bg-color">消息队列</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/blog/2021/07/12/qylx1c/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/21.jpg" class="responsive-img" alt="幂等性总结">
+                        
+                        <span class="card-title">幂等性总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            阿松
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/2021/07/12/rw8603/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/10.jpg" class="responsive-img" alt="加解密总结">
+                        
+                        <span class="card-title">加解密总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            阿松
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/blog/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/blog/about" target="_blank">阿松</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">216.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:835549978@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=835549978" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 835549978" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/blog/libs/materialize/materialize.min.js"></script>
+    <script src="/blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/blog/libs/aos/aos.js"></script>
+    <script src="/blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+
+</html>

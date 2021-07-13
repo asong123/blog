@@ -1,0 +1,1505 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="SpringBoot日志, 阿松小站">
+    <meta name="description" content="阿松自己的小博客网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>SpringBoot日志 | 阿松小站</title>
+    <link rel="icon" type="image/png" href="/blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/my.css">
+
+    <script src="/blog/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/blog/atom.xml" title="阿松小站" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/blog/" class="waves-effect waves-light">
+                    
+                    <img src="/blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">阿松小站</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>媒体</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/blog/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>电影</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>书籍</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/galleries">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>图表</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">阿松小站</div>
+        <div class="logo-desc">
+            
+            阿松自己的小博客网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			媒体
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/blog/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>电影</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>书籍</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/galleries " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>图表</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/blog/libs/cryptojs/crypto-js.min.js"></script>
+<meta name="referrer" content="no-referrer" />
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/blog/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">SpringBoot日志</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/blog/tags/SpringBoot/">
+                                <span class="chip bg-color">SpringBoot</span>
+                            </a>
+                        
+                            <a href="/blog/tags/SpringBoot%E6%97%A5%E5%BF%97/">
+                                <span class="chip bg-color">SpringBoot日志</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/blog/categories/SpringBoot/" class="post-category">
+                                SpringBoot
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-13
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    13 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="SpringBoot-日志"><a href="#SpringBoot-日志" class="headerlink" title="SpringBoot 日志"></a>SpringBoot 日志</h1><h2 id="1-1-日志隔离级别"><a href="#1-1-日志隔离级别" class="headerlink" title="1.1 日志隔离级别"></a>1.1 日志隔离级别</h2><p>日志级别总共有 TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL ，且级别是逐渐提供，如果日志级别设置为 INFO，则意味 TRACE 和 DEBUG 级别的日志都看不到。</p>
+<h2 id="1-2-SpringBoot-的日志关系"><a href="#1-2-SpringBoot-的日志关系" class="headerlink" title="1.2 SpringBoot 的日志关系"></a>1.2 SpringBoot 的日志关系</h2><p>Spring Boot 默认使用 LogBack 日志系统，如果不需要更改为其他日志系统如 Log4j2 等，则无需多余的配置，LogBack 默认将日志打印到控制台上。</p>
+<p>如果要使用 LogBack，原则上是需要添加 dependency 依赖的：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+<span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>logging<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>但是 spring-boot-starter<code>或者</code>spring-boot-starter-web 已经帮我们引入了这两个包</p>
+<p><strong>SpringBoot 日志的底层依赖关系：</strong></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1590053375265-8ab2b1fa-75b2-45a1-8f44-19f65f07f793.png#height=339&amp;id=tHiQu&amp;margin=%5Bobject%20Object%5D&amp;name=1646268-20190709113542010-191320310.png&amp;originHeight=339&amp;originWidth=871&amp;originalType=binary%E2%88%B6=1&amp;size=30773&amp;status=done&amp;style=none&amp;width=871" alt="1646268-20190709113542010-191320310.png"></p>
+<p>通过这张图我们能总结出：<br>1）Spring Boot 底层也是使用 slf4j+logback 的方式进行日志记录<br>2）Spring Boot 也把其他的日志都替换成了 slf4j；</p>
+<h2 id="1-3-springboot-修改日志实现"><a href="#1-3-springboot-修改日志实现" class="headerlink" title="1.3 springboot 修改日志实现"></a>1.3 springboot 修改日志实现</h2><p>我们可以给类路径下放上每个日志框架自己的配置文件，SpringBoot 就不使用他默认配置的了：<br><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1590053451129-322404f4-9ec8-4d67-8345-bac0750a35ae.png#height=197&amp;id=jBNgr&amp;margin=%5Bobject%20Object%5D&amp;name=image-20200426104826775.png&amp;originHeight=197&amp;originWidth=739&amp;originalType=binary%E2%88%B6=1&amp;size=13497&amp;status=done&amp;style=none&amp;width=739" alt="image-20200426104826775.png"><br>我们可以通过配置日志文件来覆盖 SpringBoot 的默认配置。</p>
+<h2 id="1-4-通过-application-yml-配置"><a href="#1-4-通过-application-yml-配置" class="headerlink" title="1.4 通过 application.yml 配置"></a>1.4 通过 application.yml 配置</h2><h3 id="1-4-1-全局日志级别配置"><a href="#1-4-1-全局日志级别配置" class="headerlink" title="1.4.1 全局日志级别配置"></a>1.4.1 全局日志级别配置</h3><p>SpringBoot 默认的隔离级别为<strong>INFO</strong>，如果要全局修改 SpringBoot 的隔离级别，那么需配置：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">logging<span class="token operator">:</span>
+  level<span class="token operator">:</span>
+    root<span class="token operator">:</span> warn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="1-4-2-包日志级别配置"><a href="#1-4-2-包日志级别配置" class="headerlink" title="1.4.2 包日志级别配置"></a>1.4.2 包日志级别配置</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">logging<span class="token operator">:</span>
+  level<span class="token operator">:</span>
+    root<span class="token operator">:</span> INFO
+    com<span class="token operator">:</span>
+      cloud<span class="token operator">:</span> DEBUG	#com<span class="token punctuation">.</span>cloud为包路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="1-4-3-日志文件存储配置"><a href="#1-4-3-日志文件存储配置" class="headerlink" title="1.4.3 日志文件存储配置"></a>1.4.3 日志文件存储配置</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 日志打印</span>
+<span class="token key atrule">logging</span><span class="token punctuation">:</span>
+  <span class="token key atrule">level</span><span class="token punctuation">:</span>
+    <span class="token key atrule">root</span><span class="token punctuation">:</span> DEBUG <span class="token comment">#root为全局日志打印级别</span>
+    <span class="token key atrule">com</span><span class="token punctuation">:</span>
+      <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+        <span class="token key atrule">bmsoft</span><span class="token punctuation">:</span> INFO <span class="token comment">#具体包路径下的日志打印级别</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> /Users/jackie/workspace/rome/ <span class="token comment">#日志存储路径</span>
+  <span class="token key atrule">file</span><span class="token punctuation">:</span> springbootdemo.log <span class="token comment">#日志存储名称</span>
+  <span class="token key atrule">max-size</span><span class="token punctuation">:</span> 10MB <span class="token comment">#存储日志文件大小</span>
+  <span class="token key atrule">pattern</span><span class="token punctuation">:</span>
+    <span class="token key atrule">console</span><span class="token punctuation">:</span> %d<span class="token punctuation">{</span>yyyy/MM/dd<span class="token punctuation">-</span>HH<span class="token punctuation">:</span>mm<span class="token punctuation">:</span>ss<span class="token punctuation">}</span> <span class="token punctuation">[</span>%thread<span class="token punctuation">]</span> %<span class="token punctuation">-</span>5level %logger<span class="token punctuation">-</span> %msg%n <span class="token comment">#控制台输出格式</span>
+    <span class="token key atrule">file</span><span class="token punctuation">:</span> %d<span class="token punctuation">{</span>yyyy/MM/dd<span class="token punctuation">-</span>HH<span class="token punctuation">:</span>mm<span class="token punctuation">}</span> <span class="token punctuation">[</span>%thread<span class="token punctuation">]</span> %<span class="token punctuation">-</span>5level %logger<span class="token punctuation">-</span> %msg%n <span class="token comment">#文件输出格式</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>pattern 说明</p>
+</blockquote>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">#pattern说明
+%d<span class="token punctuation">{</span>HH<span class="token operator">:</span>mm<span class="token operator">:</span>ss.SSS<span class="token punctuation">}</span>——日志输出时间
+%thread——输出日志的进程名字，这在Web应用以及异步任务处理中很有用
+%-5level——日志级别，并且使用<span class="token number">5</span>个字符靠左对齐
+%logger- ——日志输出者的名字
+%msg——日志消息
+%n——平台的换行符<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="1-5-logback-xml-配置文件详解"><a href="#1-5-logback-xml-配置文件详解" class="headerlink" title="1.5 logback.xml 配置文件详解"></a>1.5 logback.xml 配置文件详解</h2><h3 id="1-5-1-配置文件架构"><a href="#1-5-1-配置文件架构" class="headerlink" title="1.5.1 配置文件架构"></a>1.5.1 配置文件架构</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/635741/1590053515415-db18b3bf-de8b-4182-aa04-3704a3b6bb7a.png#height=558&amp;id=LCS9T&amp;margin=%5Bobject%20Object%5D&amp;name=image-20200426110102111.png&amp;originHeight=558&amp;originWidth=1143&amp;originalType=binary%E2%88%B6=1&amp;size=25475&amp;status=done&amp;style=none&amp;width=1143" alt="image-20200426110102111.png"></p>
+<h3 id="1-5-2-appender-类型"><a href="#1-5-2-appender-类型" class="headerlink" title="1.5.2 appender 类型"></a>1.5.2 appender 类型</h3><p>1）ConsoleAppender 把日志输出到控制台<br>2）FileAppender：把日志添加到文件<br>3）RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。</p>
+<h3 id="1-5-3-日志级别过滤"><a href="#1-5-3-日志级别过滤" class="headerlink" title="1.5.3 日志级别过滤"></a>1.5.3 日志级别过滤</h3><p>作用：过滤滚动日志的级别</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">&lt;appender name=<span class="token string">"ERROR"</span> class=<span class="token string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;
+		&lt;!-- filter过滤器，INFO级别 --&gt;
+		&lt;filter class=<span class="token string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;
+				&lt;level&gt;INFO&lt;/level&gt;
+				&lt;onMatch&gt;ACCEPT&lt;/onMatch&gt;
+				&lt;onMismatch&gt;DENY&lt;/onMismatch&gt;
+		&lt;/filter&gt;
+&lt;/appender&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="1-5-4-滚动日志实现方式"><a href="#1-5-4-滚动日志实现方式" class="headerlink" title="1.5.4 滚动日志实现方式"></a>1.5.4 滚动日志实现方式</h3><h4 id="1-5-4-1-TimeBasedRollingPolicy"><a href="#1-5-4-1-TimeBasedRollingPolicy" class="headerlink" title="1.5.4.1 TimeBasedRollingPolicy"></a>1.5.4.1 TimeBasedRollingPolicy</h4><p>作用：按照时间滚动，fileNamePattern 属性设置滚动生成文件的格式,这里设置的精确到天，也就是按照天滚动，如果时间设置精确到秒，就按秒来滚动，maxHistory 属性设定最大的文件数，比如按天滚动，这里设置了 30 天，在第 31 天日志生成的时候，第一天的日志就会被删掉。</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">&lt;!-- 滚动文件的方式生成日志日志文件，文件的存储位置通过file标签指定 --&gt;
+&lt;!-- 通过encoder指定日志的生成格式<span class="token punctuation">,</span>每个appender的日志格式都可以自定义，不用相同 --&gt;
+&lt;appender name=<span class="token string">"log"</span> class=<span class="token string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;
+    &lt;file&gt;/logs/test.log&lt;/file&gt;
+    &lt;encoder&gt;
+        &lt;pattern&gt;【logbck】%blue(<span class="token punctuation">[</span>requestId<span class="token operator">:</span>%X<span class="token punctuation">{</span>requestId<span class="token operator">:</span>-syslogId<span class="token punctuation">}</span><span class="token punctuation">]</span>) %d<span class="token punctuation">{</span>yyyy-MM-dd HH<span class="token operator">:</span>mm<span class="token operator">:</span>ss.SSS<span class="token punctuation">}</span> %red(<span class="token punctuation">[</span>%thread<span class="token punctuation">]</span>) %5level - %msg%n&lt;/pattern&gt;
+    &lt;/encoder&gt;
+    &lt;rollingPolicy class=<span class="token string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;
+        &lt;fileNamePattern&gt;/logs/test-%d<span class="token punctuation">{</span>yyyy-MM-dd<span class="token punctuation">}</span>.log&lt;/fileNamePattern&gt;
+        &lt;maxHistory&gt;<span class="token number">30</span>&lt;/maxHistory&gt;
+    &lt;/rollingPolicy&gt;
+&lt;/appender&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>说明：fileNamePattern 是要格外说明的。如上我设置按天来滚动，前一天日志打印到 23 点 59 分，然后就一直没有请求日志，直到次日的 1 点才有新的日志进入。在 0 点到 1 点这个时间段，日志文件是不会滚动生成新的日志文件。因为滚动的动作是需要日志写入动作来触发。</p>
+<h4 id="1-5-4-2-FixedWindowRollingPolicy"><a href="#1-5-4-2-FixedWindowRollingPolicy" class="headerlink" title="1.5.4.2 FixedWindowRollingPolicy"></a>1.5.4.2 FixedWindowRollingPolicy</h4><p>作用：按照索引的方式来滚动日志，使用%i 作为占位符，指定按照文件大小来触发。</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">&lt;!-- 设置为按照索引的方式滚动，定义文件名称的时候使用%i作为占位符，滚动后会会用角标替换 --&gt;
+&lt;rollingPolicy class=<span class="token string">"ch.qos.logback.core.rolling.FixedWindowRollingPolicy"</span>&gt;
+    &lt;fileNamePattern&gt;/logback/log/test-%i.log&lt;/fileNamePattern&gt;
+    &lt;minIndex&gt;<span class="token number">1</span>&lt;/minIndex&gt;
+    &lt;maxIndex&gt;<span class="token number">3</span>&lt;/maxIndex&gt;
+&lt;/rollingPolicy&gt;
+&lt;!-- 指定文件最大尺寸，达到该尺寸，就触发rollingPolicy对应的策略，maxFileSize属性指定文件大小 --&gt;
+&lt;triggeringPolicy class=<span class="token string">"ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"</span>&gt;
+    &lt;maxFileSize&gt;1MB&lt;/maxFileSize&gt;
+&lt;/triggeringPolicy&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>说明：</p>
+<ul>
+<li>maxIndex 不可设置为过大，过大后会自动被置为默认值 12，这个过大的值具体是多少没测试过（欢迎小伙伴测试后在文末回复一下，就偷个懒了）。</li>
+<li>第一次滚动，生成 test-1.log，第二次滚动时会将之前的 test-1.log 文件修改成 test-2.log，将最新生成的日志文件命名为 test-1.log，依此类推，指导索引达到设置的最大值。当超过最大值的时候，会将索引最大的文件直接删除，用前一个文件移到最后一位。就像传送带，最先放上的物品会最先掉出传送带。</li>
+<li>在时间滚动的方式里面，可以用时间作为触发机制。但是在使用索引方式的时候，需要定义一个 triggeringPolicy 作为触发机制。</li>
+</ul>
+<h4 id="1-5-4-3-SizeAndTimeBasedFNATP"><a href="#1-5-4-3-SizeAndTimeBasedFNATP" class="headerlink" title="1.5.4.3 SizeAndTimeBasedFNATP"></a>1.5.4.3 SizeAndTimeBasedFNATP</h4><p>作用：时间策略并配合文件大小触发器来实现日志文件定义</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">&lt;!-- 使用按照时间滚动策略，内嵌按照文件大小来分隔日志的触发器策略 --&gt;
+&lt;rollingPolicy class=<span class="token string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;
+    &lt;fileNamePattern&gt;/logback/log/test-%d<span class="token punctuation">{</span>yyyy-MM-dd<span class="token punctuation">}</span>-%i.log&lt;/fileNamePattern&gt;
+    &lt;!-- 使用SizeAndTimeBasedFNATP实现，可以看一下TimeBasedRollingPolicy源码中对应timeBasedFileNamingAndTriggeringPolicy的类型，根据类型确定需要使用的class类 --&gt;
+    &lt;timeBasedFileNamingAndTriggeringPolicy class=<span class="token string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;
+        &lt;maxFileSize&gt;1MB&lt;/maxFileSize&gt;
+    &lt;/timeBasedFileNamingAndTriggeringPolicy&gt;
+&lt;/rollingPolicy&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>说明：按照时间滚动的单位是天，按照文件大小的滚动是 1M，当今天产生的日志大小是 5M，就会生成 5 个日志文件，每个文件对应的大小是 1M，对应生成日期是一天，对应的编号不同，也就是%i 占位符替换后的编号(从 0 开始)。</p>
+<h4 id="1-5-4-4-SizeAndTimeBasedRollingPolicy"><a href="#1-5-4-4-SizeAndTimeBasedRollingPolicy" class="headerlink" title="1.5.4.4 SizeAndTimeBasedRollingPolicy"></a>1.5.4.4 SizeAndTimeBasedRollingPolicy</h4><p>作用：按照时间和大小来实现日志文件定义，感觉跟 1.5.4.3 作用是一样的。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 定义日志文件大小和时间策略 <span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>rollingPolicy <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span><span class="token operator">&gt;</span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>fileNamePattern<span class="token punctuation">&gt;</span></span>
+        $<span class="token punctuation">{</span>log<span class="token punctuation">.</span>home_dir<span class="token punctuation">}</span><span class="token operator">/</span>errorLog<span class="token operator">-</span><span class="token operator">%</span>d<span class="token punctuation">{</span>yyyy<span class="token operator">-</span>MM<span class="token operator">-</span>dd<span class="token punctuation">}</span><span class="token punctuation">.</span>%i<span class="token punctuation">.</span>log
+    <span class="token operator">&lt;</span><span class="token operator">/</span>fileNamePattern<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 当每个文件达到<span class="token number">100</span>MB，会生成新的日志文件，日志文件最多保存<span class="token number">60</span>天，总日志文件大小达到<span class="token number">20</span>GB，会删除旧日志<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>maxFileSize<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>maxFileSize<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>maxFileSize<span class="token operator">&gt;</span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>maxHistory<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>maxHistory<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>maxHistory<span class="token operator">&gt;</span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>totalSizeCap<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>totalSizeCap<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>totalSizeCap<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>rollingPolicy<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​</p>
+<h3 id="1-5-5-pattern-配置详解"><a href="#1-5-5-pattern-配置详解" class="headerlink" title="1.5.5 pattern 配置详解"></a>1.5.5 pattern 配置详解</h3><pre class="line-numbers language-json" data-language="json"><code class="language-json">%d<span class="token punctuation">{</span>HH<span class="token operator">:</span>mm<span class="token operator">:</span>ss.SSS<span class="token punctuation">}</span>——日志输出时间
+%thread——输出日志的进程名字，这在Web应用以及异步任务处理中很有用
+%-5level——日志级别，并且使用<span class="token number">5</span>个字符靠左对齐
+%-5p——日志级别，并且使用<span class="token number">5</span>个字符靠左对齐
+%blue(xxx)——这段日志输出为蓝色
+%red(xxx)——这段日志输出为红色
+%logger- ——日志输出者的名字
+%msg——日志消息
+%n——平台的换行符<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>​</strong></p>
+<h3 id="1-5-6-配置文件例子"><a href="#1-5-6-配置文件例子" class="headerlink" title="1.5.6 配置文件例子"></a>1.5.6 配置文件例子</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span><span class="token operator">?</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>configuration scan<span class="token operator">=</span><span class="token string">"true"</span> scanPeriod<span class="token operator">=</span><span class="token string">"60 seconds"</span> debug<span class="token operator">=</span><span class="token string">"false"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>scan<span class="token operator">:</span> 此属性设置为<span class="token boolean">true</span>时，配置文件如果发生改变，将会被重新加载，默认值为<span class="token boolean">true</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>scanPeriod<span class="token operator">:</span> 设置监测配置文件是否有修改的时间间隔<span class="token punctuation">,</span>当scan为<span class="token boolean">true</span>时生效<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>debug<span class="token operator">:</span> 当此属性设置为<span class="token boolean">true</span>时，将打印出logback内部日志信息<span class="token punctuation">.</span>默认<span class="token boolean">false</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 定义日志文件 输出位置 <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"log.home_dir"</span> value<span class="token operator">=</span><span class="token string">"D:/logs"</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"log.maxHistory"</span> value<span class="token operator">=</span><span class="token string">"60"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"log.maxFileSize"</span> value<span class="token operator">=</span><span class="token string">"100MB"</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"log.totalSizeCap"</span> value<span class="token operator">=</span><span class="token string">"20GB"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token class-name">ConsoleAppender</span> 控制台输出日志 <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>appender name<span class="token operator">=</span><span class="token string">"CONSOLE"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"ch.qos.logback.core.ConsoleAppender"</span><span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>encoder<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>pattern<span class="token punctuation">&gt;</span></span>
+                <span class="token generics"><span class="token punctuation">&lt;</span>pattern<span class="token punctuation">&gt;</span></span><span class="token operator">%</span>d<span class="token punctuation">{</span>yyyy<span class="token operator">-</span>MM<span class="token operator">-</span>dd HH<span class="token operator">:</span>mm<span class="token operator">:</span>ss<span class="token punctuation">.</span>SSS<span class="token punctuation">}</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span><span class="token function">boldGreen</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">%</span>thread<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span><span class="token function">highlight</span><span class="token punctuation">(</span><span class="token operator">%</span><span class="token operator">-</span><span class="token number">5l</span>evel<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">|</span> traceId<span class="token operator">=</span><span class="token punctuation">[</span><span class="token operator">%</span><span class="token class-name">X</span><span class="token punctuation">{</span>traceId<span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span><span class="token function">boldYellow</span><span class="token punctuation">(</span><span class="token operator">%</span>logger<span class="token punctuation">{</span><span class="token number">36</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span>msg<span class="token operator">%</span>n<span class="token operator">&lt;</span><span class="token operator">/</span>pattern<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>pattern<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>encoder<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>appender<span class="token operator">&gt;</span>
+
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token class-name">RollingFileAppender</span> 文件输出日志 ERROR级别<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>appender name<span class="token operator">=</span><span class="token string">"ERROR"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"ch.qos.logback.core.rolling.RollingFileAppender"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 过滤器，只记录ERROR级别的日志 <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 如果日志级别等于配置级别，过滤器会根据onMath 和 onMismatch接收或拒绝日志。 <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>filter <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"ch.qos.logback.classic.filter.LevelFilter"</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 设置过滤级别 <span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>level<span class="token punctuation">&gt;</span></span>ERROR<span class="token operator">&lt;</span><span class="token operator">/</span>level<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 用于配置符合过滤条件的操作 <span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>onMatch<span class="token punctuation">&gt;</span></span>ACCEPT<span class="token operator">&lt;</span><span class="token operator">/</span>onMatch<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 用于配置不符合过滤条件的操作 <span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>onMismatch<span class="token punctuation">&gt;</span></span>DENY<span class="token operator">&lt;</span><span class="token operator">/</span>onMismatch<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>filter<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 定义日志文件大小和时间策略 <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>rollingPolicy <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span><span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>fileNamePattern<span class="token punctuation">&gt;</span></span>
+                $<span class="token punctuation">{</span>log<span class="token punctuation">.</span>home_dir<span class="token punctuation">}</span><span class="token operator">/</span>errorLog<span class="token operator">-</span><span class="token operator">%</span>d<span class="token punctuation">{</span>yyyy<span class="token operator">-</span>MM<span class="token operator">-</span>dd<span class="token punctuation">}</span><span class="token punctuation">.</span>%i<span class="token punctuation">.</span>log
+            <span class="token operator">&lt;</span><span class="token operator">/</span>fileNamePattern<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 当每个文件达到<span class="token number">100</span>MB，会生成新的日志文件，日志文件最多保存<span class="token number">60</span>天，总日志文件大小达到<span class="token number">20</span>GB，会删除旧日志<span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>maxFileSize<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>maxFileSize<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>maxFileSize<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>maxHistory<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>maxHistory<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>maxHistory<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>totalSizeCap<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>totalSizeCap<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>totalSizeCap<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>rollingPolicy<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>encoder<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>pattern<span class="token punctuation">&gt;</span></span>
+                <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 设置日志输出格式 <span class="token operator">--</span><span class="token operator">&gt;</span>
+                <span class="token operator">%</span>d<span class="token punctuation">{</span>yyyy<span class="token operator">-</span>MM<span class="token operator">-</span>dd HH<span class="token operator">:</span>mm<span class="token operator">:</span>ss<span class="token punctuation">.</span>SSS<span class="token punctuation">}</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token punctuation">[</span><span class="token operator">%</span>thread<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span><span class="token operator">-</span><span class="token number">5l</span>evel <span class="token operator">-</span><span class="token operator">|</span> traceId<span class="token operator">=</span><span class="token punctuation">[</span><span class="token operator">%</span><span class="token class-name">X</span><span class="token punctuation">{</span>traceId<span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span>logger<span class="token punctuation">{</span><span class="token number">36</span><span class="token punctuation">}</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span>msg<span class="token operator">%</span>n
+            <span class="token operator">&lt;</span><span class="token operator">/</span>pattern<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>encoder<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>appender<span class="token operator">&gt;</span>
+
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> INFO级别<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>appender name<span class="token operator">=</span><span class="token string">"INFO"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"ch.qos.logback.core.rolling.RollingFileAppender"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>filter <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"ch.qos.logback.classic.filter.LevelFilter"</span><span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>level<span class="token punctuation">&gt;</span></span>INFO<span class="token operator">&lt;</span><span class="token operator">/</span>level<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>onMatch<span class="token punctuation">&gt;</span></span>ACCEPT<span class="token operator">&lt;</span><span class="token operator">/</span>onMatch<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>onMismatch<span class="token punctuation">&gt;</span></span>DENY<span class="token operator">&lt;</span><span class="token operator">/</span>onMismatch<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>filter<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>rollingPolicy <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span><span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>fileNamePattern<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>home_dir<span class="token punctuation">}</span><span class="token operator">/</span>appLog<span class="token operator">-</span><span class="token operator">%</span>d<span class="token punctuation">{</span>yyyy<span class="token operator">-</span>MM<span class="token operator">-</span>dd<span class="token punctuation">}</span><span class="token punctuation">.</span>%i<span class="token punctuation">.</span>log<span class="token operator">&lt;</span><span class="token operator">/</span>fileNamePattern<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>maxFileSize<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>maxFileSize<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>maxFileSize<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>maxHistory<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>maxHistory<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>maxHistory<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>totalSizeCap<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{</span>log<span class="token punctuation">.</span>totalSizeCap<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>totalSizeCap<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>rollingPolicy<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>encoder<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>pattern<span class="token punctuation">&gt;</span></span><span class="token operator">%</span>d<span class="token punctuation">{</span>yyyy<span class="token operator">-</span>MM<span class="token operator">-</span>dd HH<span class="token operator">:</span>mm<span class="token operator">:</span>ss<span class="token punctuation">.</span>SSS<span class="token punctuation">}</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token punctuation">[</span><span class="token operator">%</span>thread<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span><span class="token operator">-</span><span class="token number">5l</span>evel <span class="token operator">-</span><span class="token operator">|</span> traceId<span class="token operator">=</span><span class="token punctuation">[</span><span class="token operator">%</span><span class="token class-name">X</span><span class="token punctuation">{</span>traceId<span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span>logger<span class="token punctuation">{</span><span class="token number">36</span><span class="token punctuation">}</span> <span class="token operator">-</span><span class="token operator">|</span> <span class="token operator">%</span>msg<span class="token operator">%</span>n<span class="token operator">&lt;</span><span class="token operator">/</span>pattern<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>encoder<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>appender<span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span>root level<span class="token operator">=</span><span class="token string">"INFO"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>appender<span class="token operator">-</span>ref ref<span class="token operator">=</span><span class="token string">"CONSOLE"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>appender<span class="token operator">-</span>ref ref<span class="token operator">=</span><span class="token string">"ERROR"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>appender<span class="token operator">-</span>ref ref<span class="token operator">=</span><span class="token string">"INFO"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>root<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>configuration<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="1-6-自定义系统异常日志过滤"><a href="#1-6-自定义系统异常日志过滤" class="headerlink" title="1.6 自定义系统异常日志过滤"></a>1.6 自定义系统异常日志过滤</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThrowableFilter</span> <span class="token keyword">extends</span> <span class="token class-name">TurboFilter</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">FilterReply</span> <span class="token function">decide</span><span class="token punctuation">(</span><span class="token class-name">Marker</span> marker<span class="token punctuation">,</span> <span class="token class-name">Logger</span> logger<span class="token punctuation">,</span> <span class="token class-name">Level</span> level<span class="token punctuation">,</span> <span class="token class-name">String</span> format<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> params<span class="token punctuation">,</span> <span class="token class-name">Throwable</span> throwable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isStarted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">FilterReply</span><span class="token punctuation">.</span>NEUTRAL<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">Throwable</span> t <span class="token operator">=</span> throwable<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Objects</span><span class="token punctuation">.</span><span class="token function">isNull</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Objects</span><span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> params<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                val e <span class="token operator">=</span> params<span class="token punctuation">[</span>params<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token keyword">instanceof</span> <span class="token class-name">Throwable</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    t <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span><span class="token punctuation">)</span> e<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token class-name">FilterReply</span><span class="token punctuation">.</span>NEUTRAL<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token class-name">FilterReply</span><span class="token punctuation">.</span>NEUTRAL<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">StackTraceElement</span><span class="token punctuation">&gt;</span></span> traceLines <span class="token operator">=</span> <span class="token class-name">ExceptionUtil</span><span class="token punctuation">.</span><span class="token function">getStackTraceElements</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span><span class="token function">setStackTrace</span><span class="token punctuation">(</span>traceLines<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StackTraceElement</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token class-name">FilterReply</span><span class="token punctuation">.</span>NEUTRAL<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">public class ExceptionUtil {
+
+    public static Set&lt;StackTraceElement&gt; getStackTraceElements(Throwable t) {
+        StackTraceElement[] stackTrace = t.getStackTrace();
+        Set&lt;StackTraceElement&gt; traceLines = Sets.newLinkedHashSetWithExpectedSize(10);
+        for (StackTraceElement stack : stackTrace) {
+            String line = stack.toString();
+            if (checkIsSystemPath(line)) {
+                traceLines.add(stack);
+            }
+        }
+        return traceLines;
+    }
+
+    private static boolean checkIsSystemPath(String line) {
+        if (line.startsWith("com.cloud")) {
+            return true;
+        } else if (line.startsWith("\tat com.cloud")) {
+            return true;
+        } else if (line.startsWith("Caused")) {
+            return true;
+        } else {
+            return line.startsWith("\t");
+        }
+    }
+
+    public static String getSimpleStackTrace(Throwable throwable) {
+        String wholeStackTraceString = ExceptionUtils.getStackTrace(throwable);
+        String[] lines = StringUtils.split(wholeStackTraceString, "\n");
+        Set&lt;String&gt; traceLines = Sets.newLinkedHashSetWithExpectedSize(10);
+        for (String line : lines) {
+            if (checkIsSystemPath(line)) {
+                traceLines.add(line);
+            }
+        }
+        return StringUtils.join(traceLines, "\n");
+    }
+
+    public static String getMessage(Throwable throwable) {
+        return Match(throwable).of(
+                Case($(Predicates.instanceOf(BusinessException.class)), ((BusinessException) throwable)::getMsg),
+                Case($(), throwable::getMessage)
+        );
+    }
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在现有的 logback-spring.xml 的 configuration 标签下添加如下配置：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;turboFilter class="com.cloud.simul.tool.log.ThrowableFilter" /&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="1-7-微服务调用-TraceId-日志追踪"><a href="#1-7-微服务调用-TraceId-日志追踪" class="headerlink" title="1.7 微服务调用 TraceId 日志追踪"></a>1.7 微服务调用 TraceId 日志追踪</h2>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/blog/about" rel="external nofollow noreferrer">阿松</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://asong123.github.io/blog/2021/07/12/fob9fm/">https://asong123.github.io/blog/2021/07/12/fob9fm/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/blog/about" target="_blank">阿松</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/blog/tags/SpringBoot/">
+                                    <span class="chip bg-color">SpringBoot</span>
+                                </a>
+                            
+                                <a href="/blog/tags/SpringBoot%E6%97%A5%E5%BF%97/">
+                                    <span class="chip bg-color">SpringBoot日志</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/blog/2021/07/12/fet5b2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/22.jpg" class="responsive-img" alt="SpringBoot Actuator">
+                        
+                        <span class="card-title">SpringBoot Actuator</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            SpringBoot Actuator
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/blog/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/blog/tags/Actuator/">
+                        <span class="chip bg-color">Actuator</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/2021/07/12/gk11et/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/29.jpg" class="responsive-img" alt="容器编排Docker Swarm">
+                        
+                        <span class="card-title">容器编排Docker Swarm</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            怎么去管理多个容器？如果容器 down 了，怎么能自动恢复？
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/docker/" class="post-category">
+                                    docker
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/blog/tags/docker/">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/blog/tags/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92Docker/">
+                        <span class="chip bg-color">容器编排Docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/blog/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/blog/about" target="_blank">阿松</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">216.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:835549978@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=835549978" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 835549978" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/blog/libs/materialize/materialize.min.js"></script>
+    <script src="/blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/blog/libs/aos/aos.js"></script>
+    <script src="/blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+
+</html>

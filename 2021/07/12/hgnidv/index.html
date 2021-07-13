@@ -1,0 +1,1582 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Docker容器与镜像, 阿松小站">
+    <meta name="description" content="阿松自己的小博客网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Docker容器与镜像 | 阿松小站</title>
+    <link rel="icon" type="image/png" href="/blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/my.css">
+
+    <script src="/blog/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/blog/atom.xml" title="阿松小站" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/blog/" class="waves-effect waves-light">
+                    
+                    <img src="/blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">阿松小站</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>媒体</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/blog/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>电影</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>书籍</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/blog/galleries">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>图表</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">阿松小站</div>
+        <div class="logo-desc">
+            
+            阿松自己的小博客网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			媒体
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/blog/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>电影</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>书籍</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/blog/galleries " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>图表</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/blog/libs/cryptojs/crypto-js.min.js"></script>
+<meta name="referrer" content="no-referrer" />
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/blog/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Docker容器与镜像</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/blog/tags/%E5%AE%B9%E5%99%A8/">
+                                <span class="chip bg-color">容器</span>
+                            </a>
+                        
+                            <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/blog/tags/docker/">
+                                <span class="chip bg-color">docker</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/blog/categories/docker/" class="post-category">
+                                docker
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-13
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><h3 id="1-Docker-官网"><a href="#1-Docker-官网" class="headerlink" title="1. Docker 官网"></a>1. Docker 官网</h3><p><a target="_blank" rel="noopener" href="https://www.docker.com/">https://www.docker.com/</a></p>
+<h3 id="2-Docker-文档"><a href="#2-Docker-文档" class="headerlink" title="2. Docker 文档"></a>2. Docker 文档</h3><p><a target="_blank" rel="noopener" href="https://docs.docker.com/">https://docs.docker.com/</a></p>
+<h3 id="3-Mac-安装-Docker（方式一）"><a href="#3-Mac-安装-Docker（方式一）" class="headerlink" title="3. Mac 安装 Docker（方式一）"></a>3. Mac 安装 Docker（方式一）</h3><h4 id="下载-Docker-Desktop-on-Mac"><a href="#下载-Docker-Desktop-on-Mac" class="headerlink" title="下载 Docker Desktop on Mac"></a>下载 Docker Desktop on Mac</h4><p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575955562210-76a92e1f-9bb3-4c11-bdfc-39f8b83ae743.png#height=604&amp;id=ceXio&amp;name=image-20191103141842224.png&amp;originHeight=604&amp;originWidth=1121&amp;originalType=binary%E2%88%B6=1&amp;size=140065&amp;status=done&amp;style=none&amp;width=1121" alt="image-20191103141842224.png"></p>
+<blockquote>
+<p>第一次使用用户必须注册，然后按照步骤操作即可。</p>
+</blockquote>
+<h4 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h4><blockquote>
+<p>下载完 docker.dmg 后直接安装文件即可。<br>在启动台找到 docker 点击运行。</p>
+</blockquote>
+<ul>
+<li>docker version 查看版本</li>
+</ul>
+<h3 id="4-VietualBox（方式二）"><a href="#4-VietualBox（方式二）" class="headerlink" title="4. VietualBox（方式二）"></a>4. VietualBox（方式二）</h3><h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><blockquote>
+<p>运行 VirtualBox-xxx.dmg</p>
+</blockquote>
+<h3 id="5-Vagrant"><a href="#5-Vagrant" class="headerlink" title="5. Vagrant"></a>5. Vagrant</h3><h4 id="下载地址-1"><a href="#下载地址-1" class="headerlink" title="下载地址"></a>下载地址</h4><p><a target="_blank" rel="noopener" href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a></p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><blockquote>
+<p>运行 vagrant_2.2.6_x86_64.dmg</p>
+</blockquote>
+<h4 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h4><p><code>vagrant --version</code></p>
+<h3 id="6-Vagrant-创建-Centos7-虚拟机"><a href="#6-Vagrant-创建-Centos7-虚拟机" class="headerlink" title="6. Vagrant 创建 Centos7 虚拟机"></a>6. Vagrant 创建 Centos7 虚拟机</h3><ul>
+<li>创建一个目录<code>mkdir /Users/webxudong/docker/centos7</code> 进入目录</li>
+<li>执行 <code>vagrant init centos/7</code><ul>
+<li>生成 vagrantfile 文件，vagrantfile 也可以自己编写</li>
+<li>例如：vagrantfile <a target="_blank" rel="noopener" href="https://app.vagrantup.com/centos/boxes/7">https://app.vagrantup.com/centos/boxes/7</a></li>
+</ul>
+</li>
+<li>执行 <code>vagrant up</code> 命令会下载 centos7 镜像会使用比较久的时间</li>
+<li>执行 <code>vagrant ssh</code> 进入虚拟机</li>
+<li>执行 <code>exit</code> 退出虚拟机</li>
+<li>执行 <code>vagrant status</code> 查看虚拟机状态</li>
+<li>执行 <code>vagrant halt</code>停止虚拟机运行</li>
+<li>执行 <code>vagrant destroy</code>删除虚拟机</li>
+</ul>
+<h3 id="7-Centos7-安装-Docker-社区版"><a href="#7-Centos7-安装-Docker-社区版" class="headerlink" title="7. Centos7 安装 Docker 社区版"></a>7. Centos7 安装 Docker 社区版</h3><h4 id="教程地址"><a href="#教程地址" class="headerlink" title="教程地址"></a>教程地址</h4><p><a target="_blank" rel="noopener" href="https://docs.docker.com/install/linux/docker-ce/centos/">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+<blockquote>
+<p>下面的步骤都从官网教程中剪切出来的，最好按照官网最新教程来操作</p>
+</blockquote>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> yum remove docker <span class="token punctuation">\</span>
+                  docker-client <span class="token punctuation">\</span>
+                  docker-client-latest <span class="token punctuation">\</span>
+                  docker-common <span class="token punctuation">\</span>
+                  docker-latest <span class="token punctuation">\</span>
+                  docker-latest-logrotate <span class="token punctuation">\</span>
+                  docker-logrotate <span class="token punctuation">\</span>
+                  docker-engine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> yum <span class="token function">install</span> -y yum-utils <span class="token punctuation">\</span>
+  device-mapper-persistent-data <span class="token punctuation">\</span>
+  lvm2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> yum-config-manager <span class="token punctuation">\</span>
+    --add-repo <span class="token punctuation">\</span>
+    https://download.docker.com/linux/centos/docker-ce.repo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> yum <span class="token function">install</span> docker-ce<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>运行 docker <code>$ sudo systemctl start docker</code></p>
+<p>查看版本 <code>$ sudo docker version</code></p>
+<p>运行 docker 的容器 hello-world &nbsp;<code>$ sudo docker run hello-world</code></p>
+<h4 id="配置用户"><a href="#配置用户" class="headerlink" title="配置用户"></a>配置用户</h4><ul>
+<li>创建用户组：<code>$ sudo groupadd docker</code></li>
+<li>添加当前用户到 docker 用户组：<code>$ sudo gpasswd -a vagrant(用户名) docker</code></li>
+<li>重启 docker 进程<code>$ sudo service docker restart</code></li>
+<li>重新登录 linux 主机</li>
+</ul>
+<h3 id="8-创建-Docker-容器-docker-machine"><a href="#8-创建-Docker-容器-docker-machine" class="headerlink" title="8. 创建 Docker 容器 docker-machine"></a>8. 创建 Docker 容器 docker-machine</h3><ul>
+<li>创建 <code>docker-machine create demo</code></li>
+<li>查看 docker 列表 <code>docker-machine ls</code></li>
+<li>进入 docker <code>docker-machine ssh demo</code></li>
+<li>查看版本 <code>docker version</code></li>
+<li>退出<code>exit</code></li>
+<li>删除 <code>docker-machine remove demo</code></li>
+<li>查看 docker-machine 命令 <code>docker-machine</code></li>
+</ul>
+<h3 id="9-Docker-Image"><a href="#9-Docker-Image" class="headerlink" title="9. Docker Image"></a>9. Docker Image</h3><h4 id="什么是-Image"><a href="#什么是-Image" class="headerlink" title="什么是 Image"></a>什么是 Image</h4><ul>
+<li>image 就是一个镜像</li>
+<li>image 是基于文件和 meta data 的集合（root filesystem）创建的</li>
+<li>分层的，并且每一层都可以添加改变删除文件，成为一个新的 image。<code>centos image 添加文件后 成为image #2</code></li>
+<li>不同的 image 可以共享相同的 layer <code>image #2与image #4都有同一个layer centos image</code></li>
+<li>image 本身是 read-only 的</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575955666350-9f5acf46-2f99-4fe0-9ad4-3769c181ce3f.png#height=327&amp;id=ORITg&amp;name=image-20191103170830822.png&amp;originHeight=327&amp;originWidth=777&amp;originalType=binary%E2%88%B6=1&amp;size=64098&amp;status=done&amp;style=none&amp;width=777" alt="image-20191103170830822.png"></p>
+<h4 id="Image-获取"><a href="#Image-获取" class="headerlink" title="Image 获取"></a>Image 获取</h4><ul>
+<li><strong>Build from Dockerfile</strong> 编译 dockerfile 获取 image</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575955680266-56f997d4-48c9-4b1b-8515-3cbe6c3f8724.png#height=185&amp;id=haGkg&amp;name=image-20191103172145055.png&amp;originHeight=185&amp;originWidth=529&amp;originalType=binary%E2%88%B6=1&amp;size=76738&amp;status=done&amp;style=none&amp;width=529" alt="image-20191103172145055.png"></p>
+<pre class="line-numbers language-none"><code class="language-none">from：基础Image
+label：标识（作者）
+run：运行命令
+expose：暴露端口
+entpypoint：程序的起点（启动redis-server）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><strong>Pull from Registry</strong> 拉取 image 镜像<br><code>docker pull ubuntu:14.04</code><br><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575955716945-b6044a18-d275-4db9-a9dd-39cef23b44cf.png#height=250&amp;id=G7itS&amp;name=image-20191103172931077.png&amp;originHeight=250&amp;originWidth=1122&amp;originalType=binary%E2%88%B6=1&amp;size=167254&amp;status=done&amp;style=none&amp;width=1122" alt="image-20191103172931077.png"><br><code>docker镜像地址</code> ： <a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a></li>
+</ul>
+<h4 id="Image-创建"><a href="#Image-创建" class="headerlink" title="Image 创建"></a>Image 创建</h4><ul>
+<li>创建一个 C 的 hell-word 程序</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> <span class="token function">mkdir</span> hello-word
+$ <span class="token function">sudo</span> <span class="token builtin class-name">cd</span> hello-word/
+$ <span class="token function">sudo</span> hello-word<span class="token punctuation">]</span><span class="token comment"># vim hello.c</span>
+hello.c <span class="token operator">=</span><span class="token operator">&gt;</span>
+<span class="token comment">#include&lt;stdio.h&gt;</span>
+int <span class="token function-name function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  printf<span class="token punctuation">(</span><span class="token string">"hello docker<span class="token entity" title="\n">\n</span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+$ <span class="token function">sudo</span> yum <span class="token function">install</span> gcc
+$ <span class="token function">sudo</span> yum <span class="token function">install</span> glibc-static
+$ <span class="token function">sudo</span> gcc -static hello.c  -o hello
+$ <span class="token function">sudo</span> <span class="token function">ls</span>
+hello  hello.c<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>创建 Dockerfile 文件</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> <span class="token function">vim</span> Dockerfile
+Dockerfile <span class="token operator">=</span><span class="token operator">&gt;</span>
+FROM scratch
+ADD hello /
+CMD <span class="token punctuation">[</span><span class="token string">"/hello"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>编译 DockerFile</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> docker build -t wenxudong/hello <span class="token builtin class-name">.</span>
+Sending build context to Docker daemon  <span class="token number">868</span>.9kB
+Step <span class="token number">1</span>/3 <span class="token builtin class-name">:</span> FROM scratch
+ ---<span class="token operator">&gt;</span>
+Step <span class="token number">2</span>/3 <span class="token builtin class-name">:</span> ADD hello /
+ ---<span class="token operator">&gt;</span> 8df0d79a4994
+Step <span class="token number">3</span>/3 <span class="token builtin class-name">:</span> CMD <span class="token punctuation">[</span><span class="token string">"/hello"</span><span class="token punctuation">]</span>
+ ---<span class="token operator">&gt;</span> Running <span class="token keyword">in</span> 246fe1df6b4b
+Removing intermediate container 246fe1df6b4b
+ ---<span class="token operator">&gt;</span> 373d2ce282c2
+Successfully built 373d2ce282c2
+Successfully tagged wenxudong/hello:latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>查看</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> docker image <span class="token function">ls</span>
+REPOSITORY                                          TAG                 IMAGE ID            CREATED             SIZE
+wenxudong/hello                                     latest              373d2ce282c2        <span class="token number">2</span> minutes ago       865kB
+
+$ <span class="token function">sudo</span> docker <span class="token function">history</span> 373d2ce282c2	//查看docker Image的分层 373d2ce282c2（IMAGE ID）
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+373d2ce282c2        <span class="token number">6</span> minutes ago       /bin/sh -c <span class="token comment">#(nop)  CMD ["/hello"]               0B</span>
+8df0d79a4994        <span class="token number">6</span> minutes ago       /bin/sh -c <span class="token comment">#(nop) ADD file:8041f15efa9650de5…   865kB</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>运行</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> docker run wenxudong/hello
+hello docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="Image-操作"><a href="#Image-操作" class="headerlink" title="Image 操作"></a>Image 操作</h4><ul>
+<li>查看 image 列表 <code>$sudo docker image ls</code> 或 <code>$ docker images</code></li>
+<li>查看 image 的分层 <code>$sudo docker history image_id</code></li>
+<li>删除 image <code>$ docker image rm 67759sju213(image id)</code> 或 <code>$ docker rmi 67759sju213(image id)</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/image/">https://docs.docker.com/engine/reference/commandline/image/</a></li>
+</ul>
+<h3 id="10-Docker-Container"><a href="#10-Docker-Container" class="headerlink" title="10. Docker Container"></a>10. Docker Container</h3><h4 id="什么是-Container"><a href="#什么是-Container" class="headerlink" title="什么是 Container"></a>什么是 Container</h4><ul>
+<li>通过 Image 创建（copy）</li>
+<li>在 Image layer 之上建立一个 container layer（可读写）</li>
+<li>类比面向对象：类（image）和实例（container）</li>
+<li>Image 负责 app 的存储和分发，Container 负责 app 运行</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/656687/1575955788236-296de3a3-19f9-4559-9292-4df4e67bbc40.png#height=412&amp;id=hdpAe&amp;name=image-20191104200420240.png&amp;originHeight=412&amp;originWidth=614&amp;originalType=binary%E2%88%B6=1&amp;size=83764&amp;status=done&amp;style=none&amp;width=614" alt="image-20191104200420240.png"></p>
+<h4 id="Container-操作"><a href="#Container-操作" class="headerlink" title="Container 操作"></a>Container 操作</h4><ul>
+<li><p>查看当前正在运行的 container（容器） <code>$ docker container ls</code> 或 <code>$ docker ps</code></p>
+</li>
+<li><p>列举出当前所有的 container（容器） <code>$ docker container ls -a</code> 或 <code>$ docker ps -a</code></p>
+</li>
+<li><p>创建一个 container，运行并退出 <code>$ docker run centos(镜像名称。centos:7指定版本为7)</code></p>
+</li>
+<li><p>创建一个 container，交互式运行 <code>$ docker run -it image_id</code></p>
+</li>
+<li><p>删除一个 container <code>$ docker container rm 732879e51ecf(container id)</code> 或 <code>$ docker rm 732879e51ecf(container id)</code></p>
+</li>
+<li><p>创建并<strong>后台运行</strong>container <code>$ docker run -d centos(image名称或id)</code></p>
+<blockquote>
+<p>-d：使用时必须在镜像中要有一个常驻内存的进程，比如 nginx，db，不会停的 shell 脚本。<br>否则使用命令<code>$ docker run -it -d image_name(id)</code>即可</p>
+</blockquote>
+</li>
+<li><p>创建并设置<strong>环境变量</strong>并后台运行 <code>$ docker run -d -e NAME=WINXUDONG image_name(id)</code></p>
+</li>
+<li><p>创建 container 后台运行并<strong>指定名称</strong>：<code>docker run -d --name=demo image_name(id)</code> `</p>
+</li>
+<li><p>删除所有 container</p>
+</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span>docker container <span class="token function">ls</span> -aq<span class="token variable">)</span></span>
+b0487b7a51a1
+3bfb29a0856f
+af858e310d31
+4ffe8dc01ed7
+a9cd04c8bf49
+09bcc2b5a418
+<span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker container <span class="token function">ls</span> -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>删除所有退出的 container</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span>docker container <span class="token function">ls</span> -f <span class="token string">"status=exited"</span> -q<span class="token variable">)</span></span>
+a5ddf882b73d
+05440bc8ccc4
+605292d5ac48
+9921e7264142
+9844b372a81a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>进入到正在运行的 container 中：<code>$ docker exec -it dedf40b94b72(container id) /bin/bash</code></li>
+<li>打印正在运行的 container 的 ip 地址：<code>docker exec -it dedf40b94b72(container id) ip a</code></li>
+<li>停止正在运行的 container：<code>$ docker stop ded(container id简写)</code> 或者 <code>$ docker stop demo(container name)</code></li>
+<li>启动 container：<code>$ docker start demo(container name或者id)</code></li>
+<li>查看 container 信息：<code>$ docker inspect dedf40b94b72(container_id)</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/container/">https://docs.docker.com/engine/reference/commandline/container/</a></li>
+</ul>
+<h3 id="11-构建-Docker-镜像"><a href="#11-构建-Docker-镜像" class="headerlink" title="11. 构建 Docker 镜像"></a>11. 构建 Docker 镜像</h3><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><h4 id="创建一个交互的-container"><a href="#创建一个交互的-container" class="headerlink" title="创建一个交互的 container"></a>创建一个交互的 container</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+centos              latest              0f3e07c0138f        <span class="token number">4</span> weeks ago         220MB
+<span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker run -it centos
+<span class="token punctuation">[</span>root@16f742ae68c5 /<span class="token punctuation">]</span><span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="在-container-中进行操作"><a href="#在-container-中进行操作" class="headerlink" title="在 container 中进行操作"></a>在 container 中进行操作</h4><p><code>[root@16f742ae68c5 /]# yum install -y vim</code></p>
+<h4 id="退出-container"><a href="#退出-container" class="headerlink" title="退出 container"></a>退出 container</h4><p><code>[root@16f742ae68c5 /]# exit</code></p>
+<h4 id="将-container-进行-commit"><a href="#将-container-进行-commit" class="headerlink" title="将 container 进行 commit"></a>将 container 进行 commit</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker container <span class="token function">ls</span> -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+16f742ae68c5        centos              <span class="token string">"/bin/bash"</span>         <span class="token number">6</span> minutes ago       Exited <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token number">2</span> minutes ago                       quizzical_zhukovsky
+<span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker commit quizzical_zhukovsky winn/centos-vim
+sha256:f26be7ad148164c236ad8ec9eed879b5b596158d8594823fb5045f919159407f<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="查看-images-构建完成"><a href="#查看-images-构建完成" class="headerlink" title="查看 images 构建完成"></a>查看 images 构建完成</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+winn/centos-vim     latest              f26be7ad1481        About a minute ago   286MB
+centos              latest              0f3e07c0138f        <span class="token number">4</span> weeks ago          220MB<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="查看-image-层次结构"><a href="#查看-image-层次结构" class="headerlink" title="查看 image 层次结构"></a>查看 image 层次结构</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker <span class="token function">history</span> 0f3e07c0138f
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+0f3e07c0138f        <span class="token number">4</span> weeks ago         /bin/sh -c <span class="token comment">#(nop)  CMD ["/bin/bash"]            0B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">&gt;</span>           <span class="token number">4</span> weeks ago         /bin/sh -c <span class="token comment">#(nop)  LABEL org.label-schema.sc…   0B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">&gt;</span>           <span class="token number">4</span> weeks ago         /bin/sh -c <span class="token comment">#(nop) ADD file:d6fdacc1972df524a…   220MB</span>
+<span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker <span class="token function">history</span> f26be7ad1481
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+f26be7ad1481        <span class="token number">3</span> minutes ago       /bin/bash                                       <span class="token number">66</span>.8MB
+0f3e07c0138f        <span class="token number">4</span> weeks ago         /bin/sh -c <span class="token comment">#(nop)  CMD ["/bin/bash"]            0B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">&gt;</span>           <span class="token number">4</span> weeks ago         /bin/sh -c <span class="token comment">#(nop)  LABEL org.label-schema.sc…   0B</span>
+<span class="token operator">&lt;</span>missing<span class="token operator">&gt;</span>           <span class="token number">4</span> weeks ago         /bin/sh -c <span class="token comment">#(nop) ADD file:d6fdacc1972df524a…   220MB</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><h4 id="创建一个-Dockerfile"><a href="#创建一个-Dockerfile" class="headerlink" title="创建一个 Dockerfile"></a>创建一个 Dockerfile</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ <span class="token function">mkdir</span> docker-centos-vim
+<span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ <span class="token builtin class-name">cd</span> docker-centos-vim/
+<span class="token punctuation">[</span>vagrant@10 docker-centos-vim<span class="token punctuation">]</span>$ <span class="token function">vim</span> Dockerfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Dockerfile-写入内容"><a href="#Dockerfile-写入内容" class="headerlink" title="Dockerfile 写入内容"></a>Dockerfile 写入内容</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FROM centos
+RUN yum <span class="token function">install</span> -y <span class="token function">vim</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="docker-build-构建镜像"><a href="#docker-build-构建镜像" class="headerlink" title="docker build 构建镜像"></a>docker build 构建镜像</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 docker-centos-vim<span class="token punctuation">]</span>$ docker build -t winn/centos-vim-new <span class="token builtin class-name">.</span>
+Sending build context to Docker daemon  <span class="token number">2</span>.048kB
+Step <span class="token number">1</span>/2 <span class="token builtin class-name">:</span> FROM centos
+ ---<span class="token operator">&gt;</span> 0f3e07c0138f
+Step <span class="token number">2</span>/2 <span class="token builtin class-name">:</span> RUN yum <span class="token function">install</span> -y <span class="token function">vim</span>
+ ---<span class="token operator">&gt;</span> Running <span class="token keyword">in</span> 83e39a2050c8
+
+ Complete<span class="token operator">!</span>
+Removing intermediate container 83e39a2050c8
+ ---<span class="token operator">&gt;</span> f74e84c2089a
+Successfully built f74e84c2089a
+Successfully tagged winn/centos-vim-new:latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>因为 image 是只读的，所以在 build 的过程中会先创建一个临时的 container<code>Running in 83e39a2050c8</code> 执行 <code>yum install -y</code> &nbsp; 完成之后删除临时 container <code>Removing intermediate container 83e39a2050c8</code></p>
+</blockquote>
+<h3 id="12-Dockerfile-语法与实践"><a href="#12-Dockerfile-语法与实践" class="headerlink" title="12. Dockerfile 语法与实践"></a>12. Dockerfile 语法与实践</h3><h4 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h4><blockquote>
+<p>FROM 一般应用于 Dockerfile 文件最开始的位置。<br>FROM：一般用于指定我们制作的 image 的 base image 是什么，也就是说我们要在哪个 image 之上制作一个新的 image。<br><code>FROM scratch</code> &nbsp;# scratch 表示从头制作制作 base image<br><code>FROM centos</code> # 基于 centos 的 base image 制作一个 image</p>
+</blockquote>
+<h4 id="LABEL"><a href="#LABEL" class="headerlink" title="LABEL"></a>LABEL</h4><blockquote>
+<p><code>LABEL</code> maintainer = “<a href="mailto:winn@gmail.com">winn@gmail.com</a>“ # 作者<br><code>LABEL</code> version = “1.0” # 版本<br><code>LABEL</code> description = “This is description” # 描述</p>
+</blockquote>
+<h4 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h4><blockquote>
+<p><code>RUN 执行命令并创建新的image</code></p>
+</blockquote>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">RUN yum update <span class="token operator">&amp;&amp;</span> yum <span class="token function">install</span> -y <span class="token function">vim</span> <span class="token punctuation">\</span>
+		python-dev <span class="token comment"># 反斜线换行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>Run 执行 shell 命令<br>尽量将多条命令合并为一行 反斜线换行</p>
+</blockquote>
+<h4 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h4><blockquote>
+<p><code>WORKDIR</code>/test # 如果没有会自动创建 test 目录<br><code>WORKDIR</code> demo<br><code>RUN</code>pwd # 输出结果应该是 /test/demo<br>使用 WORKDIR，不要使用 RUN cd！尽量使用绝对目录！</p>
+</blockquote>
+<h4 id="ADD-and-COPY"><a href="#ADD-and-COPY" class="headerlink" title="ADD and COPY"></a>ADD and COPY</h4><blockquote>
+<p>本地文件添加到 image 里面，ADD 不仅可以添加文件还可以<code>解压缩</code><br>添加远程文件可以试用 <code>curl</code>或者<code>wget</code></p>
+</blockquote>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ADD hello /
+
+ADD test.tar,gz / <span class="token comment">#添加到根目录并解压</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">WORKDIR /root
+ADD hello test/	<span class="token comment">#/root/test/hello</span>
+
+WORKDIR /root
+COPY hello test/	<span class="token comment">#/root/test/hello</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h4><blockquote>
+<p>设置常量</p>
+</blockquote>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ENV MYSQL_VERSION <span class="token number">5.6</span>	<span class="token comment">#设置常量</span>
+RUN <span class="token function">apt-get</span> <span class="token function">install</span> -y mysql-server<span class="token operator">=</span> <span class="token string">"<span class="token variable">${MYSQL_VERSION}</span>"</span>	<span class="token comment">#引用常量</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="VOLUME-and-EXPOSE"><a href="#VOLUME-and-EXPOSE" class="headerlink" title="VOLUME and EXPOSE"></a>VOLUME and EXPOSE</h4><blockquote>
+<p>存储和网络<br>EXPOSE</p>
+<ul>
+<li>暴露端口 <code>EXPOSE 2000</code> (暴露 2000 端口)</li>
+</ul>
+</blockquote>
+<h4 id="CMD-与-ENTPYPOINT"><a href="#CMD-与-ENTPYPOINT" class="headerlink" title="CMD 与 ENTPYPOINT"></a>CMD 与 ENTPYPOINT</h4><blockquote>
+<p>CMD</p>
+<ul>
+<li><code>设置容器启动后默认执行的命令和参数</code> 启动后</li>
+<li>如果 docker run 指定了其他命令，CMD 命令会被忽略<ul>
+<li>例如：<code>docker run -it [image] /bin/bash</code></li>
+<li>因为 run 时指定了<code>/bin/bash</code> 则 CMD 命令不会执行</li>
+</ul>
+</li>
+<li>如果定义了多个 CMD，只会执行最后一个命令</li>
+</ul>
+<p>ENTPYPOINT</p>
+<ul>
+<li><code>设置容器启动时运行的命令</code> 启动时</li>
+<li>让容器以应用程序或者服务的形式运行</li>
+<li>不会被忽略，一定会执行</li>
+<li>最佳实践：写一个 shell 脚本作为 entrypoint</li>
+</ul>
+</blockquote>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">COPY docker-entrypoint.sh /usr/local/bin
+ENTPYPOINT <span class="token punctuation">[</span><span class="token string">"docker-entrypoint.sh"</span><span class="token punctuation">]</span>
+
+EXPOSE <span class="token number">27017</span>
+CMD <span class="token punctuation">[</span><span class="token string">"mongodb"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="Shell-与-Exec-格式"><a href="#Shell-与-Exec-格式" class="headerlink" title="Shell 与 Exec 格式"></a>Shell 与 Exec 格式</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">RUN <span class="token function">apt-get</span> <span class="token function">install</span> -y <span class="token function">vim</span>
+CMD <span class="token builtin class-name">echo</span> <span class="token string">"hello docker"</span>
+ENTPYPOINT <span class="token builtin class-name">echo</span> <span class="token string">"hello docker"</span>	<span class="token comment">#shell</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">RUN <span class="token punctuation">[</span><span class="token string">"age-get"</span>, <span class="token string">"install"</span>, <span class="token string">"-y"</span>, <span class="token string">"vim"</span><span class="token punctuation">]</span>
+CMD <span class="token punctuation">[</span><span class="token string">"bin/echo"</span>, <span class="token string">"hello docker"</span><span class="token punctuation">]</span>
+ENTPYPOINT <span class="token punctuation">[</span><span class="token string">"bin/echo"</span>, <span class="token string">"hello docker"</span><span class="token punctuation">]</span>	<span class="token comment">#exec</span>
+<span class="token punctuation">[</span><span class="token punctuation">]</span>中
+第一个为命令 例如age-get，bin/echo
+后面的全部为命令的参数 例如install，vim，hello docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="github-dockerfile"><a href="#github-dockerfile" class="headerlink" title="github dockerfile"></a>github dockerfile</h4><p><a target="_blank" rel="noopener" href="https://github.com/docker-library">https://github.com/docker-library</a></p>
+<h4 id="Dockerfile-官方文档"><a href="#Dockerfile-官方文档" class="headerlink" title="Dockerfile 官方文档"></a>Dockerfile 官方文档</h4><p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/">https://docs.docker.com/engine/reference/builder/</a></p>
+<h3 id="13-Image-镜像发布"><a href="#13-Image-镜像发布" class="headerlink" title="13. Image 镜像发布"></a>13. Image 镜像发布</h3><h4 id="方式一-1"><a href="#方式一-1" class="headerlink" title="方式一"></a>方式一</h4><h4 id="登录自己的-docker-hub"><a href="#登录自己的-docker-hub" class="headerlink" title="登录自己的 docker hub"></a>登录自己的 docker hub</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+winn/centos-vim-new   latest              f74e84c2089a        <span class="token number">2</span> hours ago         286MB
+winn/centos-vim       latest              f26be7ad1481        <span class="token number">2</span> hours ago         286MB
+centos                latest              0f3e07c0138f        <span class="token number">4</span> weeks ago         220MB
+<span class="token punctuation">[</span>vagrant@10 ~<span class="token punctuation">]</span>$ docker login
+输入用户名密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="发布镜像到-docker-hub"><a href="#发布镜像到-docker-hub" class="headerlink" title="发布镜像到 docker hub"></a>发布镜像到 docker hub</h4><p><code>$ docker push wenxudong/centos-vim</code></p>
+<blockquote>
+<p>注意 push 的时候 / 前面的部分必须与登录 docker hub 的用户名一致</p>
+</blockquote>
+<h4 id="方式二-1"><a href="#方式二-1" class="headerlink" title="方式二"></a>方式二</h4><blockquote>
+<p>docker hub 与 github 关联，在 github 上传 Dockerfile，docker 会同步 Dockerfile 然后创建你的 docker 镜像<br>也可在本地搭建 docker hub</p>
+</blockquote>
+<h3 id="14-容器资源限制"><a href="#14-容器资源限制" class="headerlink" title="14. 容器资源限制"></a>14. 容器资源限制</h3><ul>
+<li>创建并运行 container 时限制内存：<code>$ docker run --memory=200M winn/centos-vim</code></li>
+<li>设置容器使用 cpu 的权重：<code>$ docker run --cpu-shares=10 winn/centos-vim</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/resource_constraints/">https://docs.docker.com/config/containers/resource_constraints/</a></li>
+</ul>
+<h3 id="15-Docker-底层技术支持"><a href="#15-Docker-底层技术支持" class="headerlink" title="15. Docker 底层技术支持"></a>15. Docker 底层技术支持</h3><blockquote>
+<ul>
+<li>Namespaces:：做隔离 pid，net，ipc，uts</li>
+<li>Control group：做资源限制</li>
+<li>Union file system：Container 和 Image 分层</li>
+</ul>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/blog/about" rel="external nofollow noreferrer">阿松</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://asong123.github.io/blog/2021/07/12/hgnidv/">https://asong123.github.io/blog/2021/07/12/hgnidv/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/blog/about" target="_blank">阿松</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/blog/tags/%E5%AE%B9%E5%99%A8/">
+                                    <span class="chip bg-color">容器</span>
+                                </a>
+                            
+                                <a href="/blog/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/blog/tags/docker/">
+                                    <span class="chip bg-color">docker</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/blog/2021/07/12/vgfoc4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/12.jpg" class="responsive-img" alt="Docker网络">
+                        
+                        <span class="card-title">Docker网络</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            阿松
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/2021/07/12/siqkqy/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/29.jpg" class="responsive-img" alt="JAVAWEB">
+                        
+                        <span class="card-title">JAVAWEB</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在 java 中，动态 web 资源开发的技术统称为 JavaWeb；
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/JAVAWEB/" class="post-category">
+                                    JAVAWEB
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/blog/tags/JavaSE/">
+                        <span class="chip bg-color">JavaSE</span>
+                    </a>
+                    
+                    <a href="/blog/tags/JAVAWEB/">
+                        <span class="chip bg-color">JAVAWEB</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/blog/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/blog/about" target="_blank">阿松</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">216.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:835549978@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=835549978" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 835549978" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/blog/libs/materialize/materialize.min.js"></script>
+    <script src="/blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/blog/libs/aos/aos.js"></script>
+    <script src="/blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+
+</html>
