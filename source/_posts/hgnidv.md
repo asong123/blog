@@ -2,8 +2,18 @@
 title: Docker容器与镜像
 urlname: hgnidv
 date: '2021-07-12 14:05:06 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: Docker容器与镜像
+categories: docker
+tags:
+  - docker
+  - 后端
+  - 容器
 ---
 
 ## Docker

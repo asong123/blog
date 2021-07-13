@@ -2,8 +2,18 @@
 title: 容器编排Docker Swarm
 urlname: gk11et
 date: '2021-07-12 14:07:07 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 怎么去管理多个容器？如果容器 down 了，怎么能自动恢复？
+categories: docker
+tags:
+  - docker
+  - 后端
+  - 容器编排Docker
 ---
 
 ### 1. Docker Swarm 介绍

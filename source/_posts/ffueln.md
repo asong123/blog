@@ -2,8 +2,17 @@
 title: ZooKeeper整理
 urlname: ffueln
 date: '2021-07-12 14:31:49 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: ZooKeeper 一个开源的，用于分布式中一致性处理的框架。分布式应用程序可以基于 ZooKeeper 实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master 选举、配置维护、名字服务、分布式同步、分布式锁和分布式队列等功能。
+categories: ZooKeeper
+tags:
+  - ZooKeeper
+  - 后端
 ---
 
 # 一、ZooKeeper 简介

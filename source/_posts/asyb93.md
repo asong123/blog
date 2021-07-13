@@ -2,8 +2,20 @@
 title: SpringBoot集成Redis
 urlname: asyb93
 date: '2021-07-12 14:11:34 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: SpringBoot集成Redis
+categories: springBoot
+tags:
+  - springBoot
+  - 后端
+  - Redis
+  - 数据库
+  - spring
 ---
 
 # SpringBoot 集成 Redis

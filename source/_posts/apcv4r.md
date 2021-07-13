@@ -2,8 +2,20 @@
 title: SpringBoot集成mybatis
 urlname: apcv4r
 date: '2021-07-12 14:12:53 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: SpringBoot集成mybatis
+categories: springBoot
+tags:
+  - springBoot
+  - 后端
+  - mybatis
+  - 数据库
+  - spring
 ---
 
 # SpringBoot 集成 mybatis

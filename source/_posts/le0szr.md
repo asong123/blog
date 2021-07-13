@@ -2,8 +2,19 @@
 title: 分布式微服务架构之SpringCloud基础篇
 urlname: le0szr
 date: '2021-07-12 14:19:02 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: title: 一种架构风格，将项目的不同功能拆分成一个个模块，每个模块都能独立运行，彼此间通过远程调用实现功能。
+categories: SpringCloud
+tags:
+  - SpringCloud
+  - 后端
+  - 微服务
+  - java
 ---
 
 # 一，微服务相关概念

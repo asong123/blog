@@ -2,8 +2,18 @@
 title: Docker的持久化和数据共享
 urlname: ap74vb
 date: '2021-07-12 14:06:13 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: Docker 持久化数据的方案
+categories: docker
+tags:
+  - 容器
+  - 后端
+  - docker
 ---
 
 ### 1. Docker 持久化数据的方案

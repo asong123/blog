@@ -2,8 +2,18 @@
 title: 消息队列总结
 urlname: iuzxzt
 date: '2021-07-12 14:16:41 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 消息队列总结
+categories: java
+tags:
+  - java
+  - 后端
+  - 消息队列
 ---
 
 # 一、rocketmq

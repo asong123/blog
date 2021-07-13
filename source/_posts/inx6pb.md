@@ -2,8 +2,18 @@
 title: Debug Linux上跑的程序
 urlname: inx6pb
 date: '2021-07-12 14:15:43 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: Debug Linux上跑的程序
+categories: linux
+tags:
+  - Debug
+  - 后端
+  - linux
 ---
 
 # DEBUG linux 上跑的程序

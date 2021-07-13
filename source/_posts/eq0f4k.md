@@ -2,8 +2,18 @@
 title: 关于eCharts对数轴以及解决对数轴显示失败只显示1-10区间的问题
 urlname: eq0f4k
 date: '2021-07-13 19:15:18 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: 关于eCharts对数轴以及解决对数轴显示失败只显示1-10区间的问题问题整理分析
+categories: eCharts
+tags:
+  - eCharts
+  - 前端
+  - 问题整理
 ---
 
 eCharts 对数轴官方示例：[https://echarts.apache.org/examples/zh/editor.html?c=line-log](https://echarts.apache.org/examples/zh/editor.html?c=line-log)

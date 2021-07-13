@@ -2,8 +2,18 @@
 title: Docker Compose多容器部署
 urlname: bd5wx6
 date: '2021-07-12 14:06:47 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: Docker Compose多容器部署
+categories: docker
+tags:
+  - Docker
+  - 后端
+  - 容器
 ---
 
 ### 1. 部署 wordpress

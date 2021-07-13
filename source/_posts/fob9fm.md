@@ -2,8 +2,18 @@
 title: SpringBoot日志
 urlname: fob9fm
 date: '2021-07-12 14:10:24 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: SpringBoot日志
+categories: SpringBoot
+tags:
+  - SpringBoot
+  - 后端
+  - SpringBoot日志
 ---
 
 # SpringBoot 日志

@@ -2,8 +2,18 @@
 title: SpringBoot Actuator
 urlname: fet5b2
 date: '2021-07-12 14:10:47 +0800'
-tags: []
-categories: []
+author: 阿松
+top: true
+hide: false
+cover: false
+toc: false
+mathjax: false
+summary: SpringBoot Actuator
+categories: SpringBoot
+tags:
+  - Actuator
+  - SpringBoot
+  - 后端
 ---
 
 # SpringBoot Actuator
