@@ -14,6 +14,7 @@ tags:
   - java
   - JavaSE
   - 数组
+abbrlink: 49466
 ---
 
 # 数组概述

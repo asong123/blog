@@ -14,6 +14,7 @@ tags:
   - java
   - 后端
   - 消息队列
+abbrlink: 64131
 ---
 
 # 一、rocketmq

@@ -4,6 +4,7 @@ urlname: whf77l
 date: '2021-07-12 14:14:04 +0800'
 tags: []
 categories: []
+abbrlink: 54037
 ---
 
 # SpringBoot 集成 Email

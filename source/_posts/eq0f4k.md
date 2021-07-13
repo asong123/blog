@@ -14,6 +14,7 @@ tags:
   - eCharts
   - 前端
   - 问题整理
+abbrlink: 26302
 ---
 
 eCharts 对数轴官方示例：[https://echarts.apache.org/examples/zh/editor.html?c=line-log](https://echarts.apache.org/examples/zh/editor.html?c=line-log)

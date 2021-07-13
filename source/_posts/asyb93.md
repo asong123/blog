@@ -16,6 +16,7 @@ tags:
   - Redis
   - 数据库
   - spring
+abbrlink: 31026
 ---
 
 # SpringBoot 集成 Redis

@@ -8,13 +8,14 @@ hide: false
 cover: false
 toc: false
 mathjax: false
-summary: title: 一种架构风格，将项目的不同功能拆分成一个个模块，每个模块都能独立运行，彼此间通过远程调用实现功能。
+summary: 一种架构风格，将项目的不同功能拆分成一个个模块，每个模块都能独立运行，彼此间通过远程调用实现功能。
 categories: SpringCloud
 tags:
   - SpringCloud
   - 后端
   - 微服务
   - java
+abbrlink: 17566
 ---
 
 # 一，微服务相关概念

@@ -16,6 +16,7 @@ tags:
   - mybatis
   - 数据库
   - spring
+abbrlink: 51533
 ---
 
 # SpringBoot 集成 mybatis

@@ -8,12 +8,15 @@ hide: false
 cover: false
 toc: false
 mathjax: false
-summary: 现在是公元 1995 年， C 语言帝国已经统治了我们 20 多年， 实在是太久了。1972 年， 随着 C 语言的诞生和 Unix 的问世， 帝国迅速建立统治， 从北美到欧洲， 从欧洲到亚洲， 无数程序员臣服在他的脚下
+summary: >-
+  现在是公元 1995 年， C 语言帝国已经统治了我们 20 多年， 实在是太久了。1972 年， 随着 C 语言的诞生和 Unix 的问世，
+  帝国迅速建立统治， 从北美到欧洲， 从欧洲到亚洲， 无数程序员臣服在他的脚下
 categories: Java入门
 tags:
   - java
   - JavaSE
   - Java入门
+abbrlink: 59242
 ---
 
 # Java : 一个帝国的诞生

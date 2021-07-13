@@ -8,12 +8,15 @@ hide: false
 cover: false
 toc: false
 mathjax: false
-summary: 之前我们学的基本语法中我们并没有实现程序和人的交互，但是 Java 给我们提供了这样一个工具类，我 们可以获取用户的输入。java.util.Scanner 是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。
+summary: >-
+  之前我们学的基本语法中我们并没有实现程序和人的交互，但是 Java 给我们提供了这样一个工具类，我 们可以获取用户的输入。java.util.Scanner
+  是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。
 categories: JavaSE：流程控制
 tags:
   - java
   - JavaSE
   - 后端
+abbrlink: 17623
 ---
 
 # 用户交互 Scanner

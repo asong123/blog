@@ -8,12 +8,15 @@ hide: false
 cover: false
 toc: false
 mathjax: false
-summary: 在 Java 程序中，对于数据的输入/输出操作以“流”（Stream）方式进行；J2SDK 提供了各种各样的“流” 类，用以获取不同种类的数据：程序中通过标准的方法输入或输出数据
+summary: >-
+  在 Java 程序中，对于数据的输入/输出操作以“流”（Stream）方式进行；J2SDK 提供了各种各样的“流”
+  类，用以获取不同种类的数据：程序中通过标准的方法输入或输出数据
 categories: java
 tags:
   - java
   - JavaSE
   - IO流
+abbrlink: 55348
 ---
 
 # 一、JAVA 流式输入/输出原理

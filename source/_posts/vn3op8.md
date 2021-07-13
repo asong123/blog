@@ -15,6 +15,7 @@ tags:
   - JavaSE
   - Mybatis
   - 数据库
+abbrlink: 60289
 ---
 
 # 一、分布式系统唯一 ID 生成方案汇总（数据库 ID 号）

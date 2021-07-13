@@ -14,6 +14,7 @@ tags:
   - Actuator
   - SpringBoot
   - 后端
+abbrlink: 22519
 ---
 
 # SpringBoot Actuator

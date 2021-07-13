@@ -14,6 +14,7 @@ tags:
   - 容器
   - 后端
   - docker
+abbrlink: 38285
 ---
 
 ### 1. Docker 持久化数据的方案

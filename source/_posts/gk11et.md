@@ -14,6 +14,7 @@ tags:
   - docker
   - 后端
   - 容器编排Docker
+abbrlink: 33156
 ---
 
 ### 1. Docker Swarm 介绍
