@@ -94,9 +94,9 @@ music:
     enable: true
     show: 听听音乐
   autoHide: true    # hide automaticaly
-  server: netease   #require	music platform: netease, tencent, kugou, xiami, baidu
+  server: netease   # require	music platform: netease, tencent, kugou, xiami, baidu
   type: playlist    #require song, playlist, album, search, artist
-  id: 503838841     #require	song id / playlist id / album id / search keyword
+  id: 3066614455    # require	song id / playlist id / album id / search keyword
   fixed: true       # 开启吸底模式
   autoplay: false   # 是否自动播放
   theme: '#42b983'
@@ -301,13 +301,14 @@ postCalendar: true
 # the Gitalk config，default disabled
 # Gitalk 评论模块的配置，默认为不激活
 gitalk:
-  enable: false
-  owner:
-  repo:
+  enable: true #用来做启用判断可以不用
+  owner: asong123 #Github 用户名,
+  repo: gitalk #储存评论issue的github仓库名
   oauth:
-    clientId:
-    clientSecret:
-  admin:
+    clientId: 835ade174131e7a67400 #`Github Application clientID`
+    clientSecret: 670f61c44646c23f332b511b41a6b885db6d6b5f   #`Github Application clientSecret`
+  admin: asong123 #Github 用户名,
+
 
 # the Gitment config，default disabled
 # Gitment 评论模块的配置，默认为不激活
@@ -397,7 +398,7 @@ changyan:
 # Whether to display fork me on github icon and link, default true, You can change it to your repo address
 # 配置是否在 header 中显示 fork me on github 的图标，默认为true，你可以修改为你的仓库地址.
 githubLink:
-  enable: true
+  enable: false
   url: https://github.com/blinkfox/hexo-theme-matery
   title: Fork Me
 
@@ -549,11 +550,11 @@ tidio:
 
 # 腾讯兔小巢，见https://txc.qq.com/
 tuxiaochao:
-  enable: false
-  productId:
+  enable: true
+  productId: 339013
 #背景canvas-nest
 canvas_nest:
-  enable: false
+  enable: true
   color: 0,0,255 # 线条颜色, 默认: '0,0,0' ；三个数字分别为(R,G,B)，注意用,分割
   pointColor: 0,0,255 # 交点颜色, 默认: '0,0,0' ；三个数字分别为(R,G,B)，注意用,分割
   opacity: 0.7 # 线条透明度（0~1）, 默认: 0.5
@@ -570,7 +571,7 @@ ribbon:
 
 # 背景动态彩带.
 ribbon_dynamic:
-  enable: false
+  enable: true
 
 # sharejs文章分享模块.
 # 支持顺序，可选项目为twitter, facebook, google, qq, qzone, wechat, weibo, douban, linkedin.
