@@ -175,3 +175,9 @@ admin:
   username: asong
   password_hash: $2a$10$ZwpDAerIWwWhPwEgVeHqWurW4GQ.Z.H8qQ1bRytNBhG4jpHlJbqFi
   secret: my super secret phrase
+
+
+# lazyload:
+#   enable: true 
+#   onlypost: false  # 是否只对文章的图片做懒加载
+#   loadingImg: # eg ./images/loading.gif

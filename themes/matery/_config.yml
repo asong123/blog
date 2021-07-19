@@ -140,7 +140,7 @@ logo: /medias/logo.png
 # including the display name of the button, the font awesome icon, and the hyperlink to the button.
 # 首页 banner 中的第二个按钮的配置，包括按钮的显示名称、font awesome图标和按钮的超链接.
 indexbtn:
-  enable: true
+  enable: false
   name: Github
   icon: fab fa-github-alt
   url: https://github.com/blinkfox/hexo-theme-matery
@@ -301,7 +301,7 @@ postCalendar: true
 # the Gitalk config，default disabled
 # Gitalk 评论模块的配置，默认为不激活
 gitalk:
-  enable: true #用来做启用判断可以不用
+  enable: false  #用来做启用判断可以不用
   owner: asong123 #Github 用户名,
   repo: gitalk #储存评论issue的github仓库名
   oauth:
@@ -336,9 +336,9 @@ livere:
 # To use it, activate the configuration item and set appId and appKey.
 # Valine 评论模块的配置，默认为不激活，如要使用，就请激活该配置项，并设置 appId 和 appKey.
 valine:
-  enable: false
-  appId:
-  appKey:
+  enable: true
+  appid: gr0epKCNbOgvh17qXnn1YYQs-gzGzoHsz
+  appkey: xP5QBrKN1rDH94SqKISjbh15
   notify: false
   verify: false
   visitor: true
