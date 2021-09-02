@@ -22,21 +22,21 @@ menu:
   友情链接:
     url: /friends
     icon: fas fa-address-book
-  媒体:
-    icon: fas fa-list
-    children:
-        - name: 音乐
-          url: /music
-          icon: fas fa-music
-        - name: 电影
-          url: /movies
-          icon: fas fa-film
-        - name: 书籍
-          url: /books
-          icon: fas fa-book
-        - name: 图表
-          url: /galleries
-          icon: fas fa-image
+  # 媒体:
+  #   icon: fas fa-list
+  #   children:
+  #       - name: 音乐
+  #         url: /music
+  #         icon: fas fa-music
+  #       - name: 电影
+  #         url: /movies
+  #         icon: fas fa-film
+  #       - name: 书籍
+  #         url: /books
+  #         icon: fas fa-book
+  #       - name: 图表
+  #         url: /galleries
+  #         icon: fas fa-image
 
   # 二级菜单写法如下
   #Medias:
@@ -555,6 +555,8 @@ tidio:
 tuxiaochao:
   enable: true
   productId: 339013
+  t_logo: /medias/cantact.png
+
 #背景canvas-nest
 canvas_nest:
   enable: true
