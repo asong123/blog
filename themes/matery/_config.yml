@@ -555,7 +555,7 @@ tidio:
 tuxiaochao:
   enable: true
   productId: 339013
-  t_logo: /medias/cantact.png
+  t_logo: /medias/contact.png
 
 #背景canvas-nest
 canvas_nest:
