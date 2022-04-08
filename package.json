@@ -17,7 +17,7 @@
   "dependencies": {
     "echarts": "^5.1.2",
     "gitalk": "^1.7.2",
-    "hexo": "^5.0.0",
+    "hexo": "^5.4.2",
     "hexo-abbrlink": "^2.2.1",
     "hexo-deployer-git": "^3.0.0",
     "hexo-filter-github-emojis": "^3.0.4",
