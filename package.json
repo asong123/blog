@@ -54,6 +54,6 @@
     "onlyPublic": true
   },
   "devDependencies": {
-    "hexo-util": "^2.5.0"
+    "hexo-util": "^2.7.0"
   }
 }
